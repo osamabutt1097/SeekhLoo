@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "89489178945",
+    "firebase_url": "https://seekhloo.firebaseio.com",
+    "project_id": "seekhloo",
+    "storage_bucket": "seekhloo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89489178945:android:805c5357e5649578",
+        "android_client_info": {
+          "package_name": "com.example.osamanadeem.seekhloo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89489178945-gf34p9ant8cbbt6r2b24c118t70l7584.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.osamanadeem.seekhloo",
+            "certificate_hash": "c799815a573c8d4efc56ef85ba5849849e333641"
+          }
+        },
+        {
+          "client_id": "89489178945-c4qttsgdts8dle8gi9krf3qbml55d350.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxKEteeSH9WeGNtoL0zqh2dDUnghscxnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89489178945-c4qttsgdts8dle8gi9krf3qbml55d350.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
