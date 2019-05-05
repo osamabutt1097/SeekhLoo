@@ -20,7 +20,10 @@
         android:id="@+id/emailLogin"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
+        android:inputType="textEmailAddress"
         android:hint="Email"/>
+
+
     <EditText
         android:layout_width="300dp"
         android:layout_height="wrap_content"

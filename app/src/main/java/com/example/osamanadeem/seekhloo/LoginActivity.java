@@ -1,6 +1,8 @@
 package com.example.osamanadeem.seekhloo;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -52,27 +54,33 @@ public class LoginActivity extends AppCompatActivity {
 
     public void Login(View view) {
 
-        mAuth.signInWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        if(!email.getText().toString().isEmpty() || !pass.getText().toString().isEmpty()) {
+            mAuth.signInWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
 
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(LoginActivity.this, "User Existed", Toast.LENGTH_LONG).show();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(LoginActivity.this, "Failed!", Toast.LENGTH_LONG).show();
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Toast.makeText(LoginActivity.this, "User Existed", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this,AdminPanelActivity.class));
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Toast.makeText(LoginActivity.this, "Failed!", Toast.LENGTH_LONG).show();
 
+                            }
+
+                            // ...
                         }
+                    });
 
-                        // ...
-                    }
-                });
+        }
 
-    }
+        else
+            Snackbar.make(view,"Enter valid Email/Password",Snackbar.LENGTH_LONG).show();
+        }
 
     public void SignUp(View view) {
 
