@@ -1,26 +1,27 @@
 package com.example.osamanadeem.seekhloo;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static android.app.Activity.RESULT_OK;
+import static androidx.appcompat.app.AppCompatActivity.RESULT_OK;
+
 
 public class Frag_AdminPostNewsletter extends Fragment {
     private EditText subject, body;
@@ -47,7 +48,7 @@ public class Frag_AdminPostNewsletter extends Fragment {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialog(getActivity(),"Choose image from","");
+                //showDialog(getActivity(),"Choose image from","");
                 }
         });
 
@@ -58,9 +59,17 @@ public class Frag_AdminPostNewsletter extends Fragment {
             }
         });
 
+        //////////////////// Post Newsletter Button ///////////////
 
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
+    //////// Initiallize varriables //////
     void init()
     {
         subject = getActivity().findViewById(R.id.subject_admin_postletter);
@@ -68,10 +77,14 @@ public class Frag_AdminPostNewsletter extends Fragment {
         img = getActivity().findViewById(R.id.circleImg_admin_postletter);
         submit = getActivity().findViewById(R.id.btn_admin_postletter);
     }
+
+    /////// Open Gallery to select images from device internal storage ///////
     void openGallery(){
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery,PICK_IMAGE);
     }
+
+    ////// Open Camera to take and set image //////
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -79,7 +92,8 @@ public class Frag_AdminPostNewsletter extends Fragment {
         }
     }
 
-    public void showDialog(Activity activity, String title, CharSequence message) {
+    ////// Show dialogue box to select image from gallery or camera //////
+    public void showDialog(AppCompatActivity activity, String title, CharSequence message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
         if (title != null) builder.setTitle(title);
@@ -104,6 +118,7 @@ public class Frag_AdminPostNewsletter extends Fragment {
         builder.show();
     }
 
+    ////// After image is selected successfully set image //////
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

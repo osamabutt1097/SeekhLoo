@@ -1,14 +1,11 @@
 package com.example.osamanadeem.seekhloo;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Jaison on 23/10/16.
- */
 
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {

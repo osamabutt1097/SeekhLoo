@@ -1,6 +1,6 @@
 package com.example.osamanadeem.seekhloo;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class AdminActivity extends AppCompatActivity {
