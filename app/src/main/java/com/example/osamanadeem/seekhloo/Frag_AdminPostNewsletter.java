@@ -2,6 +2,7 @@ package com.example.osamanadeem.seekhloo;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -48,7 +50,7 @@ public class Frag_AdminPostNewsletter extends Fragment {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //showDialog(getActivity(),"Choose image from","");
+                showDialog((AppCompatActivity) getActivity(),"Choose image from","");
                 }
         });
 
@@ -132,8 +134,9 @@ public class Frag_AdminPostNewsletter extends Fragment {
                 break;
             case REQUEST_IMAGE_CAPTURE:
                 if(resultCode == RESULT_OK){
-                    Uri selectedImage = data.getData();
-                    img.setImageURI(selectedImage);
+                    Bitmap photo = (Bitmap) data.getExtras().get("data");
+                    img.setImageBitmap(photo);
+                    Toast.makeText(getContext(), "captured", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
