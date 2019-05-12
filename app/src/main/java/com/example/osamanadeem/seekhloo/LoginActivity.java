@@ -65,13 +65,14 @@ public class LoginActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(LoginActivity.this, "User Existed", Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this,AdminPanelActivity.class));
+                                finish();
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Toast.makeText(LoginActivity.this, "Failed!", Toast.LENGTH_LONG).show();
 
                             }
 
-                            // ...
+
                         }
                     });
 
