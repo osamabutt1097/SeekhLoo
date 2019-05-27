@@ -7,6 +7,8 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 
 
 public class AdminPanelActivity extends AppCompatActivity {
@@ -78,8 +80,8 @@ public class AdminPanelActivity extends AppCompatActivity {
             }
         });
 
-       /*  //Disable ViewPager Swipe
-       viewPager.setOnTouchListener(new View.OnTouchListener()
+         //Disable ViewPager Swipe
+       /*viewPager.setOnTouchListener(new View.OnTouchListener()
         {
             @Override
             public boolean onTouch(View v, MotionEvent event)
@@ -88,6 +90,7 @@ public class AdminPanelActivity extends AppCompatActivity {
             }
         });
         */
+
 
         setupViewPager(viewPager);
     }

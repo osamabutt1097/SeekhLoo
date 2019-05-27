@@ -6,6 +6,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModel;
 
 import com.ramotion.paperonboarding.PaperOnboardingFragment;
 import com.ramotion.paperonboarding.PaperOnboardingPage;
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         elements.add(scr3);
 
         PaperOnboardingFragment onBoardingFragment = PaperOnboardingFragment.newInstance(elements);
+
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 3000);
     }
+
 
 
 }
