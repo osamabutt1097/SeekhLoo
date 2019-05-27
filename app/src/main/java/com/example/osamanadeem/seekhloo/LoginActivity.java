@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public void Login(View view) {
+    public void Login(final View view) {
 
         if(!email.getText().toString().isEmpty() || !pass.getText().toString().isEmpty()) {
             mAuth.signInWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
@@ -63,13 +63,13 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                Toast.makeText(LoginActivity.this, "User Existed", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(LoginActivity.this, "User Existed", Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this,AdminPanelActivity.class));
                                 finish();
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(LoginActivity.this, "Failed!", Toast.LENGTH_LONG).show();
-
+                                Snackbar.make(view, "Email/Password incorrect!", Snackbar.LENGTH_LONG).show();
+                                pass.setText(null);
                             }
 
 
