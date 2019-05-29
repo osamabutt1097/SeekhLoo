@@ -14,4 +14,23 @@
         android:textStyle="bold"
         android:textColor="@color/black"/>
 
+    <DatePicker
+        android:theme="@style/DatePicker"
+        android:id="@+id/fragment_date_picker_control"
+        android:datePickerMode="spinner"
+        android:spinnersShown="true"
+        android:calendarViewShown="false"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Next"
+        android:background="@drawable/roundedbutton"
+        android:layout_marginTop="20dp"
+        />
+
 </LinearLayout>
