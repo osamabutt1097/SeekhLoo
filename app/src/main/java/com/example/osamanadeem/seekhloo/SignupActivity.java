@@ -6,13 +6,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,16 +18,20 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class SignupActivity extends AppCompatActivity implements signup_frag_name.FragmentChangeListener,signup_frag_email.FragmentChangePassword,
-        signup_frag_join.FragmentChangename,signup_frag_birthday.FragmentChangeGender,
-        signup_frag_gender.FragmentChangeEmail, signup_frag_password.UploadData {
+public class SignupActivity extends AppCompatActivity implements signup_frag_name.FragmentChangeBirthday,signup_frag_email.FragmentChangePassword,
+        signup_frag_join.FragmentChangetype,signup_frag_birthday.FragmentChangeGender,
+        signup_frag_gender.FragmentChangeEmail, signup_frag_password.UploadData, signup_frag_type.FragmentChangeName {
 
     Toolbar toolbar;
 
     //// fragments /////
     private FirebaseAuth mAuth;
     private signup_frag_birthday birthday;
+    private signup_frag_type type;
     private signup_frag_email email;
     private signup_frag_gender gender;
     private signup_frag_password password;
@@ -77,6 +78,7 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
         password = new signup_frag_password();
         join = new signup_frag_join();
         gender = new signup_frag_gender();
+        type = new signup_frag_type();
         i =0;
         mAuth = FirebaseAuth.getInstance();
         fragment = join;
@@ -96,7 +98,7 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
     }
 
     @Override
-    public void replaceFragment(Fragment fragment) {
+    public void replaceBirthday(Fragment fragment) {
 
         fragment = birthday;
         FragmentManager manager = getSupportFragmentManager();
@@ -106,8 +108,8 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
     }
 
     @Override
-    public void replacename(Fragment fragment) {
-        fragment = name;
+    public void replacetype(Fragment fragment) {
+        fragment = type;
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.signup_frag, fragment);
@@ -137,7 +139,7 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
     public void tofirebase() {
 
 
-        SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
+        final SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
 
 
 
@@ -150,6 +152,29 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
 
+
+
+
+                            //////////////////inserting data to database///////////
+
+                            UserInfo info = new UserInfo(prefs.getString("type",null),prefs.getString("email",null),prefs.getString("birthday",null),prefs.getString("fname",null),prefs.getString("lname",null));
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference();
+                            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                            myRef.child(currentFirebaseUser.getUid()).setValue(info, new DatabaseReference.CompletionListener() {
+                                public void onComplete(DatabaseError error, DatabaseReference ref) {
+                                    Toast.makeText(SignupActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+                                    finish();
+
+                                }
+                            });
+
+                            ////////////////////////////////////////////////////////
+
+
+
+
                             Snackbar.make(findViewById(android.R.id.content),"User Created",Snackbar.LENGTH_LONG).show();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -160,7 +185,16 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
                     }
                 });
 
-        startActivity(new Intent(this,LoginActivity.class));
-        finish();
+        //startActivity(new Intent(this,LoginActivity.class));
+        //finish();
+    }
+
+    @Override
+    public void replaceName(Fragment fragment) {
+        fragment = name;
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.signup_frag, fragment);
+        transaction.commit();
     }
 }

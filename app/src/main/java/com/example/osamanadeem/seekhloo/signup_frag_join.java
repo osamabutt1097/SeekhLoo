@@ -30,15 +30,15 @@ public class signup_frag_join extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    public interface FragmentChangename
+    public interface FragmentChangetype
     {
-        public void replacename(Fragment fragment);
+        public void replacetype(Fragment fragment);
     }
     public void showOtherFragment()
     {
 
-        Fragment fr=new signup_frag_name();
-        signup_frag_join.FragmentChangename fc=(signup_frag_join.FragmentChangename)getActivity();
-        fc.replacename(fr);
+        Fragment fr=new signup_frag_type();
+        FragmentChangetype fc=(FragmentChangetype)getActivity();
+        fc.replacetype(fr);
     }
 }
