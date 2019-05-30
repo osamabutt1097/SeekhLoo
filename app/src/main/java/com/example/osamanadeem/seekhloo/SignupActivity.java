@@ -90,6 +90,7 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
 
     @Override
     public void replacePassword(Fragment fragment) {
+        getSupportActionBar().setTitle("Password");
         fragment = password;
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -100,6 +101,7 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
     @Override
     public void replaceBirthday(Fragment fragment) {
 
+        getSupportActionBar().setTitle("Birthday");
         fragment = birthday;
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -109,6 +111,7 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
 
     @Override
     public void replacetype(Fragment fragment) {
+        getSupportActionBar().setTitle("Type");
         fragment = type;
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -119,6 +122,7 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
 
     @Override
     public void replaceGender(Fragment fragment) {
+        getSupportActionBar().setTitle("Gender");
         fragment = gender;
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -128,6 +132,7 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
 
     @Override
     public void replaceEmail(Fragment fragment) {
+        getSupportActionBar().setTitle("Email");
         fragment = email;
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -191,6 +196,7 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
 
     @Override
     public void replaceName(Fragment fragment) {
+        getSupportActionBar().setTitle("Name");
         fragment = name;
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
