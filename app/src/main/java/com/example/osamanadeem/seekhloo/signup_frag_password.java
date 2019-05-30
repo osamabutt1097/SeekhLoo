@@ -29,8 +29,7 @@ public class signup_frag_password extends Fragment {
                 SharedPreferences.Editor editor = getActivity().getSharedPreferences("User", MODE_PRIVATE).edit();
                 editor.putString("password", text.getText().toString());
                 editor.apply();
-                startActivity(new Intent(getActivity(),LoginActivity.class));
-                getActivity().finish();
+                uploading();
             }
         });
         return v;
@@ -40,5 +39,17 @@ public class signup_frag_password extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
+    public interface UploadData
+    {
+        public void tofirebase();
+    }
+    public void uploading()
+    {
+
+
+        signup_frag_password.UploadData fc=(signup_frag_password.UploadData)getActivity();
+        fc.tofirebase();
+    }
+
 
 }
