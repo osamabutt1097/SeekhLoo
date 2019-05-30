@@ -15,6 +15,7 @@ public class signup_frag_birthday extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.signup_frag_birthday,container,false);
+
         Button btn = v.findViewById(R.id.su_birthday_btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
