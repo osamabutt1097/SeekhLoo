@@ -21,6 +21,7 @@ public class AdminPanelActivity extends AppCompatActivity {
 
     //Fragments
     private Frag_AdminPostNewsletter frag_adminPostNewsletter;
+
     MenuItem prevMenuItem;
 
     @Override

@@ -2,6 +2,9 @@ package com.example.osamanadeem.seekhloo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -10,10 +13,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity implements signup_frag_name.FragmentChangeListener,signup_frag_email.FragmentChangePassword,
+        signup_frag_join.FragmentChangename,signup_frag_birthday.FragmentChangeGender,
+        signup_frag_gender.FragmentChangeEmail {
 
     Toolbar toolbar;
-    private ViewPager viewPager;
 
     //// fragments /////
     private signup_frag_birthday birthday;
@@ -22,6 +26,8 @@ public class SignupActivity extends AppCompatActivity {
     private signup_frag_password password;
     private signup_frag_join join;
     private signup_frag_name name;
+    private Fragment fragment;
+    int i;
 
 
 
@@ -43,38 +49,15 @@ public class SignupActivity extends AppCompatActivity {
         //toolbar.setTitle("Signup");
         getSupportActionBar().setTitle("SignUp");
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
         init();
-        setupViewPager(viewPager);
+
+
+
+
     }
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(join);
-        adapter.addFragment(name);
-        adapter.addFragment(birthday);
-        adapter.addFragment(gender);
-        adapter.addFragment(email);
-        adapter.addFragment(password);
-        viewPager.setAdapter(adapter);
-    }
+
+
 
     void init()
     {
@@ -84,5 +67,58 @@ public class SignupActivity extends AppCompatActivity {
         password = new signup_frag_password();
         join = new signup_frag_join();
         gender = new signup_frag_gender();
+        i =0;
+        fragment = join;
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.signup_frag, fragment);
+        transaction.commit();
+    }
+
+    @Override
+    public void replacePassword(Fragment fragment) {
+        fragment = password;
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.signup_frag, fragment);
+        transaction.commit();
+    }
+
+    @Override
+    public void replaceFragment(Fragment fragment) {
+
+        fragment = birthday;
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.signup_frag, fragment);
+        transaction.commit();
+    }
+
+    @Override
+    public void replacename(Fragment fragment) {
+        fragment = name;
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.signup_frag, fragment);
+        transaction.commit();
+
+    }
+
+    @Override
+    public void replaceGender(Fragment fragment) {
+        fragment = gender;
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.signup_frag, fragment);
+        transaction.commit();
+    }
+
+    @Override
+    public void replaceEmail(Fragment fragment) {
+        fragment = email;
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.signup_frag, fragment);
+        transaction.commit();
     }
 }

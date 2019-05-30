@@ -40,5 +40,6 @@
         android:text="Next"
         android:background="@drawable/roundedbutton"
         android:layout_margin="150dp"
+        android:id="@+id/su_email_btn"
         />
 </LinearLayout>
