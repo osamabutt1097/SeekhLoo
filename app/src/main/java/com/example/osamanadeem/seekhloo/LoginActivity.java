@@ -15,12 +15,20 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    Button login,signup;
-    EditText email, pass;
+    private DatabaseReference mDatabase;
+    private FirebaseUser currentFirebaseUser;
+    private Button login,signup;
+    private EditText email, pass;
+    private UserInfo info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.emailLogin);
         pass = findViewById(R.id.passwordLogin);
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
     }
 
     public void Login(final View view) {
@@ -63,9 +74,37 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
+
+                                ////////////////////////Fetch User Type ////////////////////////////
+
+                                mDatabase.child("User").child(currentFirebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                        info = dataSnapshot.getValue(UserInfo.class);
+                                        if (info.getType().equals("student"))
+                                        {
+                                            startActivity(new Intent(LoginActivity.this,StudentActivity.class));
+                                            finish();
+                                        }
+                                        else if (info.getType().equals("tutor"))
+                                        {
+                                            Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError error) {
+                                        // Failed to read value
+
+                                    }
+                                });
+
+
+                                ///////////////////////---------------//////////////////////////////
                                 //Toast.makeText(LoginActivity.this, "User Existed", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(LoginActivity.this,AdminPanelActivity.class));
-                                finish();
+                                //startActivity(new Intent(LoginActivity.this,AdminPanelActivity.class));
+                                //finish();
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Snackbar.make(view, "Email/Password incorrect!", Snackbar.LENGTH_LONG).show();

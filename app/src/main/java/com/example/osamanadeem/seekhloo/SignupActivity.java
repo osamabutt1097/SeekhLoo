@@ -166,7 +166,8 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference myRef = database.getReference();
                             FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-                            myRef.child(currentFirebaseUser.getUid()).setValue(info, new DatabaseReference.CompletionListener() {
+                            myRef.child("User" +
+                                    "").child(currentFirebaseUser.getUid()).setValue(info, new DatabaseReference.CompletionListener() {
                                 public void onComplete(DatabaseError error, DatabaseReference ref) {
                                     Toast.makeText(SignupActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(SignupActivity.this,LoginActivity.class));

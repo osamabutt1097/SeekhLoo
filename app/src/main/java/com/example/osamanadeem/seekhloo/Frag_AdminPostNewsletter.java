@@ -9,6 +9,11 @@ import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,6 +72,15 @@ public class Frag_AdminPostNewsletter extends Fragment {
             @Override
             public void onClick(View view) {
 
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference();
+                NewsLetters newsLetters = new NewsLetters(subject.getText().toString(),body.getText().toString());
+                myRef.child("NewsLetters").child(subject.getText().toString()).setValue(newsLetters, new DatabaseReference.CompletionListener() {
+                    public void onComplete(DatabaseError error, DatabaseReference ref) {
+
+                        Toast.makeText(getContext(), "Uploaded!", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
