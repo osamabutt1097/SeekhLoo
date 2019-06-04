@@ -87,13 +87,18 @@ public class StudentActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_archive) {
 
-        } else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_settings) {
+
+        }else if (id == R.id.nav_logout) {
 
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
+        } else if (id == R.id.nav_notify) {
+
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

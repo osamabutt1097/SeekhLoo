@@ -2,6 +2,8 @@ package com.example.osamanadeem.seekhloo;
 
 import android.content.Intent;
 import androidx.annotation.NonNull;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseUser currentFirebaseUser;
     private Button login,signup;
     private EditText email, pass;
+    private LottieAnimationView lottieAnimationView;
     private UserInfo info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +62,14 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        lottieAnimationView = findViewById(R.id.load_login);
 
     }
 
     public void Login(final View view) {
 
         if(!email.getText().toString().isEmpty() || !pass.getText().toString().isEmpty()) {
+            lottieAnimationView.setVisibility(View.VISIBLE);
             mAuth.signInWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
@@ -91,11 +96,14 @@ public class LoginActivity extends AppCompatActivity {
                                         {
                                             Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
                                         }
+
+
                                     }
 
                                     @Override
                                     public void onCancelled(DatabaseError error) {
                                         // Failed to read value
+                                        lottieAnimationView.setVisibility(View.GONE);
 
                                     }
                                 });
@@ -106,6 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                                 //startActivity(new Intent(LoginActivity.this,AdminPanelActivity.class));
                                 //finish();
                             } else {
+                                lottieAnimationView.setVisibility(View.GONE);
                                 // If sign in fails, display a message to the user.
                                 Snackbar.make(view, "Email/Password incorrect!", Snackbar.LENGTH_LONG).show();
                                 pass.setText(null);
