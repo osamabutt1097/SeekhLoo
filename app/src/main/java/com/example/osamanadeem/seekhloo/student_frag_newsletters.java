@@ -20,7 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class student_frag_notifications extends Fragment {
+public class student_frag_newsletters extends Fragment {
     ArrayList<NewsLetters> news = new ArrayList<>();
     private DatabaseReference mDatabase;
     private DatabaseReference mRef;
@@ -54,12 +54,10 @@ public class student_frag_notifications extends Fragment {
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
 
                     NewsLetters newsLetters = childDataSnapshot.getValue(NewsLetters.class);
-                    Toast.makeText(getContext(), newsLetters.getSubject(), Toast.LENGTH_SHORT).show();
                     news.add(newsLetters);
 
                 }
 
-                Toast.makeText(getContext(),  news.get(1).getSubject(), Toast.LENGTH_SHORT).show();
                 init_recyclerview();
             }
 

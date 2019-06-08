@@ -3,11 +3,6 @@ package com.example.osamanadeem.seekhloo;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.View;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -27,7 +22,8 @@ public class StudentActivity extends AppCompatActivity
 
 
     private ViewPager viewPager;
-    private student_frag_notifications notifications;
+    private student_frag_newsletters notifications;
+    private student_fag_home home;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,10 +68,7 @@ public class StudentActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        else if (id == R.id.addbtnstudent){
+        if (id == R.id.addbtnstudent){
             Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show();
             return true;
         }
@@ -90,6 +83,7 @@ public class StudentActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
+            viewPager.setCurrentItem(1);
 
         } else if (id == R.id.nav_calender) {
             Intent launchIntent = this.getPackageManager().getLaunchIntentForPackage("com.google.android.calendar");
@@ -114,7 +108,7 @@ public class StudentActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.nav_notify) {
-            //viewPager.setCurrentItem(0);
+            viewPager.setCurrentItem(0);
 
         }
 
@@ -131,9 +125,11 @@ public class StudentActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        notifications = new student_frag_notifications();
+        notifications = new student_frag_newsletters();
+        home = new student_fag_home();
         //adapter.addFragment(frag_adminPostNewsletter);
         adapter.addFragment(notifications);  // index 0
+        adapter.addFragment(home); // index 1
         viewPager.setAdapter(adapter);
     }
 
