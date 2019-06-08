@@ -5,9 +5,10 @@ public class NewsLetters {
     public NewsLetters(){
 
     }
-    public NewsLetters(String subject, String messageBody) {
+    public NewsLetters(String subject, String messageBody,String picurl) {
         this.subject = subject;
         this.messageBody = messageBody;
+        this.picurl = picurl;
     }
 
     public String getSubject() {
@@ -26,6 +27,17 @@ public class NewsLetters {
         this.messageBody = messageBody;
     }
 
-    String subject,messageBody;
+    String subject;
+    String messageBody;
+
+    public String getPicurl() {
+        return picurl;
+    }
+
+    public void setPicurl(String picurl) {
+        this.picurl = picurl;
+    }
+
+    String picurl;
 
 }

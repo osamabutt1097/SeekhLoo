@@ -37,9 +37,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
-
-
-
     }
 
 
@@ -82,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 ////////////////////////Fetch User Type ////////////////////////////
 
+                                currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                                 mDatabase.child("User").child(currentFirebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -95,6 +93,11 @@ public class LoginActivity extends AppCompatActivity {
                                         else if (info.getType().equals("tutor"))
                                         {
                                             Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
+                                        }
+                                        else if (info.getType().equals("admin"))
+                                        {
+                                            startActivity(new Intent(LoginActivity.this,AdminPanelActivity.class));
+                                            finish();
                                         }
 
 
@@ -128,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
 
         else
             Snackbar.make(view,"Enter valid Email/Password",Snackbar.LENGTH_LONG).show();
+
         }
 
     public void SignUp(View view) {

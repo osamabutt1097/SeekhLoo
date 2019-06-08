@@ -2,18 +2,26 @@ package com.example.osamanadeem.seekhloo;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +34,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import de.hdodenhof.circleimageview.CircleImageView;
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
+import static android.content.Context.MODE_PRIVATE;
 import static androidx.appcompat.app.AppCompatActivity.RESULT_OK;
 
 
@@ -36,6 +46,12 @@ public class Frag_AdminPostNewsletter extends Fragment {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private CircleImageView img;
     private Button submit;
+    private Uri selectedImage;
+    private StorageReference mStorageRef;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+    LottieAnimationView upload;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,8 +71,8 @@ public class Frag_AdminPostNewsletter extends Fragment {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialog((AppCompatActivity) getActivity(),"Choose image from","");
-                }
+                openGallery();
+            }
         });
 
         submit.setOnClickListener(new View.OnClickListener() {
@@ -71,19 +87,48 @@ public class Frag_AdminPostNewsletter extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                upload.setVisibility(View.VISIBLE);
+                uploadPicAndData();
 
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference();
-                NewsLetters newsLetters = new NewsLetters(subject.getText().toString(),body.getText().toString());
-                myRef.child("NewsLetters").child(subject.getText().toString()).setValue(newsLetters, new DatabaseReference.CompletionListener() {
-                    public void onComplete(DatabaseError error, DatabaseReference ref) {
-
-                        Toast.makeText(getContext(), "Uploaded!", Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
         });
     }
+
+    void uploadPicAndData()
+    {
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("picname", MODE_PRIVATE);
+        StorageReference riversRef = mStorageRef.child("images/"+prefs.getInt("name",0)+".jpg");
+        prefs.edit().putInt("name",prefs.getInt("name",0)+1).apply();
+        riversRef.putFile(selectedImage)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Get a URL to the uploaded content
+                        Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                        NewsLetters newsLetters = new NewsLetters(subject.getText().toString(),body.getText().toString(),downloadUrl+"");
+
+                        myRef.child("NewsLetters").child(subject.getText().toString()).setValue(newsLetters, new DatabaseReference.CompletionListener() {
+                            public void onComplete(DatabaseError error, DatabaseReference ref) {
+                                subject.setText(null);
+                                body.setText(null);
+                                img.setImageResource(R.drawable.camera);
+                                Toast.makeText(getContext(), "Newsletter Published", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        upload.setVisibility(View.GONE);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        // ...
+
+                        upload.setVisibility(View.GONE);
+                    }
+                });
+        }
 
     //////// Initiallize varriables //////
     void init()
@@ -92,6 +137,10 @@ public class Frag_AdminPostNewsletter extends Fragment {
         body = getActivity().findViewById(R.id.body_admin_postletter);
         img = getActivity().findViewById(R.id.circleImg_admin_postletter);
         submit = getActivity().findViewById(R.id.btn_admin_postletter);
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference();
+        upload = getActivity().findViewById(R.id.upload_admin_data);
     }
 
     /////// Open Gallery to select images from device internal storage ///////
@@ -100,39 +149,7 @@ public class Frag_AdminPostNewsletter extends Fragment {
         startActivityForResult(gallery,PICK_IMAGE);
     }
 
-    ////// Open Camera to take and set image //////
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
 
-    ////// Show dialogue box to select image from gallery or camera //////
-    public void showDialog(AppCompatActivity activity, String title, CharSequence message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-
-        if (title != null) builder.setTitle(title);
-
-        builder.setMessage(message);
-        builder.setPositiveButton("Camera", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // TODO Auto-generated method stub
-
-                dispatchTakePictureIntent();
-                dialog.dismiss();
-            }
-        });
-        builder.setNegativeButton("Gallery", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // TODO Auto-generated method stub
-
-                openGallery();
-                dialog.dismiss();
-            }
-        });
-        builder.show();
-    }
 
     ////// After image is selected successfully set image //////
     @Override
@@ -141,18 +158,12 @@ public class Frag_AdminPostNewsletter extends Fragment {
         switch(requestCode) {
             case PICK_IMAGE:
                 if(resultCode == RESULT_OK){
-                    Uri selectedImage = data.getData();
+                    selectedImage = data.getData();
                     img.setImageURI(selectedImage);
                 }
 
                 break;
-            case REQUEST_IMAGE_CAPTURE:
-                if(resultCode == RESULT_OK){
-                    Bitmap photo = (Bitmap) data.getExtras().get("data");
-                    img.setImageBitmap(photo);
-                    Toast.makeText(getContext(), "captured", Toast.LENGTH_SHORT).show();
-                }
-                break;
+
         }
     }
 }
