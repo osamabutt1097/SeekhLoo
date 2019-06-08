@@ -84,7 +84,7 @@ public class StudentActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             viewPager.setCurrentItem(0);
-
+            getSupportActionBar().setTitle("SeekhLoo");
         } else if (id == R.id.nav_calender) {
             Intent launchIntent = this.getPackageManager().getLaunchIntentForPackage("com.google.android.calendar");
             if (launchIntent != null) {
@@ -109,6 +109,7 @@ public class StudentActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_notify) {
             viewPager.setCurrentItem(1);
+            getSupportActionBar().setTitle("NewsLetters");
 
         }
 

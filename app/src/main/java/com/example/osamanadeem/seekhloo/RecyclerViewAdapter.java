@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import androidx.cardview.widget.CardView;
@@ -50,6 +52,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.subject.setText(news.get(position).getSubject());
         holder.messagebody.setText(news.get(position).getMessageBody());
         holder.cardView.setClickable(true);
+        if (!news.get(position).getPicurl().isEmpty())
+            Glide.with(mContext).load(news.get(position).getPicurl()).into(holder.imageView);
 
     }
 
