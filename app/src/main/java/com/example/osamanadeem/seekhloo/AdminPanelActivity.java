@@ -1,8 +1,11 @@
 package com.example.osamanadeem.seekhloo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
@@ -46,8 +49,10 @@ public class AdminPanelActivity extends AppCompatActivity {
                             case R.id.navigation_dashboard:
                                 viewPager.setCurrentItem(0);
                                 return true;
-                            case R.id.navigation_notifications:
-                                viewPager.setCurrentItem(0);
+                            case R.id.navigation_settings:
+                                FirebaseAuth.getInstance().signOut();
+                                startActivity(new Intent(AdminPanelActivity.this, LoginActivity.class));
+                                finish();
                                 return true;
                         }
                         return false;
