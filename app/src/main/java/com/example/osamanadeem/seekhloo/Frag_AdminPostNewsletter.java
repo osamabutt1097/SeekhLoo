@@ -100,35 +100,54 @@ public class Frag_AdminPostNewsletter extends Fragment {
         SharedPreferences prefs = getActivity().getSharedPreferences("picname", MODE_PRIVATE);
         StorageReference riversRef = mStorageRef.child("images/"+prefs.getInt("name",0)+".jpg");
         prefs.edit().putInt("name",prefs.getInt("name",0)+1).apply();
-        riversRef.putFile(selectedImage)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // Get a URL to the uploaded content
-                        Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        NewsLetters newsLetters = new NewsLetters(subject.getText().toString(),body.getText().toString(),downloadUrl+"");
+        if (selectedImage != null) {
+            riversRef.putFile(selectedImage)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // Get a URL to the uploaded content
+                            Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                            NewsLetters newsLetters = new NewsLetters(subject.getText().toString(), body.getText().toString(), downloadUrl + "");
 
-                        myRef.child("NewsLetters").child(subject.getText().toString()).setValue(newsLetters, new DatabaseReference.CompletionListener() {
-                            public void onComplete(DatabaseError error, DatabaseReference ref) {
-                                subject.setText(null);
-                                body.setText(null);
-                                img.setImageResource(R.drawable.camera);
-                                Toast.makeText(getContext(), "Newsletter Published", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        upload.setVisibility(View.GONE);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                        // ...
+                            myRef.child("NewsLetters").child(subject.getText().toString()).setValue(newsLetters, new DatabaseReference.CompletionListener() {
+                                public void onComplete(DatabaseError error, DatabaseReference ref) {
+                                    subject.setText(null);
+                                    body.setText(null);
+                                    img.setImageResource(R.drawable.camera);
+                                    Toast.makeText(getContext(), "Newsletter Published", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            upload.setVisibility(View.GONE);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle unsuccessful uploads
+                            // ...
 
-                        upload.setVisibility(View.GONE);
-                    }
-                });
+                            upload.setVisibility(View.GONE);
+                        }
+                    });
         }
+        else
+        {
+            NewsLetters newsLetters = new NewsLetters(subject.getText().toString(), body.getText().toString(), null);
+
+            myRef.child("NewsLetters").child(subject.getText().toString()).setValue(newsLetters, new DatabaseReference.CompletionListener() {
+                public void onComplete(DatabaseError error, DatabaseReference ref) {
+                    subject.setText(null);
+                    body.setText(null);
+                    img.setImageResource(R.drawable.camera);
+                    Toast.makeText(getContext(), "Newsletter Published", Toast.LENGTH_SHORT).show();
+                }
+            });
+            upload.setVisibility(View.GONE);
+
+        }
+
+    }
+
 
     //////// Initiallize varriables //////
     void init()
