@@ -83,7 +83,7 @@ public class StudentActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            viewPager.setCurrentItem(1);
+            viewPager.setCurrentItem(0);
 
         } else if (id == R.id.nav_calender) {
             Intent launchIntent = this.getPackageManager().getLaunchIntentForPackage("com.google.android.calendar");
@@ -108,7 +108,7 @@ public class StudentActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.nav_notify) {
-            viewPager.setCurrentItem(0);
+            viewPager.setCurrentItem(1);
 
         }
 
@@ -128,8 +128,9 @@ public class StudentActivity extends AppCompatActivity
         notifications = new student_frag_newsletters();
         home = new student_fag_home();
         //adapter.addFragment(frag_adminPostNewsletter);
-        adapter.addFragment(notifications);  // index 0
-        adapter.addFragment(home); // index 1
+
+        adapter.addFragment(home); // index 0
+        adapter.addFragment(notifications);  // index 1
         viewPager.setAdapter(adapter);
     }
 
