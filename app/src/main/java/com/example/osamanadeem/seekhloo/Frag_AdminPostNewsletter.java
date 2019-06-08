@@ -50,7 +50,6 @@ public class Frag_AdminPostNewsletter extends Fragment {
     private StorageReference mStorageRef;
     FirebaseDatabase database;
     DatabaseReference myRef;
-    LottieAnimationView upload;
 
     @Nullable
     @Override
@@ -84,16 +83,14 @@ public class Frag_AdminPostNewsletter extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                LottieAnimationView lottieAnimationView = getActivity().findViewById(R.id.upload_admin_data);
+                lottieAnimationView.setVisibility(View.VISIBLE);
                 if(subject.getText().toString().isEmpty() || body.getText().toString().isEmpty())
                 {
-                    upload.setVisibility(View.VISIBLE);
                     Toast.makeText(getContext(), "Provide some information", Toast.LENGTH_SHORT).show();
-                    upload.setVisibility(View.GONE);
                 }
                 else
                 {
-                    upload.setVisibility(View.VISIBLE);
                     uploadPicAndData();
                 }
 
@@ -103,9 +100,11 @@ public class Frag_AdminPostNewsletter extends Fragment {
         });
     }
 
+
+
     void uploadPicAndData()
     {
-
+        final LottieAnimationView lottieAnimationView = getActivity().findViewById(R.id.upload_admin_data);
         SharedPreferences prefs = getActivity().getSharedPreferences("picname", MODE_PRIVATE);
         StorageReference riversRef = mStorageRef.child("images/"+prefs.getInt("name",0)+".jpg");
         prefs.edit().putInt("name",prefs.getInt("name",0)+1).apply();
@@ -124,9 +123,9 @@ public class Frag_AdminPostNewsletter extends Fragment {
                                     body.setText(null);
                                     img.setImageResource(R.drawable.camera);
                                     Toast.makeText(getContext(), "Newsletter Published", Toast.LENGTH_SHORT).show();
+                                    lottieAnimationView.setVisibility(View.GONE);
                                 }
                             });
-                            upload.setVisibility(View.VISIBLE);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -134,8 +133,8 @@ public class Frag_AdminPostNewsletter extends Fragment {
                         public void onFailure(@NonNull Exception exception) {
                             // Handle unsuccessful uploads
                             // ...
+                            lottieAnimationView.setVisibility(View.GONE);
                             Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
-                            upload.setVisibility(View.VISIBLE);
                         }
                     });
         }
@@ -149,10 +148,9 @@ public class Frag_AdminPostNewsletter extends Fragment {
                     body.setText(null);
                     img.setImageResource(R.drawable.camera);
                     Toast.makeText(getContext(), "Newsletter Published", Toast.LENGTH_SHORT).show();
+                    lottieAnimationView.setVisibility(View.GONE);
                 }
             });
-            upload.setVisibility(View.GONE);
-
         }
 
     }
@@ -168,7 +166,6 @@ public class Frag_AdminPostNewsletter extends Fragment {
         mStorageRef = FirebaseStorage.getInstance().getReference();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
-        upload = getActivity().findViewById(R.id.upload_admin_data);
     }
 
     /////// Open Gallery to select images from device internal storage ///////
