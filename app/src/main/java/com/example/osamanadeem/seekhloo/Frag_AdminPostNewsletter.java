@@ -65,30 +65,39 @@ public class Frag_AdminPostNewsletter extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         init();
+        //upload.setVisibility(View.VISIBLE);
 
         ////////////////////// Set Circular Image icon //////////////////
 
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openGallery();
+
+               openGallery();
             }
         });
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view,"Status OK",Snackbar.LENGTH_LONG).show();
-            }
-        });
+
 
         //////////////////// Post Newsletter Button ///////////////
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                upload.setVisibility(View.VISIBLE);
-                uploadPicAndData();
+
+                if(subject.getText().toString().isEmpty() || body.getText().toString().isEmpty())
+                {
+                    upload.setVisibility(View.VISIBLE);
+                    Toast.makeText(getContext(), "Provide some information", Toast.LENGTH_SHORT).show();
+                    upload.setVisibility(View.GONE);
+                }
+                else
+                {
+                    upload.setVisibility(View.VISIBLE);
+                    uploadPicAndData();
+                }
+
+
 
             }
         });
@@ -117,7 +126,7 @@ public class Frag_AdminPostNewsletter extends Fragment {
                                     Toast.makeText(getContext(), "Newsletter Published", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                            upload.setVisibility(View.GONE);
+                            upload.setVisibility(View.VISIBLE);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -125,14 +134,14 @@ public class Frag_AdminPostNewsletter extends Fragment {
                         public void onFailure(@NonNull Exception exception) {
                             // Handle unsuccessful uploads
                             // ...
-
-                            upload.setVisibility(View.GONE);
+                            Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+                            upload.setVisibility(View.VISIBLE);
                         }
                     });
         }
         else
         {
-            NewsLetters newsLetters = new NewsLetters(subject.getText().toString(), body.getText().toString(), null);
+            NewsLetters newsLetters = new NewsLetters(subject.getText().toString(), body.getText().toString(), "");
 
             myRef.child("NewsLetters").child(subject.getText().toString()).setValue(newsLetters, new DatabaseReference.CompletionListener() {
                 public void onComplete(DatabaseError error, DatabaseReference ref) {
