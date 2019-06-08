@@ -1,5 +1,6 @@
 package com.example.osamanadeem.seekhloo;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -8,12 +9,14 @@ import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +25,9 @@ import android.widget.Toast;
 public class StudentActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    private ViewPager viewPager;
+    private student_frag_notifications notifications;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +35,13 @@ public class StudentActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("SeekhLoo");
+        init();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
-        toggle.syncState();
+
+        setupViewPager(viewPager);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -82,20 +90,31 @@ public class StudentActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_calender) {
+            Intent launchIntent = this.getPackageManager().getLaunchIntentForPackage("com.google.android.calendar");
+            if (launchIntent != null) {
+                startActivity(launchIntent);//null pointer check in case package name was not found
+            }
+            else
+                Toast.makeText(this, "Please install Google Calender", Toast.LENGTH_SHORT).show();
+
 
         } else if (id == R.id.nav_archive) {
 
         } else if (id == R.id.nav_settings) {
 
         }else if (id == R.id.nav_logout) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(StudentActivity.this,LoginActivity.class));
+            finish();
 
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.nav_notify) {
+            //viewPager.setCurrentItem(0);
 
         }
 
@@ -103,5 +122,20 @@ public class StudentActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    void init()
+    {
+        viewPager = findViewById(R.id.viewpagerstudent);
+
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        notifications = new student_frag_notifications();
+        //adapter.addFragment(frag_adminPostNewsletter);
+        adapter.addFragment(notifications);  // index 0
+        viewPager.setAdapter(adapter);
+    }
+
 }
 

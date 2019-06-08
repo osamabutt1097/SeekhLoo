@@ -8,4 +8,14 @@
     tools:context=".StudentActivity"
     tools:showIn="@layout/app_bar_student">
 
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpagerstudent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navigation"
+        android:layout_alignParentTop="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
