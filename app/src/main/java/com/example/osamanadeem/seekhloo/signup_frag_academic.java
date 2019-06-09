@@ -81,7 +81,7 @@ public class signup_frag_academic extends Fragment {
 
     void shared()
     {
-        SharedPreferences.Editor editor = getActivity().getSharedPreferences("Academic Info", MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences("AcademicInfo", MODE_PRIVATE).edit();
 
         editor.putString("schoolname", schoolname.getText().toString());
         editor.putString("schoolcity", schoolcity.getText().toString());

@@ -39,6 +39,7 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
     private signup_frag_name name;
     private Fragment fragment;
     private signup_frag_academic academic;
+    private AcademicInfo academicInfo;
     int i;
 
 
@@ -84,6 +85,7 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
         i =0;
         mAuth = FirebaseAuth.getInstance();
         fragment = join;
+        academicInfo = new AcademicInfo();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.signup_frag, fragment);
@@ -163,7 +165,8 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
                                     "").child(currentFirebaseUser.getUid()).setValue(info, new DatabaseReference.CompletionListener() {
                                 public void onComplete(DatabaseError error, DatabaseReference ref) {
 
-                                    myRef.child("User").child(currentFirebaseUser.getUid()).child("Academia").setValue(info, new DatabaseReference.CompletionListener() {
+                                    setAcademicInfo();
+                                    myRef.child("User").child(currentFirebaseUser.getUid()).child("Academia").setValue(academicInfo, new DatabaseReference.CompletionListener() {
                                         public void onComplete(DatabaseError error, DatabaseReference ref) {
 
 
@@ -228,5 +231,40 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.signup_frag, fragment);
         transaction.commit();
+    }
+
+    private void setAcademicInfo()
+    {
+        final SharedPreferences prefs = getSharedPreferences("AcademicInfo", MODE_PRIVATE);
+        academicInfo.setSchoolcity();
+        academicInfo.setSchoolname();
+        academicInfo.setSchoolRoll();
+        academicInfo.setSchooltotal();
+        academicInfo.setScoolobtn();
+
+        academicInfo.setCollegename();
+        academicInfo.setCollegecity();
+        academicInfo.setCollegeobtn();
+        academicInfo.setSchooltotal();
+        academicInfo.setCollegeRoll();
+
+        academicInfo.setUniversityname();
+        academicInfo.setUniversitydegree();
+        academicInfo.setUniversityGpa();
+        academicInfo.setUniversityMajor();
+
+
+        academicInfo.setMasteruniversityname();
+        academicInfo.setMasteruniversitydegree();
+        academicInfo.setMasteruniversityGpa();
+        academicInfo.setMasteruniversityMajor();
+
+        academicInfo.setPHDuniversityname();
+        academicInfo.setPHDuniversitydegree();
+        academicInfo.setPHDuniversityGpa();
+        academicInfo.setPHDuniversityMajor();
+
+
+
     }
 }
