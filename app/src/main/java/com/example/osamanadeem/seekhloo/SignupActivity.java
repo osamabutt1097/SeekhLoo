@@ -236,33 +236,33 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
     private void setAcademicInfo()
     {
         final SharedPreferences prefs = getSharedPreferences("AcademicInfo", MODE_PRIVATE);
-        academicInfo.setSchoolcity();
-        academicInfo.setSchoolname();
-        academicInfo.setSchoolRoll();
-        academicInfo.setSchooltotal();
-        academicInfo.setScoolobtn();
+        academicInfo.setSchoolcity(prefs.getString("schoolcity",null));
+        academicInfo.setSchoolname(prefs.getString("schoolname",null));
+        academicInfo.setSchoolRoll(prefs.getString("schoolRoll",null));
+        academicInfo.setSchooltotal(prefs.getString("schooltotal",null));
+        academicInfo.setScoolobtn(prefs.getString("scoolobtn",null));
 
-        academicInfo.setCollegename();
-        academicInfo.setCollegecity();
-        academicInfo.setCollegeobtn();
-        academicInfo.setSchooltotal();
-        academicInfo.setCollegeRoll();
+        academicInfo.setCollegename(prefs.getString("collegename",null));
+        academicInfo.setCollegecity(prefs.getString("collegecity",null));
+        academicInfo.setCollegeobtn(prefs.getString("collegeobtn",null));
+        academicInfo.setCollegetotal(prefs.getString("collegetotal",null));
+        academicInfo.setCollegeRoll(prefs.getString("CollegeRoll",null));
 
-        academicInfo.setUniversityname();
-        academicInfo.setUniversitydegree();
-        academicInfo.setUniversityGpa();
-        academicInfo.setUniversityMajor();
+        academicInfo.setUniversityname(prefs.getString("universityname",null));
+        academicInfo.setUniversitydegree(prefs.getString("universitydegree",null));
+        academicInfo.setUniversityGpa(prefs.getString("universityGpa",null));
+        academicInfo.setUniversityMajor(prefs.getString("universityMajor",null));
 
 
-        academicInfo.setMasteruniversityname();
-        academicInfo.setMasteruniversitydegree();
-        academicInfo.setMasteruniversityGpa();
-        academicInfo.setMasteruniversityMajor();
+        academicInfo.setMasteruniversityname(prefs.getString("Masteruniversityname",null));
+        academicInfo.setMasteruniversitydegree(prefs.getString("Masteruniversitydegree",null));
+        academicInfo.setMasteruniversityGpa(prefs.getString("MasteruniversityGpa",null));
+        academicInfo.setMasteruniversityMajor(prefs.getString("MasteruniversityMajor",null));
 
-        academicInfo.setPHDuniversityname();
-        academicInfo.setPHDuniversitydegree();
-        academicInfo.setPHDuniversityGpa();
-        academicInfo.setPHDuniversityMajor();
+        academicInfo.setPHDuniversityname(prefs.getString("PHDuniversityname",null));
+        academicInfo.setPHDuniversitydegree(prefs.getString("PHDuniversitydegree",null));
+        academicInfo.setPHDuniversityGpa(prefs.getString("PHDuniversityGpa",null));
+        academicInfo.setPHDuniversityMajor(prefs.getString("PHDuniversityMajor",null));
 
 
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -140,6 +141,7 @@
                     android:backgroundTint="@color/colorPrimary"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="20dp"
 
                     >
                     <com.google.android.material.textfield.TextInputEditText
@@ -161,7 +163,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/FSC_result"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="40dp"
             android:layout_marginLeft="20dp"
@@ -270,6 +272,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
 
+        android:layout_marginBottom="20dp"
+
         >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -292,9 +296,11 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/batchelor_result"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp">
+            android:layout_marginBottom="40dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="13dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -362,7 +368,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/academic_UniversityGPA"
                         android:layout_marginTop="50dp"
-                        android:hint="Total Marks"
+                        android:hint="GPA"
                         android:backgroundTint="@color/colorPrimary"
                         />
 
@@ -374,6 +380,7 @@
                     android:backgroundTint="@color/colorPrimary"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="20dp"
 
                     >
                     <com.google.android.material.textfield.TextInputEditText
@@ -397,9 +404,11 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/master_result"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="40dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="13dp"
             >
 
             <LinearLayout
@@ -469,7 +478,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/academic_MasterUniversityGPA"
                         android:layout_marginTop="50dp"
-                        android:hint="Total Marks"
+                        android:hint="GPA"
                         android:backgroundTint="@color/colorPrimary"
                         />
 
@@ -481,6 +490,7 @@
                     android:backgroundTint="@color/colorPrimary"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="20dp"
 
                     >
                     <com.google.android.material.textfield.TextInputEditText
@@ -505,9 +515,11 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/phd_result"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp">
+            android:layout_marginBottom="40dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="13dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -576,7 +588,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/academic_PHDUniversityGPA"
                         android:layout_marginTop="50dp"
-                        android:hint="Total Marks"
+                        android:hint="GPA"
                         android:backgroundTint="@color/colorPrimary"
                         />
 
@@ -588,6 +600,7 @@
                     android:backgroundTint="@color/colorPrimary"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="20dp"
 
                     >
                     <com.google.android.material.textfield.TextInputEditText
@@ -616,8 +629,8 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/roundedbutton"
             android:id="@+id/academic_btn"/>
-    </LinearLayout>
 
+    </LinearLayout>
 
 </ScrollView>
 

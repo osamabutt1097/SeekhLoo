@@ -83,6 +83,8 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                         else if (info.getType().equals("tutor"))
                                         {
+                                            lottieAnimationView.setVisibility(View.GONE);
+
                                             Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
                                         }
                                         else if (info.getType().equals("admin"))
@@ -150,6 +152,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else if (info.getType().equals("tutor"))
                     {
+                        lottieAnimationView.setVisibility(View.GONE);
+
                         Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
                     }
                     else if (info.getType().equals("admin"))
