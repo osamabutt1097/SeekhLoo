@@ -25,16 +25,15 @@ public class signup_frag_academic extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.signup_frag_birthday,container,false);
-        init();
-        SignupActivity signupActivity = new SignupActivity();
+        View v = inflater.inflate(R.layout.signup_frag_academic,container,false);
+        init(v);
 
-        shared();
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                shared();
+                showOtherFragment();
             }
         });
 
@@ -44,37 +43,40 @@ public class signup_frag_academic extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
     }
 
-    void init()
+    void init(View v)
     {
-        schoolname = getActivity().findViewById(R.id.academic_name);
-        schoolcity = getActivity().findViewById(R.id.academic_city);
-        scoolobtn = getActivity().findViewById(R.id.academic_Omarks) ;
-        schooltotal = getActivity().findViewById(R.id.academic_Tmarks);
-        schoolRoll = getActivity().findViewById(R.id.academic_SchoolRoll);
+        btn = v.findViewById(R.id.academic_btn);
 
-        collegename = getActivity().findViewById(R.id.academic_Collegename);
-        collegecity =getActivity().findViewById(R.id.academic_Colllegecity);
-        collegeobtn = getActivity().findViewById(R.id.academic_CollegeObtainmarks);
-        collegetotal = getActivity().findViewById(R.id.academic_CollegeTotalmarks);
-        CollegeRoll = getActivity().findViewById(R.id.academic_CollegeRoll);
+        schoolname = v.findViewById(R.id.academic_name);
+        schoolcity = v.findViewById(R.id.academic_city);
+        scoolobtn = v.findViewById(R.id.academic_Omarks) ;
+        schooltotal = v.findViewById(R.id.academic_Tmarks);
+        schoolRoll = v.findViewById(R.id.academic_SchoolRoll);
+
+        collegename = v.findViewById(R.id.academic_Collegename);
+        collegecity =v.findViewById(R.id.academic_Colllegecity);
+        collegeobtn = v.findViewById(R.id.academic_CollegeObtainmarks);
+        collegetotal = v.findViewById(R.id.academic_CollegeTotalmarks);
+        CollegeRoll = v.findViewById(R.id.academic_CollegeRoll);
 
 
-        universityname = getActivity().findViewById(R.id.academic_Universityname);
-        universitydegree = getActivity().findViewById(R.id.academic_UniversityDegree);
-        universityGpa = getActivity().findViewById(R.id.academic_UniversityGPA);
-        universityMajor = getActivity().findViewById(R.id.academic_UniversityMajor);
+        universityname = v.findViewById(R.id.academic_Universityname);
+        universitydegree = v.findViewById(R.id.academic_UniversityDegree);
+        universityGpa = v.findViewById(R.id.academic_UniversityGPA);
+        universityMajor = v.findViewById(R.id.academic_UniversityMajor);
 
-        Masteruniversityname = getActivity().findViewById(R.id.academic_MasterUniversityname);
-        Masteruniversitydegree = getActivity().findViewById(R.id.academic_MasterUniversityDegree);
-        MasteruniversityGpa = getActivity().findViewById(R.id.academic_MasterUniversityGPA);
-        MasteruniversityMajor = getActivity().findViewById(R.id.academic_MasterUniversityMajor);
+        Masteruniversityname = v.findViewById(R.id.academic_MasterUniversityname);
+        Masteruniversitydegree = v.findViewById(R.id.academic_MasterUniversityDegree);
+        MasteruniversityGpa = v.findViewById(R.id.academic_MasterUniversityGPA);
+        MasteruniversityMajor = v.findViewById(R.id.academic_MasterUniversityMajor);
 
-        PHDuniversityname = getActivity().findViewById(R.id.academic_PHDUniversityname);
-        PHDuniversitydegree = getActivity().findViewById(R.id.academic_PHDUniversityDegree);
-        PHDuniversityGpa = getActivity().findViewById(R.id.academic_PHDUniversityGPA);
-        PHDuniversityMajor = getActivity().findViewById(R.id.academic_PHDUniversityMajor);
+        PHDuniversityname = v.findViewById(R.id.academic_PHDUniversityname);
+        PHDuniversitydegree = v.findViewById(R.id.academic_PHDUniversityDegree);
+        PHDuniversityGpa = v.findViewById(R.id.academic_PHDUniversityGPA);
+        PHDuniversityMajor = v.findViewById(R.id.academic_PHDUniversityMajor);
     }
 
     void shared()
@@ -115,5 +117,15 @@ public class signup_frag_academic extends Fragment {
     }
 
 
+    public interface FragmentChangeEmail
+    {
+        public void replaceEmail(Fragment fragment);
+    }
+    public void showOtherFragment()
+    {
 
+        Fragment fr=new signup_frag_email();
+        signup_frag_academic.FragmentChangeEmail fc=(signup_frag_academic.FragmentChangeEmail)getActivity();
+        fc.replaceEmail(fr);
+    }
 }

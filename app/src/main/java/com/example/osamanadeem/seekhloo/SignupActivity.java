@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupActivity extends AppCompatActivity implements signup_frag_name.FragmentChangeBirthday,signup_frag_email.FragmentChangePassword,
         signup_frag_join.FragmentChangetype,signup_frag_birthday.FragmentChangeGender,
-        signup_frag_gender.FragmentChangeEmail, signup_frag_password.UploadData, signup_frag_type.FragmentChangeName {
+        signup_frag_gender.FragmentChangeAcademicInfo, signup_frag_password.UploadData, signup_frag_type.FragmentChangeName, signup_frag_academic.FragmentChangeEmail{
 
     Toolbar toolbar;
 
@@ -38,6 +38,7 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
     private signup_frag_join join;
     private signup_frag_name name;
     private Fragment fragment;
+    private signup_frag_academic academic;
     int i;
 
 
@@ -79,6 +80,7 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
         join = new signup_frag_join();
         gender = new signup_frag_gender();
         type = new signup_frag_type();
+        academic = new signup_frag_academic();
         i =0;
         mAuth = FirebaseAuth.getInstance();
         fragment = join;
@@ -130,15 +132,6 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
         transaction.commit();
     }
 
-    @Override
-    public void replaceEmail(Fragment fragment) {
-        getSupportActionBar().setTitle("Email");
-        fragment = email;
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.signup_frag, fragment);
-        transaction.commit();
-    }
 
     @Override
     public void tofirebase() {
@@ -164,11 +157,23 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
 
                             UserInfo info = new UserInfo(prefs.getString("type",null),prefs.getString("email",null),prefs.getString("birthday",null),prefs.getString("fname",null),prefs.getString("lname",null));
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference();
-                            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                            final DatabaseReference myRef = database.getReference();
+                            final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
                             myRef.child("User" +
                                     "").child(currentFirebaseUser.getUid()).setValue(info, new DatabaseReference.CompletionListener() {
                                 public void onComplete(DatabaseError error, DatabaseReference ref) {
+
+                                    myRef.child("User").child(currentFirebaseUser.getUid()).child("Academia").setValue(info, new DatabaseReference.CompletionListener() {
+                                        public void onComplete(DatabaseError error, DatabaseReference ref) {
+
+
+                                            startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+                                            finish();
+
+                                        }
+                                    });
+
+
                                     Toast.makeText(SignupActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(SignupActivity.this,LoginActivity.class));
                                     finish();
@@ -199,6 +204,26 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
     public void replaceName(Fragment fragment) {
         getSupportActionBar().setTitle("Name");
         fragment = name;
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.signup_frag, fragment);
+        transaction.commit();
+    }
+
+    @Override
+    public void replaceAcademicInfo(Fragment fragment) {
+        getSupportActionBar().setTitle("Academic Info");
+        fragment = academic;
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.signup_frag, fragment);
+        transaction.commit();
+    }
+
+    @Override
+    public void replaceEmail(Fragment fragment) {
+        getSupportActionBar().setTitle("Email");
+        fragment = email;
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.signup_frag, fragment);

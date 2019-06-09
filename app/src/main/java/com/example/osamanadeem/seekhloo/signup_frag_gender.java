@@ -29,15 +29,15 @@ public class signup_frag_gender extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
-    public interface FragmentChangeEmail
+    public interface FragmentChangeAcademicInfo
     {
-        public void replaceEmail(Fragment fragment);
+        public void replaceAcademicInfo(Fragment fragment);
     }
     public void showOtherFragment()
     {
 
-        Fragment fr=new signup_frag_email();
-        signup_frag_gender.FragmentChangeEmail fc=(signup_frag_gender.FragmentChangeEmail)getActivity();
-        fc.replaceEmail(fr);
+        Fragment fr=new signup_frag_academic();
+        signup_frag_gender.FragmentChangeAcademicInfo fc=(signup_frag_gender.FragmentChangeAcademicInfo)getActivity();
+        fc.replaceAcademicInfo(fr);
     }
 }
