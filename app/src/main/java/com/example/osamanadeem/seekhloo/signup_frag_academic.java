@@ -17,16 +17,27 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class signup_frag_academic extends Fragment {
 
-    EditText schoolname,schoolcity,scoolobtn,schooltotal,schoolRoll,collegename,collegecity,collegeobtn,collegetotal,CollegeRoll;
-    EditText universityname,universitydegree,universityGpa,universityMajor;
-    EditText Masteruniversityname,Masteruniversitydegree,MasteruniversityGpa,MasteruniversityMajor;
-    EditText PHDuniversityname,PHDuniversitydegree,PHDuniversityGpa,PHDuniversityMajor;
-
+    private EditText schoolname,schoolcity,scoolobtn,schooltotal,schoolRoll,collegename,collegecity,collegeobtn,collegetotal,CollegeRoll;
+    private EditText universityname,universitydegree,universityGpa,universityMajor;
+    private EditText Masteruniversityname,Masteruniversitydegree,MasteruniversityGpa,MasteruniversityMajor;
+    private EditText PHDuniversityname,PHDuniversitydegree,PHDuniversityGpa,PHDuniversityMajor;
+    private Button btn;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.signup_frag_birthday,container,false);
         init();
+        SignupActivity signupActivity = new SignupActivity();
+
+        shared();
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         return v;
 
     }
@@ -42,6 +53,7 @@ public class signup_frag_academic extends Fragment {
         scoolobtn = getActivity().findViewById(R.id.academic_Omarks) ;
         schooltotal = getActivity().findViewById(R.id.academic_Tmarks);
         schoolRoll = getActivity().findViewById(R.id.academic_SchoolRoll);
+
         collegename = getActivity().findViewById(R.id.academic_Collegename);
         collegecity =getActivity().findViewById(R.id.academic_Colllegecity);
         collegeobtn = getActivity().findViewById(R.id.academic_CollegeObtainmarks);
@@ -53,6 +65,7 @@ public class signup_frag_academic extends Fragment {
         universitydegree = getActivity().findViewById(R.id.academic_UniversityDegree);
         universityGpa = getActivity().findViewById(R.id.academic_UniversityGPA);
         universityMajor = getActivity().findViewById(R.id.academic_UniversityMajor);
+
         Masteruniversityname = getActivity().findViewById(R.id.academic_MasterUniversityname);
         Masteruniversitydegree = getActivity().findViewById(R.id.academic_MasterUniversityDegree);
         MasteruniversityGpa = getActivity().findViewById(R.id.academic_MasterUniversityGPA);
@@ -63,4 +76,44 @@ public class signup_frag_academic extends Fragment {
         PHDuniversityGpa = getActivity().findViewById(R.id.academic_PHDUniversityGPA);
         PHDuniversityMajor = getActivity().findViewById(R.id.academic_PHDUniversityMajor);
     }
+
+    void shared()
+    {
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences("Academic Info", MODE_PRIVATE).edit();
+
+        editor.putString("schoolname", schoolname.getText().toString());
+        editor.putString("schoolcity", schoolcity.getText().toString());
+        editor.putString("scoolobtn", scoolobtn.getText().toString());
+        editor.putString("schooltotal", schooltotal.getText().toString());
+        editor.putString("schoolRoll", schoolRoll.getText().toString());
+
+
+        editor.putString("collegename", collegename.getText().toString());
+        editor.putString("collegecity", collegecity.getText().toString());
+        editor.putString("collegeobtn", collegeobtn.getText().toString());
+        editor.putString("collegetotal", collegetotal.getText().toString());
+        editor.putString("CollegeRoll", CollegeRoll.getText().toString());
+
+
+        editor.putString("universityname", universityname.getText().toString());
+        editor.putString("universitydegree", universitydegree.getText().toString());
+        editor.putString("universityGpa", universityGpa.getText().toString());
+        editor.putString("universityMajor", universityMajor.getText().toString());
+
+        editor.putString("Masteruniversityname", Masteruniversityname.getText().toString());
+        editor.putString("Masteruniversitydegree", Masteruniversitydegree.getText().toString());
+        editor.putString("MasteruniversityGpa", MasteruniversityGpa.getText().toString());
+        editor.putString("MasteruniversityMajor", MasteruniversityMajor.getText().toString());
+
+        editor.putString("PHDuniversityname", PHDuniversityname.getText().toString());
+        editor.putString("PHDuniversitydegree", PHDuniversitydegree.getText().toString());
+        editor.putString("PHDuniversityGpa", PHDuniversityGpa.getText().toString());
+        editor.putString("PHDuniversityMajor", PHDuniversityMajor.getText().toString());
+
+
+        editor.apply();
+    }
+
+
+
 }

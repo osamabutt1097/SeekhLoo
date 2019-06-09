@@ -39,6 +39,9 @@ public class signup_frag_password extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
+
+
+
     public interface UploadData
     {
         public void tofirebase();
