@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="15dp"
     android:layout_marginRight="15dp">
@@ -27,10 +29,130 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/matric_result"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp">
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="13dp">
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="School card"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:textSize="20dp"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_name"
+                        android:layout_marginTop="50dp"
+                        android:hint="School Name"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_city"
+                        android:layout_marginTop="50dp"
+                        android:hint="City"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_Tmarks"
+                        android:layout_marginTop="50dp"
+                        android:hint="Total Marks"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_Omarks"
+                        android:layout_marginTop="50dp"
+                        android:hint="Obtained Marks"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:inputType="textEmailAddress"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_SchoolRoll"
+                        android:layout_marginTop="50dp"
+                        android:hint="Roll#"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
 
         </androidx.cardview.widget.CardView>
@@ -41,9 +163,127 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp">
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="13dp">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="College Card"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_gravity="center"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/academic_Collegename"
+            android:layout_marginTop="50dp"
+            android:hint="College Name"
+            android:backgroundTint="@color/colorPrimary"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/academic_Colllegecity"
+            android:layout_marginTop="50dp"
+            android:hint="City"
+            android:backgroundTint="@color/colorPrimary"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/academic_CollegeTotalmarks"
+            android:layout_marginTop="50dp"
+            android:hint="Total Marks"
+            android:backgroundTint="@color/colorPrimary"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/academic_CollegeObtainmarks"
+            android:layout_marginTop="50dp"
+            android:hint="Obtained Marks"
+            android:backgroundTint="@color/colorPrimary"
+            android:inputType="textEmailAddress"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/academic_CollegeRoll"
+            android:layout_marginTop="50dp"
+            android:hint="Roll#"
+            android:backgroundTint="@color/colorPrimary"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
+</LinearLayout>
         </androidx.cardview.widget.CardView>
 
 
@@ -55,7 +295,102 @@
             android:layout_height="250dp"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="40dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="University Card"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:layout_gravity="center"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_Universityname"
+                        android:layout_marginTop="50dp"
+                        android:hint="University Name"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_UniversityDegree"
+                        android:layout_marginTop="50dp"
+                        android:hint="Degree"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_UniversityGPA"
+                        android:layout_marginTop="50dp"
+                        android:hint="Total Marks"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_UniversityMajor"
+                        android:layout_marginTop="50dp"
+                        android:hint="Major"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -67,7 +402,102 @@
             android:layout_marginBottom="40dp"
             >
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MPhil. Card"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:layout_gravity="center"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_MasterUniversityname"
+                        android:layout_marginTop="50dp"
+                        android:hint="University Name"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_MasterUniversityDegree"
+                        android:layout_marginTop="50dp"
+                        android:hint="Degree"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_MasterUniversityGPA"
+                        android:layout_marginTop="50dp"
+                        android:hint="Total Marks"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_MasterUniversityMajor"
+                        android:layout_marginTop="50dp"
+                        android:hint="Major"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
 
@@ -79,7 +509,102 @@
             android:layout_marginTop="40dp"
             android:layout_marginBottom="40dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PHd University Card"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:layout_gravity="center"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_PHDUniversityname"
+                        android:layout_marginTop="50dp"
+                        android:hint="University Name"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_PHDUniversityDegree"
+                        android:layout_marginTop="50dp"
+                        android:hint="Degree"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_PHDUniversityGPA"
+                        android:layout_marginTop="50dp"
+                        android:hint="Total Marks"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/academic_PHDUniversityMajor"
+                        android:layout_marginTop="50dp"
+                        android:hint="Major"
+                        android:backgroundTint="@color/colorPrimary"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
