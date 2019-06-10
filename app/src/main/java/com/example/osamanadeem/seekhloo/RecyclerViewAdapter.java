@@ -62,6 +62,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         if (!news.get(position).getPicurl().isEmpty())
             Glide.with(mContext).load(news.get(position).getPicurl()).into(holder.imageView);
 
+        holder.cardView.setClickable(true);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, SeeNewsletter.class);
+                intent.putExtra("subject",news.get(position).getSubject());
+                intent.putExtra("messagebody",news.get(position).getMessageBody());
+                intent.putExtra("picurl",news.get(position).getPicurl());
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override

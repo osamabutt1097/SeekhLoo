@@ -37,6 +37,7 @@ public class student_fag_home extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.student_frag_home,container,false);
+
         return v;
 
     }

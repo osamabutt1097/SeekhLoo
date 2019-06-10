@@ -52,7 +52,7 @@ dependencies {
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.9.0'
-implementation'com.libaml.android.view.chip:AndroidChipLayout:1.0.6'
+    implementation 'com.libaml.android.view.chip:AndroidChipLayout:1.0.6'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 }
 apply plugin: 'com.google.gms.google-services'

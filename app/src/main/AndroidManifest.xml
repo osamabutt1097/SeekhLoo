@@ -52,7 +52,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateClassroom"></activity>
+        <activity android:name=".SeeNewsletter" />
+        <activity
+            android:name=".ClassExistedActivity"
+            android:label="@string/title_activity_class_existed"></activity>
+        <activity
+            android:name=".CreateClassroom"
+            android:label="@string/createclassroom"></activity>
     </application>
 
 </manifest>

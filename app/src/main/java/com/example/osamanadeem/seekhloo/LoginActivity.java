@@ -140,7 +140,6 @@ public class LoginActivity extends AppCompatActivity {
 
         lottieAnimationView.setVisibility(View.VISIBLE);
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        finish();
         if (currentUser != null)
         {
 
