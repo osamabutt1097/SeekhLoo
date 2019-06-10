@@ -5,12 +5,13 @@ public class UserInfo {
     {
 
     }
-    public UserInfo(String type, String email, String birthday, String firstname, String lastname) {
+    public UserInfo(String type, String email, String birthday, String firstname, String lastname,String gender) {
         this.type = type;
         this.email = email;
         this.birthday = birthday;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.gender = gender;
     }
 
     public String getType() {
@@ -55,5 +56,19 @@ public class UserInfo {
         this.lastname = lastname;
     }
 
-    String type,email,birthday,firstname,lastname;
+    String type;
+    String email;
+    String birthday;
+    String firstname;
+    String lastname;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    String gender;
 }

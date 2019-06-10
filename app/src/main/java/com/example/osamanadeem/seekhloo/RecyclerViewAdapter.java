@@ -49,6 +49,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
+
         holder.subject.setText(news.get(position).getSubject());
         holder.messagebody.setText(news.get(position).getMessageBody());
         holder.cardView.setClickable(true);

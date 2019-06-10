@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    tools:context=".CreateClassroom"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"
+        android:id="@+id/img_noClass"
+        android:visibility="gone"
+        />
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/createclassroomtoolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/colorPrimary"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/classname"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="0dp"
+            android:hint="Class Name"
+            android:backgroundTint="@color/colorPrimary"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Spinner
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:id="@+id/spin"
+        >
+
+    </Spinner>
+
+
+
+
+
+    <com.libaml.android.view.chip.ChipLayout
+        android:id="@+id/chipText"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        custom:chipPadding_="4dp"
+        android:scrollbars="vertical"
+        android:inputType="text"
+        android:maxLines="1"
+        android:layout_marginTop="50dp"
+
+        android:layout_gravity="center"
+        custom:chipTextPadding_="2dp"
+        custom:textColor_="@android:color/black"
+        custom:deleteIcon_="@android:drawable/presence_offline"
+        custom:chipDrawable_="@drawable/round_corner_drawable"
+        custom:chipLayoutDrawable_="@drawable/edittext_theme_landing_page"
+        custom:labelPosition_="left">
+    </com.libaml.android.view.chip.ChipLayout>
+
+
+</LinearLayout>

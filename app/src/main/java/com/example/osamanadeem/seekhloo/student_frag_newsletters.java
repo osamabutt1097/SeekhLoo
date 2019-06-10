@@ -77,6 +77,7 @@ public class student_frag_newsletters extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         Toast.makeText(getContext(), news.get(0).getSubject()+"", Toast.LENGTH_SHORT).show();
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(),news);
+
         recyclerView.setAdapter(adapter);
     }
 

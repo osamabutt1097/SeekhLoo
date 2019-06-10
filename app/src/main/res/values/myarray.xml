@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="myaray">
+        <item >Economy</item>
+        <item >Buisness</item>
+        <item >Platinum</item>
+
+    </string-array>
+</resources>

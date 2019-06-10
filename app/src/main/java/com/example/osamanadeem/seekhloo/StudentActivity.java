@@ -69,7 +69,7 @@ public class StudentActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.addbtnstudent){
-            Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this,CreateClassroom.class));
             return true;
         }
 
