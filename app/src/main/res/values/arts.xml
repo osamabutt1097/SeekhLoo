@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="myaray">
+        <item >History</item>
+        <item >Music</item>
+        <item >Philosophy</item>
+
+    </string-array>
+</resources>

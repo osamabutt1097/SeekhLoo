@@ -1,9 +1,11 @@
 package com.example.osamanadeem.seekhloo;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,9 +16,8 @@ import android.widget.TextView;
 
 public class ClassExistedActivity extends AppCompatActivity {
 
-    private ViewPager viewPager;
-
-
+   private TextView textView,name;
+    private String n;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -24,8 +25,10 @@ public class ClassExistedActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_stream:
+                    textView.setText("Stream where student and tutor will communicate ");
                     return true;
                 case R.id.navigation_tutor_selection:
+                    textView.setText("Find Tutor here");
                     return true;
 
             }
@@ -37,10 +40,24 @@ public class ClassExistedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_existed);
+        Intent iin= getIntent();
+        Bundle b = iin.getExtras();
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+
+
+        textView = findViewById(R.id.typestudentclass);
+        name = findViewById(R.id.classnam);
+        if(b!=null)
+        {
+            n =(String) b.get("subjectname");
+            name.setText(n);
+
+        }
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.class_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        navigation.setSelectedItemId(R.id.navigation_stream);
+
+
 
     }
 

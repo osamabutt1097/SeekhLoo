@@ -40,7 +40,11 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         chip = (ChipLayout) findViewById(R.id.chipText);
         init();
         spin();
+
+
         String[] countries = {"india","australia","austria","indonesia","canada"};
+
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,countries);
         chip.setAdapter(adapter);
 
@@ -106,10 +110,20 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
     public void spin()
     {
         array = getResources().getStringArray(R.array.myaray);
-        ArrayAdapter adapter =  ArrayAdapter.createFromResource(this,R.array.myaray,android.R.layout.simple_spinner_item);
+        final ArrayAdapter adapter =  ArrayAdapter.createFromResource(this,R.array.myaray,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (adapter.getItem(i).toString(.equals("")))
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="myaray">
+        <item >Pre-Algebra</item>
+        <item >Introduction to Algebra</item>
+        <item >Algebra</item>
+        <item >Algebra I</item>
+
+        <item >Algebra II</item>
+        <item >Geometry </item>
+        <item >Trigonometry</item>
+
+
+    </string-array>
+</resources>

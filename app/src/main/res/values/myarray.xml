@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="myaray">
-        <item >Economy</item>
-        <item >Buisness</item>
-        <item >Platinum</item>
+        <item >Arts and Humanities</item>
+        <item >Business</item>
+        <item >Computer Sciences</item>
+        <item >Health</item>
+
+        <item >Mathematics</item>
+        <item >Physical Science and </item>
+        <item >Social Studies</item>
+
 
     </string-array>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.osamanadeem.seekhloo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,15 @@ public class RecyclerViewAdapterClasses extends RecyclerView.Adapter<RecyclerVie
         holder.classname.setText(attr.get(position).getName());
 
         holder.cardView.setClickable(true);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, ClassExistedActivity.class);
+                intent.putExtra("subjectname",attr.get(position).getName());
+                context.startActivity(intent);
+            }
+        });
 
     }
 

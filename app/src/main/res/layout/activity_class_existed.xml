@@ -7,18 +7,33 @@
     android:layout_height="match_parent"
     tools:context=".ClassExistedActivity">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/classes_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/class_navigation"
-        android:layout_alignParentTop="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/classnam"
+        android:text="Hello"
+        android:layout_centerHorizontal="true"
+        android:textSize="24dp"
+        android:layout_marginTop="50dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+
+
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/typestudentclass"
+    android:text="Hello"
+    android:layout_centerInParent="true"
+    android:textSize="24dp"
+        android:gravity="center"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/class_navigation"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"

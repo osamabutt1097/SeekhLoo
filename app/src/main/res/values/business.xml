@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="myaray">
+        <item >Entrepreneurship</item>
+        <item >Finance</item>
+        <item >Marketing</item>
+        <item >Management</item>
+
+        <item >Leadership</item>
+
+
+    </string-array>
+</resources>

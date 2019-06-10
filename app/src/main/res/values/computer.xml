@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="myaray">
+        <item >Software Development</item>
+        <item >Mobile Development</item>
+        <item >Web Development</item>
+        <item >Algorithms</item>
+        <item >Security</item>
+        <item >Design</item>
+
+
+    </string-array>
+</resources>
