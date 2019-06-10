@@ -133,4 +133,47 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        lottieAnimationView.setVisibility(View.VISIBLE);
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null)
+        {
+            mDatabase.child("User").child(currentUser.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    info = dataSnapshot.getValue(UserInfo.class);
+                    if (info.getType().equals("student"))
+                    {
+                        startActivity(new Intent(LoginActivity.this,StudentActivity.class));
+                        finish();
+                    }
+                    else if (info.getType().equals("tutor"))
+                    {
+                        Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (info.getType().equals("admin"))
+                    {
+                        startActivity(new Intent(LoginActivity.this,AdminPanelActivity.class));
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+        else
+        {
+            lottieAnimationView.setVisibility(View.GONE);
+        }
+    }
 }
+
+
+

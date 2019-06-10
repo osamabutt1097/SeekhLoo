@@ -9,6 +9,7 @@
     android:id="@+id/classImage"
     android:src="@drawable/classroom"
     android:layout_marginTop="150dp"
+    android:visibility="gone"
     />
     <TextView
         android:layout_width="wrap_content"
@@ -16,6 +17,16 @@
         android:id="@+id/noclasstxt"
         android:text="No classroom added"
         android:layout_gravity="center"
-        android:textStyle="italic"/>
+        android:textStyle="italic"
+        android:visibility="gone"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/class_recycler"
+        android:layout_height="match_parent">
+
+
+
+
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

@@ -23,6 +23,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     ArrayList<NewsLetters> news = new ArrayList<>();
+    ArrayList<classattributes> attr = new ArrayList<>();
 
     private Context mContext;
 
@@ -37,6 +38,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         this.mContext = mContext;
         this.news = news;
+    }
+    public RecyclerViewAdapter( ArrayList<classattributes> attr,Context mContext) {
+
+        this.mContext = mContext;
+        this.attr = attr;
     }
 
     @Override
