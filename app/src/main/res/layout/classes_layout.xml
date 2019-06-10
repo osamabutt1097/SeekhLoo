@@ -26,13 +26,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:id="@+id/class_img"
-                android:src="@color/colorPrimary"/>
-
+                android:src="@drawable/classroom"
+                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/class_name_card"
-                android:text=""
+                android:text="HEllo"
                 android:textColor="@color/black"
                 android:textSize="24dp"
                 android:layout_marginBottom="20dp"

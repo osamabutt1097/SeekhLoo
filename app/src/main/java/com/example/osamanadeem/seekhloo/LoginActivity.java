@@ -137,10 +137,13 @@ public class LoginActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
+
         lottieAnimationView.setVisibility(View.VISIBLE);
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        finish();
         if (currentUser != null)
         {
+
             mDatabase.child("User").child(currentUser.getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -159,6 +162,11 @@ public class LoginActivity extends AppCompatActivity {
                     {
                         startActivity(new Intent(LoginActivity.this,AdminPanelActivity.class));
                         finish();
+                    }
+                    else 
+                    {
+                        lottieAnimationView.setVisibility(View.GONE);
+                        Toast.makeText(LoginActivity.this, "Login Again", Toast.LENGTH_SHORT).show();
                     }
                 }
 

@@ -31,52 +31,51 @@ public class student_fag_home extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<classattributes> classes = new ArrayList<>();
     private DatabaseReference mDatabase;
-    private DatabaseReference mRef;
-    private FirebaseUser firebaseUser;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.student_frag_home,container,false);
-        Toast.makeText(getContext(), "frag", Toast.LENGTH_SHORT).show();
-        init(v);
-        init_data();
         return v;
 
     }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        imageView = getView().findViewById(R.id.classImage);
+        textView = getView().findViewById(R.id.noclasstxt);
+
+        init_data();
     }
 
     void init(View v)
     {
-        imageView = v.findViewById(R.id.classImage);
-        textView = v.findViewById(R.id.noclasstxt);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mRef = mDatabase.getRef();
 
     }
 
     private void init_data()
     {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://seekhloo.firebaseio.com/User/3RI67Ji109eGBMbGyKtZG38YA472/Classroom");
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+        //mRef.child("User").child(currentFirebaseUser.getUid()).child("Classroom");
 
-        mRef.child("User").child(currentFirebaseUser.getUid()).child("Classroom");
+
+
         mRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
-
-                    classattributes attr = childDataSnapshot.getValue(classattributes.class);
-                    classes.add(attr);
-                    Toast.makeText(getContext(), classes.size() + "", Toast.LENGTH_SHORT).show();
-                }
-
-                init_recyclerview();
+            for (DataSnapshot children : dataSnapshot.getChildren()) {
+                classattributes attr = children.getValue(classattributes.class);
+                classes.add(attr);
+                //add you mediaItem to list that you provided
             }
+            //Toast.makeText(getContext(), classes.size() + "", Toast.LENGTH_SHORT).show();
+            init_recyclerview();
+        }
+
 
 
             @Override
@@ -90,7 +89,6 @@ public class student_fag_home extends Fragment {
 
     private void init_recyclerview()
     {
-        Toast.makeText(getContext(), "recycler", Toast.LENGTH_SHORT).show();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         RecyclerView recyclerView = getActivity().findViewById(R.id.class_recycler);
         recyclerView.setLayoutManager(layoutManager);
