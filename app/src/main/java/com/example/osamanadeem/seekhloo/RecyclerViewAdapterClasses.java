@@ -88,8 +88,7 @@ public class RecyclerViewAdapterClasses extends RecyclerView.Adapter<RecyclerVie
         if (type.equals("Arts and Humanities"))
         {
 
-            return "https://firebasestorage.googleapis.com/v0/b/seekhloo.appspot.com/o/ClassBackgroundImages%2FArts%20and%20Humanities.png?alt=media&token=6c6d59eb-5632-4046-bd6b-af4484428fd9";
-
+            return "https://firebasestorage.googleapis.com/v0/b/seekhloo.appspot.com/o/ClassBackgroundImages%2Farts_humanities_424_283_0.jpg?alt=media&token=9e1aad87-f691-4326-a28f-8eeef77064d3";
         }
         else if (type.equals("Business"))
         {

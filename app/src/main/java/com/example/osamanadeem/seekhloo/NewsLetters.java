@@ -2,42 +2,42 @@ package com.example.osamanadeem.seekhloo;
 
 public class NewsLetters {
 
-    public NewsLetters(){
+  public NewsLetters(){
 
-    }
-    public NewsLetters(String subject, String messageBody,String picurl) {
-        this.subject = subject;
-        this.messageBody = messageBody;
-        this.picurl = picurl;
-    }
+  }
+  public NewsLetters(String subject, String messageBody,String picurl) {
+    this.subject = subject;
+    this.messageBody = messageBody;
+    this.picurl = picurl;
+  }
 
-    public String getSubject() {
-        return subject;
-    }
+  public String getSubject() {
+    return subject;
+  }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
+  public void setSubject(String subject) {
+    this.subject = subject;
+  }
 
-    public String getMessageBody() {
-        return messageBody;
-    }
+  public String getMessageBody() {
+    return messageBody;
+  }
 
-    public void setMessageBody(String messageBody) {
-        this.messageBody = messageBody;
-    }
+  public void setMessageBody(String messageBody) {
+    this.messageBody = messageBody;
+  }
 
-    String subject;
-    String messageBody;
+  String subject;
+  String messageBody;
 
-    public String getPicurl() {
-        return picurl;
-    }
+  public String getPicurl() {
+    return picurl;
+  }
 
-    public void setPicurl(String picurl) {
-        this.picurl = picurl;
-    }
+  public void setPicurl(String picurl) {
+    this.picurl = picurl;
+  }
 
-    String picurl;
+  String picurl;
 
 }

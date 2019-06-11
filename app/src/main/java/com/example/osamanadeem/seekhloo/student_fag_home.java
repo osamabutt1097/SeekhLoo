@@ -58,16 +58,15 @@ public class student_fag_home extends Fragment {
     private void init_data()
     {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://seekhloo.firebaseio.com/User/3RI67Ji109eGBMbGyKtZG38YA472/Classroom");
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-        //mRef.child("User").child(currentFirebaseUser.getUid()).child("Classroom");
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://seekhloo.firebaseio.com/User/"+currentFirebaseUser.getUid()+"/Classroom");
 
-
-
+        Toast.makeText(getContext(), currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
         mRef.addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
 
+            classes.clear();
             for (DataSnapshot children : dataSnapshot.getChildren()) {
                 classattributes attr = children.getValue(classattributes.class);
                 classes.add(attr);
@@ -90,12 +89,30 @@ public class student_fag_home extends Fragment {
 
     private void init_recyclerview()
     {
+
+
+
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         RecyclerView recyclerView = getActivity().findViewById(R.id.class_recycler);
         recyclerView.setLayoutManager(layoutManager);
         RecyclerViewAdapterClasses adapter = new RecyclerViewAdapterClasses(classes,getContext());
-
         recyclerView.setAdapter(adapter);
+
+        ////////////////
+        if(classes.size() == 0)
+        {
+            imageView.setVisibility(View.VISIBLE);
+            textView.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            imageView.setVisibility(View.GONE);
+            textView.setVisibility(View.GONE);
+
+        }
+
+
     }
 
 }
