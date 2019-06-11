@@ -12,6 +12,7 @@ public class UserInfo {
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
+        this.name = name;
     }
 
     public String getType() {
@@ -62,6 +63,15 @@ public class UserInfo {
     String firstname;
     String lastname;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    String name;
     public String getGender() {
         return gender;
     }

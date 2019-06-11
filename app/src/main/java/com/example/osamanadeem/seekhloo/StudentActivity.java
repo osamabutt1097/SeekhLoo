@@ -5,6 +5,12 @@ import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -15,6 +21,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class StudentActivity extends AppCompatActivity
@@ -24,23 +32,33 @@ public class StudentActivity extends AppCompatActivity
     private ViewPager viewPager;
     private student_frag_newsletters notifications;
     private student_fag_home home;
+    private TextView name, email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("SeekhLoo");
-        init();
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        setupViewPager(viewPager);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        name = headerView.findViewById(R.id.sname);
+        email = headerView.findViewById(R.id.studentemail);
+        init();
+        getUser();
+        setupViewPager(viewPager);
+
     }
 
     @Override
@@ -103,10 +121,6 @@ public class StudentActivity extends AppCompatActivity
             startActivity(new Intent(StudentActivity.this,LoginActivity.class));
             finish();
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         } else if (id == R.id.nav_notify) {
             viewPager.setCurrentItem(1);
             getSupportActionBar().setTitle("NewsLetters");
@@ -133,6 +147,32 @@ public class StudentActivity extends AppCompatActivity
         adapter.addFragment(home); // index 0
         adapter.addFragment(notifications);  // index 1
         viewPager.setAdapter(adapter);
+    }
+
+
+    void getUser()
+    {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference().child("User").child(user.getUid());
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                UserInfo value = dataSnapshot.getValue(UserInfo.class);
+                Toast.makeText(StudentActivity.this, value.getFirstname()+"", Toast.LENGTH_SHORT).show();
+                name.setText(value.getFirstname());
+                email.setText(value.getEmail());
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.osamanadeem.seekhloo;
 
+import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 
@@ -8,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -57,6 +59,9 @@ public class LoginActivity extends AppCompatActivity {
     public void Login(final View view) {
 
         if(!email.getText().toString().isEmpty() || !pass.getText().toString().isEmpty()) {
+            final InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
             lottieAnimationView.setVisibility(View.VISIBLE);
             mAuth.signInWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

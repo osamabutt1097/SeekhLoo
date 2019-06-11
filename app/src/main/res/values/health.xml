@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="myaray">
+    <string-array name="health">
        <item >Animal Health</item>
         <item >Basic Science</item>
 

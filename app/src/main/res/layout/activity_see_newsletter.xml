@@ -29,7 +29,8 @@
         android:id="@+id/seenewsletter_pic"
         android:src="@drawable/classroom"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
+        android:layout_marginRight="20dp"
+        />
 
     <TextView
         android:id="@+id/seenewsletter_subject"

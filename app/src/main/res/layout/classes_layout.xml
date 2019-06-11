@@ -27,7 +27,7 @@
                 android:layout_height="150dp"
                 android:id="@+id/class_img"
                 android:src="@drawable/classroom"
-                />
+                android:scaleType="center"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

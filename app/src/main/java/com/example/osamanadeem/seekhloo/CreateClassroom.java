@@ -103,7 +103,7 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-        classattributes  attr = new classattributes(className.getText().toString(),type,chip.getText());
+        classattributes  attr = new classattributes(className.getText().toString(),spinner.getSelectedItem().toString(),chip.getText());
         myRef.child("User").child(currentFirebaseUser.getUid()).child("Classroom").child(className.getText().toString()).setValue(attr);
 
     }
@@ -116,7 +116,59 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (adapter.getItem(i).toString(.equals("")))
+
+                if (adapter.getItem(i).toString().equals("Arts and Humanities"))
+                {
+
+                    String[] arr = getResources().getStringArray(R.array.arts);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
+                    chip.setAdapter(adapter);
+
+                }
+                if (adapter.getItem(i).toString().equals("Business"))
+                {
+
+                    String[] arr = getResources().getStringArray(R.array.business);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
+                    chip.setAdapter(adapter);
+
+                }
+                if (adapter.getItem(i).toString().equals("Computer Sciences"))
+                {
+                    String[] arr = getResources().getStringArray(R.array.computer);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
+                    chip.setAdapter(adapter);
+
+
+                }if (adapter.getItem(i).toString().equals("Health"))
+                {
+                    String[] arr = getResources().getStringArray(R.array.health);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
+                    chip.setAdapter(adapter);
+
+
+                }if (adapter.getItem(i).toString().equals("Mathematics"))
+                {
+                    String[] arr = getResources().getStringArray(R.array.math);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
+                    chip.setAdapter(adapter);
+
+
+                }if (adapter.getItem(i).toString().equals("Physical Science"))
+                {
+                    String[] arr = getResources().getStringArray(R.array.physical);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
+                    chip.setAdapter(adapter);
+
+
+                }if (adapter.getItem(i).toString().equals("Social Studies"))
+                {
+
+                    String[] arr = getResources().getStringArray(R.array.social);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
+                    chip.setAdapter(adapter);
+
+                }
             }
 
             @Override
@@ -125,6 +177,8 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
             }
         });
     }
+
+
 
 
 }
