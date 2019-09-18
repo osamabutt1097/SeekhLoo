@@ -3,6 +3,7 @@ package com.example.osamanadeem.seekhloo;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +30,17 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
     private String type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        final SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
+
+        String themeMode = prefs.getString("theme_preference","0");
+        if (themeMode.equals("2"))
+        {
+            setTheme(R.style.DarkTheme);
+        }
+        else
+            setTheme(R.style.AppTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_classroom);
         mTopToolbar = (Toolbar) findViewById(R.id.createclassroomtoolbar);

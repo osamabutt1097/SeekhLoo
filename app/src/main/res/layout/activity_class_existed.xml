@@ -5,6 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundColor"
     tools:context=".ClassExistedActivity">
 
 
@@ -17,7 +18,7 @@
         android:textSize="24dp"
         android:layout_marginTop="50dp"
         android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:textColor="?attr/textcolor"/>
 
 
 
@@ -29,7 +30,19 @@
     android:text="Hello"
     android:layout_centerInParent="true"
     android:textSize="24dp"
+        android:textColor="?attr/textcolor"
         android:gravity="center"/>
+
+    <Switch
+        android:id="@+id/darkswitch"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/typestudentclass"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:text="Dark thene      "
+        android:textColor="?attr/textcolor"
+        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/class_navigation"
@@ -38,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:background="?android:attr/windowBackground"
+        android:background="?attr/bottomviewcolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
