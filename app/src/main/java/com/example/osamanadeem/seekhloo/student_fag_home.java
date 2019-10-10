@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -93,7 +94,10 @@ public class student_fag_home extends Fragment {
 
 
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+        //LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+        LinearLayoutManager layoutManager;
+        layoutManager = new GridLayoutManager(getContext(), 2);
+
         RecyclerView recyclerView = getActivity().findViewById(R.id.class_recycler);
         recyclerView.setLayoutManager(layoutManager);
         RecyclerViewAdapterClasses adapter = new RecyclerViewAdapterClasses(classes,getContext());

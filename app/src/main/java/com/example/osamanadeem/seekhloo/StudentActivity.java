@@ -2,6 +2,7 @@ package com.example.osamanadeem.seekhloo;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
@@ -44,7 +45,18 @@ public class StudentActivity extends AppCompatActivity
 
         ////
 
-        setTheme(R.style.DarkTheme);
+        final SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
+
+        String themeMode = prefs.getString("theme_preference","0");
+        if (themeMode.equals("2"))
+        {
+            setTheme(R.style.DarkTheme);
+        }
+        else
+            setTheme(R.style.AppTheme);
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
@@ -135,6 +147,12 @@ public class StudentActivity extends AppCompatActivity
             viewPager.setCurrentItem(1);
             getSupportActionBar().setTitle("NewsLetters");
 
+        }
+        else if (id == R.id.nav_personality_test)
+        {
+            Uri uri = Uri.parse("https://www.16personalities.com/free-personality-test"); // missing 'http://' will cause crashed
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +21,15 @@ public class SeeNewsletter extends AppCompatActivity implements AdapterView.OnIt
     private TextView message,subject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
+
+        String themeMode = prefs.getString("theme_preference","0");
+        if (themeMode.equals("2"))
+        {
+            setTheme(R.style.DarkTheme);
+        }
+        else
+            setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_see_newsletter);
         mTopToolbar = (Toolbar) findViewById(R.id.seenewslettertoolbar);
