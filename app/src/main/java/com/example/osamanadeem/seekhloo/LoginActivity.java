@@ -8,6 +8,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -89,9 +90,9 @@ public class LoginActivity extends AppCompatActivity {
                                         else if (info.getType().equals("tutor"))
                                         {
                                             lottieAnimationView.setVisibility(View.GONE);
-                                            startActivity(new Intent(LoginActivity.this,TutorActivity.class));
 
                                             Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(LoginActivity.this,TutorActivity.class));
                                         }
                                         else if (info.getType().equals("admin"))
                                         {
@@ -161,7 +162,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else if (info.getType().equals("tutor"))
                     {
-                        Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LoginActivity.this,TutorActivity.class));
+                       // Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
                     }
                     else if (info.getType().equals("admin"))
                     {

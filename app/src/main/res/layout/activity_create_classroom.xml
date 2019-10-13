@@ -37,7 +37,10 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/browser_actions_title_color"
+        android:background="@color/browser_actions_title_color"
 
 
         >
@@ -57,10 +60,14 @@
 
     <Spinner
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         style="?attr/textcolor"
+
+        android:backgroundTint="@color/browser_actions_title_color"
+        android:background="@color/browser_actions_title_color"
+
         android:id="@+id/spin"
 
 
@@ -70,6 +77,14 @@
 
 
 
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="310dp"
+        android:layout_height="210dp"
+        android:padding="4dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/borderline">
+
 
 
     <com.libaml.android.view.chip.ChipLayout
@@ -77,19 +92,21 @@
         android:layout_width="300dp"
         android:layout_height="200dp"
         custom:chipPadding_="4dp"
+        android:background="@color/browser_actions_title_color"
+        android:backgroundTint="@color/browser_actions_title_color"
         android:scrollbars="vertical"
         android:inputType="text"
         android:maxLines="1"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="?attr/whites"
+
         android:layout_gravity="center"
         custom:chipTextPadding_="2dp"
         custom:textColor_="?attr/textcolor"
+        android:autofillHints="HELLO"
         custom:deleteIcon_="@android:drawable/presence_offline"
         custom:chipDrawable_="@drawable/round_corner_drawable"
         custom:chipLayoutDrawable_="@drawable/edittext_theme_landing_page"
         custom:labelPosition_="left">
     </com.libaml.android.view.chip.ChipLayout>
 
-
+    </FrameLayout>
 </LinearLayout>
