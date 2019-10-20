@@ -2,7 +2,9 @@ package com.example.osamanadeem.seekhloo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import ca.antonious.materialdaypicker.MaterialDayPicker;
 
+import android.app.TimePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,7 +13,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,14 +25,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.libaml.android.view.chip.ChipLayout;
 
+import java.util.Calendar;
+import java.util.List;
+
 public class CreateClassroom extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    private EditText className;
+    private EditText className, timeset;
     private String[] array;
+    private MaterialDayPicker materialDayPicker;
     private ChipLayout chip;
     private Toolbar mTopToolbar;
     private Spinner spinner;
     private String type;
+    private RadioGroup rgroup;
+    private RadioButton radioButton;
+    private List<MaterialDayPicker.Weekday> weekdayList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -53,6 +66,9 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         init();
         spin();
 
+        day_picker();
+
+
 
         String[] countries = {"india","australia","austria","indonesia","canada"};
 
@@ -68,8 +84,16 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
     void init(){
         className = findViewById(R.id.classname);
         spinner = findViewById(R.id.spin);
+        materialDayPicker = findViewById(R.id.day_picker);
+        timeset = findViewById(R.id.time_create_class);
+        rgroup = findViewById(R.id.radiotype);
     }
 
+
+    void day_picker()
+    {
+        //val selectedDays = materialDayPicker.selectedDays
+    }
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         //Toast.makeText(this, "Clicked on: " + array[i], Toast.LENGTH_SHORT).show();
@@ -115,7 +139,7 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-        classattributes  attr = new classattributes(className.getText().toString(),spinner.getSelectedItem().toString(),chip.getText());
+        classattributes  attr = new classattributes(className.getText().toString(),spinner.getSelectedItem().toString(),chip.getText(),timeset.getText().toString(),getType(),getdays());
         myRef.child("User").child(currentFirebaseUser.getUid()).child("Classroom").child(className.getText().toString()).setValue(attr);
 
     }
@@ -191,6 +215,36 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
     }
 
 
+    public void settime(View view) {
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(CreateClassroom.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                timeset.setText( selectedHour + ":" + selectedMinute);
+            }
+        }, hour, minute, true);//Yes 24 hour time
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
+    }
 
+    public String getType()
+    {
+        int selectedId = rgroup.getCheckedRadioButtonId();
 
+        // find the radiobutton by returned id
+        radioButton = (RadioButton) findViewById(selectedId);
+
+        return radioButton.getText().toString();
+    }
+
+    public List<MaterialDayPicker.Weekday> getdays()
+    {
+
+        weekdayList = materialDayPicker.getSelectedDays();
+        return weekdayList;
+
+    }
 }

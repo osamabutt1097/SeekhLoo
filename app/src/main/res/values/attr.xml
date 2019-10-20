@@ -7,6 +7,7 @@
         <attr name="backgroundColor" format="color"/>
         <attr name="textcolor" format="color"/>
         <attr name="bottomviewcolor" format="color"/>
+        <attr name="textboxbackgroundcolor" format="color"/>
         <attr name="whites" format="color"/>
         <attr name="headercolor" format="color"/>
 

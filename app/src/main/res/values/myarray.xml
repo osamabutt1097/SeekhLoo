@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="myaray">
+        <item>--Select Category--</item>
         <item >Arts and Humanities</item>
         <item >Business</item>
         <item >Computer Sciences</item>

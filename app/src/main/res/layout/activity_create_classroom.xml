@@ -33,80 +33,158 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="@color/browser_actions_title_color"
-        android:background="@color/browser_actions_title_color"
-
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         >
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="?attr/textboxbackgroundcolor"
+            android:background="?attr/textboxbackgroundcolor"
+
+
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/classname"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="0dp"
+                android:hint="Class Name"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="?attr/textcolor"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Spinner
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            style="?attr/backgroundColor"
+
+            android:backgroundTint="?attr/textboxbackgroundcolor"
+            android:background="?attr/textboxbackgroundcolor"
+            android:id="@+id/spin"
+
+
+            >
+
+        </Spinner>
+
+
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="310dp"
+            android:layout_height="210dp"
+            android:padding="4dp"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/borderline">
+
+
+
+            <com.libaml.android.view.chip.ChipLayout
+                android:id="@+id/chipText"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                custom:chipPadding_="4dp"
+
+                android:backgroundTint="?attr/textboxbackgroundcolor"
+                android:background="?attr/textboxbackgroundcolor"
+                android:scrollbars="vertical"
+                android:inputType="text"
+                android:maxLines="1"
+
+                android:layout_gravity="center"
+
+                custom:chipTextPadding_="2dp"
+                custom:textColor_="?attr/textcolor"
+                android:autofillHints="HELLO"
+                custom:deleteIcon_="@android:drawable/presence_offline"
+                custom:chipDrawable_="@drawable/round_corner_drawable"
+                custom:chipLayoutDrawable_="@drawable/edittext_theme_landing_page"
+                custom:labelPosition_="left">
+            </com.libaml.android.view.chip.ChipLayout>
+
+        </FrameLayout>
+
+
+        <ca.antonious.materialdaypicker.MaterialDayPicker
+            android:id="@+id/day_picker"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:id="@+id/classname"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="0dp"
-            android:hint="Class Name"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColor="?attr/textcolor"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
             />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="?attr/textboxbackgroundcolor"
+            android:background="?attr/textboxbackgroundcolor"
+            android:clickable="true"
+            android:onClick="settime"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/time_create_class"
+                android:layout_gravity="center"
+                android:layout_marginTop="0dp"
 
+                android:hint="Select Time"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="?attr/textcolor"
+                android:clickable="true"
+                android:editable="false"
+                />
 
-    <Spinner
-        android:layout_width="300dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        style="?attr/textcolor"
-
-        android:backgroundTint="@color/browser_actions_title_color"
-        android:background="@color/browser_actions_title_color"
-
-        android:id="@+id/spin"
-
-
-        >
-
-    </Spinner>
-
-
-
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="310dp"
-        android:layout_height="210dp"
-        android:padding="4dp"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"
-        android:background="@drawable/borderline">
+        </com.google.android.material.textfield.TextInputLayout>
 
 
 
-    <com.libaml.android.view.chip.ChipLayout
-        android:id="@+id/chipText"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        custom:chipPadding_="4dp"
-        android:background="@color/browser_actions_title_color"
-        android:backgroundTint="@color/browser_actions_title_color"
-        android:scrollbars="vertical"
-        android:inputType="text"
-        android:maxLines="1"
 
-        android:layout_gravity="center"
-        custom:chipTextPadding_="2dp"
-        custom:textColor_="?attr/textcolor"
-        android:autofillHints="HELLO"
-        custom:deleteIcon_="@android:drawable/presence_offline"
-        custom:chipDrawable_="@drawable/round_corner_drawable"
-        custom:chipLayoutDrawable_="@drawable/edittext_theme_landing_page"
-        custom:labelPosition_="left">
-    </com.libaml.android.view.chip.ChipLayout>
+        <RadioGroup
+            android:id="@+id/radiotype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp">
 
-    </FrameLayout>
+            <RadioButton
+                android:id="@+id/radioHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="?attr/textcolor"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioAway"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Away"
+                android:textColor="?attr/textcolor"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+</ScrollView>
+
+
 </LinearLayout>

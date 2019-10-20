@@ -45,7 +45,7 @@ public class StudentActivity extends AppCompatActivity
 
         ////
 
-        final SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
+     /*   final SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
 
         String themeMode = prefs.getString("theme_preference","0");
         if (themeMode.equals("2"))
@@ -54,7 +54,8 @@ public class StudentActivity extends AppCompatActivity
         }
         else
             setTheme(R.style.AppTheme);
-
+*/
+        setTheme(R.style.AppTheme);
 
 
         super.onCreate(savedInstanceState);

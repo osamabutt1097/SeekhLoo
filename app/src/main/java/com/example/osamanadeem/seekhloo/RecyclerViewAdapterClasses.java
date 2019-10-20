@@ -51,7 +51,7 @@ public class RecyclerViewAdapterClasses extends RecyclerView.Adapter<RecyclerVie
 
         holder.classname.setText(attr.get(position).getName());
 
-        Glide.with(mContext).load(typetopic(attr.get(position).getType())).into(holder.imageView);
+        Glide.with(mContext).load(typetopic(attr.get(position).getCatagory())).into(holder.imageView);
         holder.cardView.setClickable(true);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

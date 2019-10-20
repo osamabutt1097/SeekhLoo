@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    tools:context=".GigCreatingActivity"
+    android:background="?attr/backgroundColor"
+    android:orientation="vertical">
+
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="?attr/headercolor">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/creategigtoolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/headercolor"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="?attr/textboxbackgroundcolor"
+                android:background="?attr/textboxbackgroundcolor"
+
+
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/gigname"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="0dp"
+                    android:hint="Gig Name"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="?attr/textcolor"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Spinner
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                style="?attr/backgroundColor"
+
+                android:backgroundTint="?attr/textboxbackgroundcolor"
+                android:background="?attr/textboxbackgroundcolor"
+                android:id="@+id/spinGig"
+                >
+
+            </Spinner>
+
+
+
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="310dp"
+                android:layout_height="210dp"
+                android:padding="4dp"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/borderline">
+
+
+
+                <com.libaml.android.view.chip.ChipLayout
+                    android:id="@+id/GIGchipText"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    custom:chipPadding_="4dp"
+
+                    android:backgroundTint="?attr/textboxbackgroundcolor"
+                    android:background="?attr/textboxbackgroundcolor"
+                    android:scrollbars="vertical"
+                    android:inputType="text"
+                    android:maxLines="1"
+
+                    android:layout_gravity="center"
+                    custom:chipTextPadding_="2dp"
+                    custom:textColor_="?attr/textcolor"
+                    android:autofillHints="HELLO"
+                    custom:deleteIcon_="@android:drawable/presence_offline"
+                    custom:chipDrawable_="@drawable/round_corner_drawable"
+                    custom:chipLayoutDrawable_="@drawable/edittext_theme_landing_page"
+                    custom:labelPosition_="left">
+                </com.libaml.android.view.chip.ChipLayout>
+
+            </FrameLayout>
+
+
+            <ca.antonious.materialdaypicker.MaterialDayPicker
+                android:id="@+id/GIG_day_picker"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="?attr/textboxbackgroundcolor"
+                android:background="?attr/textboxbackgroundcolor"
+                android:clickable="true"
+                android:onClick="settime"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/GIG_time_create_class"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="0dp"
+
+                    android:hint="Select Time"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="?attr/textcolor"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:onClick="settime"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <RadioGroup
+                android:id="@+id/GIG_radiotype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="30dp">
+
+                <RadioButton
+                    android:id="@+id/GIG_radioHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:textColor="?attr/textcolor"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/GIG_radioAway"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Away"
+                    android:textColor="?attr/textcolor"/>
+
+                <RadioButton
+                    android:id="@+id/GIG_radioBoth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Both"
+                    android:textColor="?attr/textcolor"/>
+            </RadioGroup>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>

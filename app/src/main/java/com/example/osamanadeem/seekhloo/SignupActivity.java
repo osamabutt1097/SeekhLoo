@@ -192,7 +192,9 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
                             Snackbar.make(findViewById(android.R.id.content),"User Created",Snackbar.LENGTH_LONG).show();
                         } else {
                             // If sign in fails, display a message to the user.
-                            Snackbar.make(findViewById(android.R.id.content),"Error Signing Up",Snackbar.LENGTH_LONG).show();
+                            Toast.makeText(SignupActivity.this,"Error Signing Up",Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+                            finish();
                         }
 
                         // ...
