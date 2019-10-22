@@ -28,14 +28,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class StudentActivity extends AppCompatActivity
+public class TutorActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
     private ViewPager viewPager;
-    private student_frag_newsletters notifications;
-    private student_fag_home home;
-    private TextView name, email;
+    private tutor_frag_newsletter notifications;
+    private tutor_frag_home home;
+   // private TextView name, email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -45,7 +45,7 @@ public class StudentActivity extends AppCompatActivity
 
         ////
 
-     /*   final SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
+        final SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
 
         String themeMode = prefs.getString("theme_preference","0");
         if (themeMode.equals("2"))
@@ -54,12 +54,11 @@ public class StudentActivity extends AppCompatActivity
         }
         else
             setTheme(R.style.AppTheme);
-*/
-        setTheme(R.style.AppTheme);
+
 
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student);
+        setContentView(R.layout.activity_tutor);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -67,7 +66,7 @@ public class StudentActivity extends AppCompatActivity
         getSupportActionBar().setTitle("SeekhLoo");
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_tutor);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -76,8 +75,8 @@ public class StudentActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
-        name = headerView.findViewById(R.id.sname);
-        email = headerView.findViewById(R.id.studentemail);
+        //name = headerView.findViewById(R.id.sname);
+        //email = headerView.findViewById(R.id.studentemail);
         init();
         getUser();
         setupViewPager(viewPager);
@@ -97,7 +96,7 @@ public class StudentActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.student, menu);
+        getMenuInflater().inflate(R.menu.tutor, menu);
         return true;
     }
 
@@ -109,10 +108,7 @@ public class StudentActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.addbtnstudent){
-            startActivity(new Intent(this,CreateClassroom.class));
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -141,7 +137,7 @@ public class StudentActivity extends AppCompatActivity
 
         }else if (id == R.id.nav_logout) {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(StudentActivity.this,LoginActivity.class));
+            startActivity(new Intent(TutorActivity.this,LoginActivity.class));
             finish();
 
         } else if (id == R.id.nav_notify) {
@@ -149,14 +145,12 @@ public class StudentActivity extends AppCompatActivity
             getSupportActionBar().setTitle("NewsLetters");
 
         }
-        else if (id == R.id.nav_personality_test)
+        else if (id == R.id.nav_gig)
         {
-            Uri uri = Uri.parse("https://www.16personalities.com/free-personality-test"); // missing 'http://' will cause crashed
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
+            startActivity(new Intent(TutorActivity.this,ViewGig.class));
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_tutor);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -169,8 +163,8 @@ public class StudentActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        notifications = new student_frag_newsletters();
-        home = new student_fag_home();
+        notifications = new tutor_frag_newsletter();
+        home = new tutor_frag_home();
         //adapter.addFragment(frag_adminPostNewsletter);
 
         adapter.addFragment(home); // index 0
@@ -184,16 +178,16 @@ public class StudentActivity extends AppCompatActivity
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference().child("Student").child(user.getUid());
+        DatabaseReference myRef = database.getReference().child("Tutor").child(user.getUid());
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 UserInfo value = dataSnapshot.getValue(UserInfo.class);
-                Toast.makeText(StudentActivity.this, value.getFirstname()+"", Toast.LENGTH_SHORT).show();
-                name.setText(value.getFirstname());
-                email.setText(value.getEmail());
+                Toast.makeText(TutorActivity.this, value.getFirstname()+"", Toast.LENGTH_SHORT).show();
+//                name.setText(value.getFirstname()+"");
+//                email.setText(value.getEmail()+"");
 
             }
 

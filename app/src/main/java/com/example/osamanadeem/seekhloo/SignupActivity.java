@@ -161,28 +161,58 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             final DatabaseReference myRef = database.getReference();
                             final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-                            myRef.child("User" +
-                                    "").child(currentFirebaseUser.getUid()).setValue(info, new DatabaseReference.CompletionListener() {
-                                public void onComplete(DatabaseError error, DatabaseReference ref) {
+                            if (prefs.getString("type",null).equals("student"))
+                            {
+                                myRef.child("Student" +
+                                        "").child(currentFirebaseUser.getUid()).setValue(info, new DatabaseReference.CompletionListener() {
+                                    public void onComplete(DatabaseError error, DatabaseReference ref) {
 
-                                    setAcademicInfo();
-                                    myRef.child("User").child(currentFirebaseUser.getUid()).child("Academia").setValue(academicInfo, new DatabaseReference.CompletionListener() {
-                                        public void onComplete(DatabaseError error, DatabaseReference ref) {
-
-
-                                            startActivity(new Intent(SignupActivity.this,LoginActivity.class));
-                                            finish();
-
-                                        }
-                                    });
+                                        setAcademicInfo();
+                                        myRef.child("Student").child(currentFirebaseUser.getUid()).child("Academia").setValue(academicInfo, new DatabaseReference.CompletionListener() {
+                                            public void onComplete(DatabaseError error, DatabaseReference ref) {
 
 
-                                    Toast.makeText(SignupActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(SignupActivity.this,LoginActivity.class));
-                                    finish();
+                                                startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+                                                finish();
 
-                                }
-                            });
+                                            }
+                                        });
+
+
+                                        Toast.makeText(SignupActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+                                        finish();
+
+                                    }
+                                });
+                            }
+                            else if (prefs.getString("type",null).equals("tutor"))
+                            {
+                                myRef.child("Tutor" +
+                                        "").child(currentFirebaseUser.getUid()).setValue(info, new DatabaseReference.CompletionListener() {
+                                    public void onComplete(DatabaseError error, DatabaseReference ref) {
+
+                                        setAcademicInfo();
+                                        myRef.child("Tutor").child(currentFirebaseUser.getUid()).child("Academia").setValue(academicInfo, new DatabaseReference.CompletionListener() {
+                                            public void onComplete(DatabaseError error, DatabaseReference ref) {
+
+
+                                                startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+                                                finish();
+
+                                            }
+                                        });
+
+
+                                        Toast.makeText(SignupActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(SignupActivity.this,LoginActivity.class));
+                                        finish();
+
+                                    }
+                                });
+                            }
+
+
 
                             ////////////////////////////////////////////////////////
 

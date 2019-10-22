@@ -77,45 +77,69 @@ public class LoginActivity extends AppCompatActivity {
                                 ////////////////////////Fetch User Type ////////////////////////////
 
                                 currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                                mDatabase.child("User").child(currentFirebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+                                mDatabase.child("Tutor").child(currentFirebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                        info = dataSnapshot.getValue(UserInfo.class);
-                                        if (info.getType().equals("student"))
-                                        {
-                                            startActivity(new Intent(LoginActivity.this,StudentActivity.class));
-                                            finish();
-                                        }
-                                        else if (info.getType().equals("tutor"))
-                                        {
-                                            lottieAnimationView.setVisibility(View.GONE);
+                                        if (dataSnapshot.exists()) {
+                                            info = dataSnapshot.getValue(UserInfo.class);
 
-                                            Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(LoginActivity.this,TutorActivity.class));
+                                            if (info.getType().equals("student")) {
+                                                startActivity(new Intent(LoginActivity.this, StudentActivity.class));
+                                                finish();
+                                            } else if (info.getType().equals("tutor")) {
+                                                startActivity(new Intent(LoginActivity.this, TutorActivity.class));
+                                                // Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
+                                            } else if (info.getType().equals("admin")) {
+                                                startActivity(new Intent(LoginActivity.this, AdminPanelActivity.class));
+                                                finish();
+                                            } else {
+                                                lottieAnimationView.setVisibility(View.GONE);
+                                                Toast.makeText(LoginActivity.this, "Login Again", Toast.LENGTH_SHORT).show();
+                                            }
+                                            return;
                                         }
-                                        else if (info.getType().equals("admin"))
+                                        else
                                         {
-                                            startActivity(new Intent(LoginActivity.this,AdminPanelActivity.class));
-                                            finish();
+                                            return;
                                         }
-
-
                                     }
 
                                     @Override
-                                    public void onCancelled(DatabaseError error) {
-                                        // Failed to read value
-                                        lottieAnimationView.setVisibility(View.GONE);
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+                                mDatabase.child("Student").child(currentFirebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                        if (dataSnapshot.exists()) {
+                                            info = dataSnapshot.getValue(UserInfo.class);
+
+                                            if (info.getType().equals("student")) {
+                                                startActivity(new Intent(LoginActivity.this, StudentActivity.class));
+                                                finish();
+                                            } else if (info.getType().equals("tutor")) {
+                                                startActivity(new Intent(LoginActivity.this, TutorActivity.class));
+                                                // Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
+                                            } else if (info.getType().equals("admin")) {
+                                                startActivity(new Intent(LoginActivity.this, AdminPanelActivity.class));
+                                                finish();
+                                            } else {
+                                                lottieAnimationView.setVisibility(View.GONE);
+                                                Toast.makeText(LoginActivity.this, "Login Again", Toast.LENGTH_SHORT).show();
+                                            }
+                                            return;
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
 
                                     }
                                 });
 
-
-                                ///////////////////////---------------//////////////////////////////
-                                //Toast.makeText(LoginActivity.this, "User Existed", Toast.LENGTH_LONG).show();
-                                //startActivity(new Intent(LoginActivity.this,AdminPanelActivity.class));
-                                //finish();
                             } else {
                                 lottieAnimationView.setVisibility(View.GONE);
                                 // If sign in fails, display a message to the user.
@@ -146,34 +170,35 @@ public class LoginActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
 
         lottieAnimationView.setVisibility(View.VISIBLE);
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        final FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null)
         {
 
-            mDatabase.child("User").child(currentUser.getUid()).addValueEventListener(new ValueEventListener() {
+            mDatabase.child("Tutor").child(currentUser.getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    info = dataSnapshot.getValue(UserInfo.class);
-                    if (info.getType().equals("student"))
-                    {
-                        startActivity(new Intent(LoginActivity.this,StudentActivity.class));
-                        finish();
+                    if (dataSnapshot.exists()) {
+                        info = dataSnapshot.getValue(UserInfo.class);
+
+                        if (info.getType().equals("student")) {
+                            startActivity(new Intent(LoginActivity.this, StudentActivity.class));
+                            finish();
+                        } else if (info.getType().equals("tutor")) {
+                            startActivity(new Intent(LoginActivity.this, TutorActivity.class));
+                            // Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
+                        } else if (info.getType().equals("admin")) {
+                            startActivity(new Intent(LoginActivity.this, AdminPanelActivity.class));
+                            finish();
+                        } else {
+                            lottieAnimationView.setVisibility(View.GONE);
+                            Toast.makeText(LoginActivity.this, "Login Again", Toast.LENGTH_SHORT).show();
+                        }
+                        return;
                     }
-                    else if (info.getType().equals("tutor"))
+                    else
                     {
-                        startActivity(new Intent(LoginActivity.this,TutorActivity.class));
-                       // Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (info.getType().equals("admin"))
-                    {
-                        startActivity(new Intent(LoginActivity.this,AdminPanelActivity.class));
-                        finish();
-                    }
-                    else 
-                    {
-                        lottieAnimationView.setVisibility(View.GONE);
-                        Toast.makeText(LoginActivity.this, "Login Again", Toast.LENGTH_SHORT).show();
+                        return;
                     }
                 }
 
@@ -182,6 +207,36 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
             });
+            mDatabase.child("Student").child(currentUser.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    if (dataSnapshot.exists()) {
+                        info = dataSnapshot.getValue(UserInfo.class);
+
+                        if (info.getType().equals("student")) {
+                            startActivity(new Intent(LoginActivity.this, StudentActivity.class));
+                            finish();
+                        } else if (info.getType().equals("tutor")) {
+                            startActivity(new Intent(LoginActivity.this, TutorActivity.class));
+                            // Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
+                        } else if (info.getType().equals("admin")) {
+                            startActivity(new Intent(LoginActivity.this, AdminPanelActivity.class));
+                            finish();
+                        } else {
+                            lottieAnimationView.setVisibility(View.GONE);
+                            Toast.makeText(LoginActivity.this, "Login Again", Toast.LENGTH_SHORT).show();
+                        }
+                        return;
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
         }
         else
         {
