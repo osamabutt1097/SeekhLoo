@@ -8,6 +8,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -130,8 +131,10 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_create) {
-             startActivity(new Intent(CreateClassroom.this,SearchTutorActivity.class));
-            //createClassroom();
+            savetoprefs();
+            startActivity(new Intent(CreateClassroom.this,SearchTutorActivity.class));
+
+             //createClassroom();
             return true;
         }
 
@@ -250,5 +253,14 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         weekdayList = materialDayPicker.getSelectedDays();
         return weekdayList;
 
+    }
+
+
+
+    public void savetoprefs()
+    {
+        SharedPreferences.Editor editor = getSharedPreferences("Classdata", MODE_PRIVATE).edit();
+        editor.putString("name", className.getText().toString());
+        editor.apply();
     }
 }

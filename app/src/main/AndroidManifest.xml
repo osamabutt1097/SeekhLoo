@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".TutorInfoActivity"></activity>
+        <activity android:name=".ReactRequestActivity"></activity>
+        <activity android:name=".TutorInfoActivity" />
         <activity android:name=".SearchTutorActivity" />
         <activity android:name=".ViewGig" />
         <activity android:name=".GigCreatingActivity" />
@@ -61,10 +62,10 @@
         <activity
             android:name=".CreateClassroom"
             android:label="@string/createclassroom" />
+
         <service
             android:name=".MyFirebaseInstanceId"
-            android:permission="false">
-        </service>
+            android:permission="false"></service>
         <service
             android:name=".MyFirebaseMessagingService"
             android:permission="false">
@@ -73,11 +74,10 @@
             </intent-filter>
         </service>
     </application>
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-
     <uses-permission android:name="android.permission.READ_PROFILE" />
 
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
 </manifest>

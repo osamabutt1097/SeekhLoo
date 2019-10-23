@@ -48,7 +48,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     private void showNotification(final Map<String, String> payload) {
-        Intent editIntent = new Intent(this, TutorInfoActivity.class);
+        Intent editIntent = new Intent(this, ReactRequestActivity.class);
         PendingIntent mClick = PendingIntent.getActivity(this, Integer.parseInt(payload.get("userCount")), editIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         initChannels(this);

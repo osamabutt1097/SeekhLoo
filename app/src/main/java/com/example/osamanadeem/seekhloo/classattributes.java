@@ -51,6 +51,18 @@ public class classattributes implements Serializable {
         this.tutor=assignedtutor;
         this.student_id=student_id;
     }
+
+    public classattributes(String name, String catagory, List<String> list, String time, String type, String Description,String assignedtutor,String requestedTutor,String student_id) {
+        this.name = name;
+        this.catagory = catagory;
+        this.list = list;
+        this.time = time;
+        this.type = type;
+        this.Description = Description;
+        this.requestedtutor = requestedTutor;
+        this.tutor=assignedtutor;
+        this.student_id=student_id;
+    }
     classattributes(String name, String catagory, String time, String type) {
         this.name = name;
         this.catagory = catagory;

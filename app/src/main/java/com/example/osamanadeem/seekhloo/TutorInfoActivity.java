@@ -147,6 +147,7 @@ public class TutorInfoActivity extends AppCompatActivity {
                 map.put("name",name);
                 map.put("userCount",useracnt);
                 map.put("token",token);
+                map.put("studentid",FirebaseAuth.getInstance().getCurrentUser().getUid());
                 ref.updateChildren(map);
 
             }
