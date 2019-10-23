@@ -84,15 +84,13 @@ public class TutorInfoActivity extends AppCompatActivity {
 //            n = b.getString("Time").toString();
             //time.setText(n);
             n = b.getString("PicUrl").toString();
-            id = b.getString("id").toLowerCase();
+            id = b.getString("id");
             Glide.with(getApplicationContext()).load(n).into(picUrl);
             a = b.getInt("position");
             token = b.getString("token");
             classes = (ArrayList<classattributes>) iin.getSerializableExtra("gig");
             time.setText(classes.get(a).getTime());
             dayPicker.setSelectedDays(classes.get(a).getWeekdayList());
-            category.setText(classes.get(a).getList().toString());
-            description.setText(classes.get(a).getDescription());
 
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Tutor").child(id).child("Gigs");
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
