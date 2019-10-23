@@ -130,8 +130,8 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_create) {
-            // startActivity(new Intent(CreateClassroom.this,SearchTutorActivity.class));
-            createClassroom();
+             startActivity(new Intent(CreateClassroom.this,SearchTutorActivity.class));
+            //createClassroom();
             return true;
         }
 

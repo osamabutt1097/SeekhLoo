@@ -1,15 +1,21 @@
 package com.example.osamanadeem.seekhloo;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,13 +35,59 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class classroom_Resources_frag extends Fragment {
   Uri uri;
+  String sid;
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
     View v = inflater.inflate(R.layout.classroom_resources_frag,container,false);
+    final View view = v;
+    FirebaseListAdapter<resourcesinfo> adapter;
 
     FloatingActionButton fab = v.findViewById(R.id.resaddfab);
+    ListView listView = v.findViewById(R.id.reslist);
+    SharedPreferences prefs = getActivity().getSharedPreferences("User", MODE_PRIVATE);
+    final String c_id = prefs.getString("c_name", "null");
+    final String student_id = prefs.getString("s_id", "null");
+    sid=student_id;
+
+    adapter = new FirebaseListAdapter<resourcesinfo>(getActivity(), resourcesinfo.class,
+            R.layout.resourceslay, FirebaseDatabase.getInstance().getReference().child("Student").child(sid).child("Classroom").child(c_id).child("Resources")) {
+      @Override
+      protected void populateView(View v, resourcesinfo model, int position) {
+        TextView messageUser = (TextView) v.findViewById(R.id.res_user);
+        messageUser.setText(model.getPath());
+      }
+
+
+    };
+    listView.setAdapter(adapter);
+
+
+
+    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        resourcesinfo cm =new resourcesinfo();
+        cm = (resourcesinfo) adapterView.getItemAtPosition(i);
+        String urlString = cm.getPath();
+        Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(urlString));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setPackage("com.android.chrome");
+        try {
+          getActivity().startActivity(intent);
+        } catch (ActivityNotFoundException ex) {
+          // Chrome browser presumably not installed so allow user to choose instead
+          intent.setPackage(null);
+          getActivity().startActivity(intent);
+        }
+      }
+    });
+
+
+
+
+
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -82,8 +134,9 @@ public class classroom_Resources_frag extends Fragment {
     StorageReference mStorageRef;
     mStorageRef = FirebaseStorage.getInstance().getReference();
     SharedPreferences prefs = getActivity().getSharedPreferences("User", MODE_PRIVATE);
-    String t_id = prefs.getString("t_id", "null");
+    final String t_id = prefs.getString("t_id", "null");
     final String student_id = prefs.getString("s_id", "null");
+    sid=student_id;
     final String name = prefs.getString("c_name","null");
 
     StorageReference riversRef = mStorageRef.child("Resources/"+student_id+"/"+name+"/"+uri.getPath());
@@ -96,7 +149,12 @@ public class classroom_Resources_frag extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                   // Get a URL to the uploaded content
                   Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                  FirebaseDatabase.getInstance().getReference().child("Student").child(student_id).child("Classroom").child(name).child("Resources").setValue(downloadUrl+"");
+                  resourcesinfo src = new resourcesinfo(downloadUrl+"",student_id);
+                  FirebaseDatabase.getInstance().getReference().child("Student").child(student_id).child("Classroom").child(name).child("Resources").push().setValue(src, new DatabaseReference.CompletionListener() {
+                    public void onComplete(DatabaseError error, DatabaseReference ref) {
+
+                    }
+                  });
                   Toast.makeText(getContext(), "Resources upload", Toast.LENGTH_SHORT).show();
 
                 }
