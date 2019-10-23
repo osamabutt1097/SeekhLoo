@@ -14,7 +14,7 @@
     <item
         android:id="@+id/navigation_tutor"
         android:icon="@drawable/ic_people_outline_black_24dp"
-        android:title="Resources" />
+        android:title="Tutor" />
 
 
 </menu>

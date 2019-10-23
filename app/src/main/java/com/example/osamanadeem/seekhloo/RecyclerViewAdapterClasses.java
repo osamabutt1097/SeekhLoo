@@ -2,6 +2,9 @@ package com.example.osamanadeem.seekhloo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class RecyclerViewAdapterClasses extends RecyclerView.Adapter<RecyclerViewAdapterClasses.ViewHolder>{
 
@@ -56,9 +62,25 @@ public class RecyclerViewAdapterClasses extends RecyclerView.Adapter<RecyclerVie
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle b = new Bundle();
                 Context context = view.getContext();
                 Intent intent = new Intent(context, ClassExistedActivity.class);
+
+
+                SharedPreferences.Editor editor = mContext.getSharedPreferences("User", MODE_PRIVATE).edit();
+                editor.putString("subjectname", attr.get(position).getName());
+                editor.putString("s_id", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                editor.putString("t_id", attr.get(position).getTutor());
+                editor.putString("c_name", attr.get(position).getName());
+
+                editor.apply();
+
+
+
                 intent.putExtra("subjectname",attr.get(position).getName());
+                intent.putExtra("s_id", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                intent.putExtra("t_id",attr.get(position).getTutor());
+               // Toast.makeText(context, attr.get(position).getTutor()+"", Toast.LENGTH_SHORT).show();
                 context.startActivity(intent);
             }
         });

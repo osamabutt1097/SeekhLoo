@@ -27,7 +27,7 @@ public class classattributes implements Serializable {
         this.type = type;
         this.weekdayList = weekdayList;
     }
-    public classattributes(String name, String catagory, List<String> list, String time, String type, List<MaterialDayPicker.Weekday> weekdayList,String Description) {
+    public classattributes(String name, String catagory, List<String> list, String time, String type, List<MaterialDayPicker.Weekday> weekdayList,String Description,String assignedtutor,String requestedTutor) {
         this.name = name;
         this.catagory = catagory;
         this.list = list;
@@ -35,8 +35,22 @@ public class classattributes implements Serializable {
         this.type = type;
         this.weekdayList = weekdayList;
         this.Description = Description;
+        this.requestedtutor = requestedTutor;
+        this.tutor=assignedtutor;
     }
 
+    public classattributes(String name, String catagory, List<String> list, String time, String type, List<MaterialDayPicker.Weekday> weekdayList,String Description,String assignedtutor,String requestedTutor,String student_id) {
+        this.name = name;
+        this.catagory = catagory;
+        this.list = list;
+        this.time = time;
+        this.type = type;
+        this.weekdayList = weekdayList;
+        this.Description = Description;
+        this.requestedtutor = requestedTutor;
+        this.tutor=assignedtutor;
+        this.student_id=student_id;
+    }
     classattributes(String name, String catagory, String time, String type) {
         this.name = name;
         this.catagory = catagory;
@@ -84,6 +98,16 @@ public class classattributes implements Serializable {
 
     String type;
 
+    public String getStudent_id() {
+        return student_id;
+    }
+
+    public void setStudent_id(String student_id) {
+        this.student_id = student_id;
+    }
+
+    String student_id;
+
     public String getDescription() {
         return Description;
     }
@@ -103,7 +127,25 @@ public class classattributes implements Serializable {
     }
 
     List<String> list = new ArrayList<String>();
+    String tutor;
 
+    public String getTutor() {
+        return tutor;
+    }
+
+    public void setTutor(String tutor) {
+        this.tutor = tutor;
+    }
+
+    public String getRequestedtutor() {
+        return requestedtutor;
+    }
+
+    public void setRequestedtutor(String requestedtutor) {
+        this.requestedtutor = requestedtutor;
+    }
+
+    String requestedtutor;
 
 
 

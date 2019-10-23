@@ -183,6 +183,16 @@
 
         </RadioGroup>
 
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:id="@+id/descriptioncreateclass"
+            android:hint="Add your description here"
+            android:background="#050650"
+            android:layout_gravity="center"
+
+            />
+
     </LinearLayout>
 </ScrollView>
 

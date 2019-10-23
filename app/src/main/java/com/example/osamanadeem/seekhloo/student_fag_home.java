@@ -60,7 +60,7 @@ public class student_fag_home extends Fragment {
     {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-        DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://seekhloo.firebaseio.com/User/"+currentFirebaseUser.getUid()+"/Classroom");
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://seekhloo.firebaseio.com/Student/"+currentFirebaseUser.getUid()+"/Classroom");
 
         Toast.makeText(getContext(), currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
         mRef.addValueEventListener(new ValueEventListener() {

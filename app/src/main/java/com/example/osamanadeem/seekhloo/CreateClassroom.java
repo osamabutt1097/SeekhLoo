@@ -40,6 +40,7 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
     private String type;
     private RadioGroup rgroup;
     private RadioButton radioButton;
+    private EditText desc;
     private List<MaterialDayPicker.Weekday> weekdayList;
 
     @Override
@@ -88,6 +89,7 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         materialDayPicker = findViewById(R.id.day_picker);
         timeset = findViewById(R.id.time_create_class);
         rgroup = findViewById(R.id.radiotype);
+        desc = findViewById(R.id.descriptioncreateclass);
     }
 
 
@@ -136,12 +138,12 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         return super.onOptionsItemSelected(item);
     }
 
-    void createClassroom()
+    public void createClassroom()
     {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-        classattributes  attr = new classattributes(className.getText().toString(),spinner.getSelectedItem().toString(),chip.getText(),timeset.getText().toString(),getType(),getdays());
+        classattributes  attr = new classattributes(className.getText().toString(),spinner.getSelectedItem().toString(),chip.getText(),timeset.getText().toString(),getType(),getdays(),desc.getText().toString(),"no","no",currentFirebaseUser.getUid());
         myRef.child("Student").child(currentFirebaseUser.getUid()).child("Classroom").child(className.getText().toString()).setValue(attr);
 
     }
