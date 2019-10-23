@@ -65,6 +65,11 @@ public class SearchTutorActivity extends AppCompatActivity {
                 classes.clear();
                 for (DataSnapshot children : dataSnapshot.getChildren()) {
                     TutorInfo attr = children.getValue(TutorInfo.class);
+                    if(children.child("token").exists())
+                    {
+                        String token = children.child("token").getValue().toString();
+                        attr.setTokenid(token);
+                    }
                     classes.add(attr);
                     //add you mediaItem to list that you provided
                 }

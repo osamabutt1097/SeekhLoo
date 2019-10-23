@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 });
 
                                             } else if (info.getType().equals("tutor")) {
-                                                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Tutor");
+                                                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Tutor").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                                                 String token = FirebaseInstanceId.getInstance().getToken();
                                                 HashMap<String,Object>map = new HashMap<>();
@@ -126,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                         else
                                         {
-                                            return;
+                                           return;
                                         }
 
 
@@ -147,9 +147,27 @@ public class LoginActivity extends AppCompatActivity {
                                         if (dataSnapshot.exists()) {
                                             info = dataSnapshot.getValue(UserInfo.class);
 
+
                                             if (info.getType().equals("student")) {
-                                                startActivity(new Intent(LoginActivity.this, StudentActivity.class));
-                                                finish();
+                                                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Student");
+                                                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                                        int count = (int) dataSnapshot.getChildrenCount();
+                                                        HashMap<String,Object>map = new HashMap<>();
+                                                        map.put("userCount",count);
+                                                        ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).updateChildren(map);
+                                                        startActivity(new Intent(LoginActivity.this, StudentActivity.class));
+                                                        finish();
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(DatabaseError databaseError) {
+
+                                                    }
+                                                });
+
+
                                             } else if (info.getType().equals("tutor")) {
                                                 startActivity(new Intent(LoginActivity.this, TutorActivity.class));
                                                 // Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
@@ -203,6 +221,10 @@ public class LoginActivity extends AppCompatActivity {
         final FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null)
         {
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
             mDatabase.child("Tutor").child(currentUser.getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
