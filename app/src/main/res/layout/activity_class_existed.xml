@@ -9,46 +9,32 @@
     tools:context=".ClassExistedActivity">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/classnam"
-        android:text="Hello"
-        android:layout_centerHorizontal="true"
-        android:textSize="24dp"
-        android:layout_marginTop="50dp"
-        android:textStyle="bold"
-        android:textColor="?attr/textcolor"/>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/classroomtoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:background="@color/colorPrimary"
 
-
-
-
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/typestudentclass"
-    android:text="Hello"
-    android:layout_centerInParent="true"
-    android:textSize="24dp"
-        android:textColor="?attr/textcolor"
-        android:gravity="center"/>
-
-    <Switch
-        android:id="@+id/darkswitch"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/typestudentclass"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:text="Dark thene      "
-        android:textColor="?attr/textcolor"
         />
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/classframe"
+        android:layout_marginBottom="55dp"
+        >
+
+    </FrameLayout>
+
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
+
         android:id="@+id/class_navigation"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:background="?attr/bottomviewcolor"

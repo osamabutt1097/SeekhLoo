@@ -11,6 +11,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.MenuItem;
@@ -21,6 +23,11 @@ import android.widget.TextView;
 public class ClassExistedActivity extends AppCompatActivity {
 
     private Switch aSwitch;
+    private  FragmentManager manager;
+    private FragmentTransaction transaction;
+    private classroom_stream_frag streamFrag;
+    private classroom_Tutor_frag tutorFrag;
+    private classroom_Resources_frag resources_frag;
    private TextView textView,name;
     private String n;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -30,10 +37,19 @@ public class ClassExistedActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_stream:
-                    textView.setText("Stream where student and tutor will communicate ");
+                    transaction = manager.beginTransaction();
+                    transaction.replace(R.id.classframe, streamFrag);
+                    transaction.commit();
                     return true;
-                case R.id.navigation_tutor_selection:
-                    textView.setText("Find Tutor here");
+                case R.id.navigation_tutor:
+                    transaction = manager.beginTransaction();
+                    transaction.replace(R.id.classframe, resources_frag);
+                    transaction.commit();
+                    return true;
+                case R.id.navigation_resources:
+                    transaction = manager.beginTransaction();
+                    transaction.replace(R.id.classframe, tutorFrag);
+                    transaction.commit();
                     return true;
 
             }
@@ -58,7 +74,9 @@ public class ClassExistedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_class_existed);
         Intent iin= getIntent();
         Bundle b = iin.getExtras();
-        aSwitch = findViewById(R.id.darkswitch);
+
+        /*
+        // aSwitch = findViewById(R.id.darkswitch);
         //Again dark panga
         if (AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES   )
         {
@@ -85,14 +103,20 @@ public class ClassExistedActivity extends AppCompatActivity {
                 }
             }
         });
-        textView = findViewById(R.id.typestudentclass);
-        name = findViewById(R.id.classnam);
+        //textView = findViewById(R.id.typestudentclass);
+      //  name = findViewById(R.id.classnam);
         if(b!=null)
         {
             n =(String) b.get("subjectname");
             name.setText(n);
 
         }
+
+         */
+
+
+       init();
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.class_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_stream);
@@ -105,6 +129,16 @@ public class ClassExistedActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(),ClassExistedActivity.class);
         startActivity(i);
         finish();
+    }
+
+    public void init(){
+        streamFrag = new classroom_stream_frag();
+        resources_frag = new classroom_Resources_frag();
+        tutorFrag = new classroom_Tutor_frag();
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
+        transaction.replace(R.id.classframe, streamFrag);
+        transaction.commit();
     }
 
 }

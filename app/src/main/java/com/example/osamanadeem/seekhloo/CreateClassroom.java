@@ -128,8 +128,8 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_create) {
-            startActivity(new Intent(CreateClassroom.this,SearchTutorActivity.class));
-            //createClassroom();
+            // startActivity(new Intent(CreateClassroom.this,SearchTutorActivity.class));
+            createClassroom();
             return true;
         }
 
@@ -142,7 +142,7 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         final DatabaseReference myRef = database.getReference();
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
         classattributes  attr = new classattributes(className.getText().toString(),spinner.getSelectedItem().toString(),chip.getText(),timeset.getText().toString(),getType(),getdays());
-        myRef.child("User").child(currentFirebaseUser.getUid()).child("Classroom").child(className.getText().toString()).setValue(attr);
+        myRef.child("Student").child(currentFirebaseUser.getUid()).child("Classroom").child(className.getText().toString()).setValue(attr);
 
     }
     public void spin()

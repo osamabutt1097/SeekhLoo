@@ -7,10 +7,14 @@
         android:title="Stream" />
 
     <item
-        android:id="@+id/navigation_tutor_selection"
+        android:id="@+id/navigation_resources"
         android:icon="@drawable/ic_people_outline_black_24dp"
-        android:title="Tutor" />
+        android:title="Resources" />
 
+    <item
+        android:id="@+id/navigation_tutor"
+        android:icon="@drawable/ic_people_outline_black_24dp"
+        android:title="Resources" />
 
 
 </menu>
