@@ -73,8 +73,11 @@ public class RecyclerViewAdapterSearchTutor extends RecyclerView.Adapter<Recycle
                 Context context = view.getContext();
                 Bundle b = new Bundle();
                 Intent intent = new Intent(context, TutorInfoActivity.class);
-               //Toast.makeText(context, classes.get(0).getCatagory(), Toast.LENGTH_SHORT).show();
+               attr.get(position).getDescription();
+                //Toast.makeText(context, classes.get(0).getCatagory(), Toast.LENGTH_SHORT).show();
                 intent.putExtra("PicUrl",attr.get(position).getPicUrL());
+                intent.putExtra("position",position);
+
                 intent.putExtra("id",attr.get(position).getId());
                 intent.putExtra("token",attr.get(position).getTokenid());
                 intent.putExtra("TutorName",attr.get(position).getFirstname()+" "+attr.get(position).getLastname());

@@ -59,7 +59,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setSmallIcon(R.drawable.logo)
                 .setContentTitle("Course Request")
                 .setTicker("Course Request")
-                .setContentText(payload.get("username"+" send you request to join classroom"))
+                .setContentText(payload.get("username") + " send you request to join classroom")
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setContentIntent(mClick)
                 .setAutoCancel(true)

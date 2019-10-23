@@ -48,6 +48,8 @@ public class TutorInfoActivity extends AppCompatActivity {
         init();
 
 
+
+
         set_data();
 //        Toast.makeText(this,a, Toast.LENGTH_SHORT).show();
 
@@ -56,6 +58,19 @@ public class TutorInfoActivity extends AppCompatActivity {
 
     public void set_data()
     {
+
+
+
+
+
+
+
+
+
+
+
+
+
         Intent iin= getIntent();
         Bundle b = iin.getExtras();
 
@@ -74,10 +89,34 @@ public class TutorInfoActivity extends AppCompatActivity {
             a = b.getInt("position");
             token = b.getString("token");
             classes = (ArrayList<classattributes>) iin.getSerializableExtra("gig");
-            time.setText(classes.get(1).getTime());
-            dayPicker.setSelectedDays(classes.get(1).getWeekdayList());
-            category.setText(classes.get(1).getList().toString());
-            description.setText(classes.get(1).getDescription());
+            time.setText(classes.get(a).getTime());
+            dayPicker.setSelectedDays(classes.get(a).getWeekdayList());
+            category.setText(classes.get(a).getList().toString());
+            description.setText(classes.get(a).getDescription());
+
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Tutor").child(id).child("Gigs");
+            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String catagory1 = "";
+                    String Description = "";
+                    for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
+                    {
+                        String description = dataSnapshot1.child("Description").getValue().toString();
+                        String cat = dataSnapshot1.child("catagory").getValue().toString();
+                        catagory1 += cat +"\n";
+                        Description +=description+"\n";
+                    }
+
+                    category.setText(catagory1);
+                    description.setText(Description);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
 
         }
     }
