@@ -61,11 +61,23 @@
         <activity
             android:name=".CreateClassroom"
             android:label="@string/createclassroom" />
+        <service
+            android:name=".MyFirebaseInstanceId"
+            android:permission="false">
+        </service>
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:permission="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <uses-permission android:name="android.permission.READ_PROFILE" />
+
 
 </manifest>
