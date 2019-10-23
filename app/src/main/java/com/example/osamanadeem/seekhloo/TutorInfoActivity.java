@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import ca.antonious.materialdaypicker.MaterialDayPicker;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.PriorityQueue;
 
 public class TutorInfoActivity extends AppCompatActivity {
@@ -93,6 +95,30 @@ public class TutorInfoActivity extends AppCompatActivity {
 
 
     public void sendreq(View view) {
+        DatabaseReference stdref = FirebaseDatabase.getInstance().getReference("Students").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        stdref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String name = dataSnapshot.child("firstname").getValue().toString();
+                String token = dataSnapshot.child("token").getValue().toString();
+                SharedPreferences preferences = getSharedPreferences("User",MODE_PRIVATE);
+                String tid = preferences.getString("t_id", "null");
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("FriendRequest").child(tid)
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                HashMap<String, Object>map = new HashMap<>();
+                map.put()
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
     }
 
     public void back(View view) {
