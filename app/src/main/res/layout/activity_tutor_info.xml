@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TutorInfoActivity"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="?attr/headercolor">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/TutorInfoActivity"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/headercolor"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/TutorInfoImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/camera"/>
+
+
+    <TextView
+        android:id="@+id/TutorInfoname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tutor name "
+        android:textSize="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"/>
+
+<TextView
+    android:id="@+id/TutorInfocatagory"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Catagory Type: "
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="5dp"
+    />
+
+    <TextView
+        android:id="@+id/TutorInfoTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time Availiable: "
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Availiable Days"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        />
+    <ca.antonious.materialdaypicker.MaterialDayPicker
+        android:id="@+id/day_picker_tutorinfo"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Desccription"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/TutorInfoDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Details are shown here"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_weight="4">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send Request"
+            android:id="@+id/sendreqbtn"
+            android:layout_weight="2"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:onClick="sendreq"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:onClick="back"
+            android:id="@+id/backreqbtn"
+            android:layout_gravity="right"
+            android:layout_weight="2"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            />
+    </LinearLayout>
+</LinearLayout>

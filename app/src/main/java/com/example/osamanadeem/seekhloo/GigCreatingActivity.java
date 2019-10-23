@@ -175,7 +175,7 @@ public class GigCreatingActivity extends AppCompatActivity {
         final DatabaseReference myRef = database.getReference();
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
         classattributes  attr = new classattributes(className.getText().toString(),spinner.getSelectedItem().toString(),chip.getText(),timeset.getText().toString(),getType(),getdays());
-        myRef.child("User").child(currentFirebaseUser.getUid()).child("Gigs").child(className.getText().toString()).setValue(attr);
+        myRef.child("Tutor").child(currentFirebaseUser.getUid()).child("Gigs").child(className.getText().toString()).setValue(attr);
 
     }
     public void settime(View view) {

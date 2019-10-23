@@ -1,13 +1,21 @@
 package com.example.osamanadeem.seekhloo;
 
+import java.io.Serializable;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
 import ca.antonious.materialdaypicker.MaterialDayPicker;
 
-public class classattributes {
+public class classattributes implements Serializable {
     classattributes() {
+        this.weekdayList = null;
+        this.type=null;
+        this.time=null;
+        this.catagory=null;
+        this.Description=null;
+        this.list=null;
+        this.name=null;
 
     }
 
@@ -18,6 +26,15 @@ public class classattributes {
         this.time = time;
         this.type = type;
         this.weekdayList = weekdayList;
+    }
+    public classattributes(String name, String catagory, List<String> list, String time, String type, List<MaterialDayPicker.Weekday> weekdayList,String Description) {
+        this.name = name;
+        this.catagory = catagory;
+        this.list = list;
+        this.time = time;
+        this.type = type;
+        this.weekdayList = weekdayList;
+        this.Description = Description;
     }
 
     classattributes(String name, String catagory, String time, String type) {
@@ -66,6 +83,16 @@ public class classattributes {
     }
 
     String type;
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        this.Description = description;
+    }
+
+    String Description;
 
     public List<String> getList() {
         return list;

@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import ca.antonious.materialdaypicker.MaterialDayPicker;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -127,7 +128,8 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_create) {
-            createClassroom();
+            startActivity(new Intent(CreateClassroom.this,SearchTutorActivity.class));
+            //createClassroom();
             return true;
         }
 

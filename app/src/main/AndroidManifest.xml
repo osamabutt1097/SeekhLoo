@@ -11,7 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".ViewGig"></activity>
+        <activity android:name=".TutorInfoActivity"></activity>
+        <activity android:name=".SearchTutorActivity" />
+        <activity android:name=".ViewGig" />
         <activity android:name=".GigCreatingActivity" />
         <activity
             android:name=".TutorActivity"
@@ -60,10 +62,10 @@
             android:name=".CreateClassroom"
             android:label="@string/createclassroom" />
     </application>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <uses-permission android:name="android.permission.READ_PROFILE" />
 
 </manifest>
