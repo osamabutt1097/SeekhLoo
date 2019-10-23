@@ -34,6 +34,7 @@ public class TutorInfoActivity extends AppCompatActivity {
     private MaterialDayPicker dayPicker;
     private ArrayList<classattributes> classes = new ArrayList<>();
     private String id;
+    private String token;
     int a;
     UserInfo info;
     @Override
@@ -71,6 +72,7 @@ public class TutorInfoActivity extends AppCompatActivity {
             id = b.getString("id").toLowerCase();
             Glide.with(getApplicationContext()).load(n).into(picUrl);
             a = b.getInt("position");
+            token = b.getString("token");
             classes = (ArrayList<classattributes>) iin.getSerializableExtra("gig");
             time.setText(classes.get(1).getTime());
             dayPicker.setSelectedDays(classes.get(1).getWeekdayList());
@@ -95,18 +97,22 @@ public class TutorInfoActivity extends AppCompatActivity {
 
 
     public void sendreq(View view) {
-        DatabaseReference stdref = FirebaseDatabase.getInstance().getReference("Students").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        DatabaseReference stdref = FirebaseDatabase.getInstance().getReference("Student").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         stdref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("firstname").getValue().toString();
                 String token = dataSnapshot.child("token").getValue().toString();
+                String useracnt = dataSnapshot.child("userCount").getValue().toString();
                 SharedPreferences preferences = getSharedPreferences("User",MODE_PRIVATE);
                 String tid = preferences.getString("t_id", "null");
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("FriendRequest").child(tid)
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 HashMap<String, Object>map = new HashMap<>();
-                map.put()
+                map.put("name",name);
+                map.put("userCount",useracnt);
+                map.put("token",token);
+                ref.updateChildren(map);
 
             }
 

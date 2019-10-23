@@ -25,6 +25,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -85,9 +88,31 @@ public class LoginActivity extends AppCompatActivity {
                                             info = dataSnapshot.getValue(UserInfo.class);
 
                                             if (info.getType().equals("student")) {
-                                                startActivity(new Intent(LoginActivity.this, StudentActivity.class));
-                                                finish();
+                                                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Student");
+                                                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                                        int count = (int) dataSnapshot.getChildrenCount();
+                                                        HashMap<String,Object>map = new HashMap<>();
+                                                        map.put("userCount",count);
+                                                        ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).updateChildren(map);
+                                                        startActivity(new Intent(LoginActivity.this, StudentActivity.class));
+                                                        finish();
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(DatabaseError databaseError) {
+
+                                                    }
+                                                });
+
                                             } else if (info.getType().equals("tutor")) {
+                                                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Tutor");
+
+                                                String token = FirebaseInstanceId.getInstance().getToken();
+                                                HashMap<String,Object>map = new HashMap<>();
+                                                map.put("token",token);
+                                                ref.updateChildren(map);
                                                 startActivity(new Intent(LoginActivity.this, TutorActivity.class));
                                                 // Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
                                             } else if (info.getType().equals("admin")) {
@@ -103,6 +128,11 @@ public class LoginActivity extends AppCompatActivity {
                                         {
                                             return;
                                         }
+
+
+
+
+
                                     }
 
                                     @Override
