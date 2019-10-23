@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import java.util.HashMap;
 
 public class SignupActivity extends AppCompatActivity implements signup_frag_name.FragmentChangeBirthday,signup_frag_email.FragmentChangePassword,
         signup_frag_join.FragmentChangetype,signup_frag_birthday.FragmentChangeGender,
@@ -188,6 +190,10 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
                             }
                             else if (prefs.getString("type",null).equals("tutor"))
                             {
+                                String token = FirebaseInstanceId.getInstance().getToken();
+                                HashMap<String,Object>map = new HashMap<>();
+                                map.put("token",token);
+                                myRef.updateChildren(map);
                                 myRef.child("Tutor" +
                                         "").child(currentFirebaseUser.getUid()).setValue(info, new DatabaseReference.CompletionListener() {
                                     public void onComplete(DatabaseError error, DatabaseReference ref) {
