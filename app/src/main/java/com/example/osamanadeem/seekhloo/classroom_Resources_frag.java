@@ -29,13 +29,14 @@ import com.google.firebase.storage.UploadTask;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class classroom_Resources_frag extends Fragment {
   Uri uri;
-  String sid;
+  String sid,check;
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class classroom_Resources_frag extends Fragment {
     FloatingActionButton fab = v.findViewById(R.id.resaddfab);
     ListView listView = v.findViewById(R.id.reslist);
     SharedPreferences prefs = getActivity().getSharedPreferences("User", MODE_PRIVATE);
+    check = prefs.getString("theme_preference","1");
     final String c_id = prefs.getString("c_name", "null");
     final String student_id = prefs.getString("s_id", "null");
     sid=student_id;
@@ -56,6 +58,12 @@ public class classroom_Resources_frag extends Fragment {
       @Override
       protected void populateView(View v, resourcesinfo model, int position) {
         TextView messageUser = (TextView) v.findViewById(R.id.res_user);
+        if (check.equals("2"))
+        {
+          messageUser.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+
+        }
+
         messageUser.setText(model.getPath());
       }
 

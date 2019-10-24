@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -30,6 +31,20 @@ public class SearchTutorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        final SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
+
+        String themeMode = prefs.getString("theme_preference","0");
+        if (themeMode.equals("2"))
+        {
+            setTheme(R.style.DarkTheme);
+        }
+        else
+            setTheme(R.style.AppTheme);
+
+        setTheme(R.style.AppTheme);
+
+
         setContentView(R.layout.activity_search_tutor);
 
 

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -34,6 +35,7 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
 
     private EditText className, timeset;
     private String[] array;
+    private Button btn;
     private MaterialDayPicker materialDayPicker;
     private ChipLayout chip;
     private Toolbar mTopToolbar;
@@ -132,9 +134,12 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_create) {
             savetoprefs();
+
+          //  createClassroom();
+
             startActivity(new Intent(CreateClassroom.this,SearchTutorActivity.class));
 
-             //createClassroom();
+            // createClassroom();
             return true;
         }
 
@@ -262,5 +267,9 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         SharedPreferences.Editor editor = getSharedPreferences("Classdata", MODE_PRIVATE).edit();
         editor.putString("name", className.getText().toString());
         editor.apply();
+    }
+
+    public void saveprogress(View view) {
+        createClassroom();
     }
 }

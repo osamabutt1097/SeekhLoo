@@ -86,27 +86,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                         if (dataSnapshot.exists()) {
                                             info = dataSnapshot.getValue(UserInfo.class);
-
-                                            if (info.getType().equals("student")) {
-                                                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Student");
-                                                ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                                                    @Override
-                                                    public void onDataChange(DataSnapshot dataSnapshot) {
-                                                        int count = (int) dataSnapshot.getChildrenCount();
-                                                        HashMap<String,Object>map = new HashMap<>();
-                                                        map.put("userCount",count);
-                                                        ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).updateChildren(map);
-                                                        startActivity(new Intent(LoginActivity.this, StudentActivity.class));
-                                                        finish();
-                                                    }
-
-                                                    @Override
-                                                    public void onCancelled(DatabaseError databaseError) {
-
-                                                    }
-                                                });
-
-                                            } else if (info.getType().equals("tutor")) {
+                                            if (info.getType().equals("tutor")) {
                                                 final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Tutor").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                                                 String token = FirebaseInstanceId.getInstance().getToken();
@@ -126,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                         else
                                         {
-                                           return;
+                                            return;
                                         }
 
 
@@ -168,9 +148,6 @@ public class LoginActivity extends AppCompatActivity {
                                                 });
 
 
-                                            } else if (info.getType().equals("tutor")) {
-                                                startActivity(new Intent(LoginActivity.this, TutorActivity.class));
-                                                // Toast.makeText(LoginActivity.this, "Tutor Type", Toast.LENGTH_SHORT).show();
                                             } else if (info.getType().equals("admin")) {
                                                 startActivity(new Intent(LoginActivity.this, AdminPanelActivity.class));
                                                 finish();
@@ -204,7 +181,7 @@ public class LoginActivity extends AppCompatActivity {
         else
             Snackbar.make(view,"Enter valid Email/Password",Snackbar.LENGTH_LONG).show();
 
-        }
+    }
 
     public void SignUp(View view) {
         startActivity(new Intent(this,SignupActivity.class));
@@ -296,6 +273,3 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 }
-
-
-

@@ -1,5 +1,6 @@
 package com.example.osamanadeem.seekhloo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import ca.antonious.materialdaypicker.MaterialDayPicker;
 
@@ -24,6 +25,7 @@ public class ReactRequestActivity extends AppCompatActivity {
 
     private String studentid,tutorid,classname;
     private ImageView imageView;
+    Requestclass requestclass;
     private TextView Studentname,catagory,Time,description;
     private MaterialDayPicker.Weekday weekday;
     private MaterialDayPicker dayPicker;
@@ -47,7 +49,7 @@ public class ReactRequestActivity extends AppCompatActivity {
         description = findViewById(R.id.reqTutorInfoDescription);
         dayPicker = findViewById(R.id.req_day_picker_tutorinfo);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("FriendRequest").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("FriendRequest").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("BO6BAl6f5BXBpH2qs6mWU9xPPGp2");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -56,9 +58,10 @@ public class ReactRequestActivity extends AppCompatActivity {
                 SharedPreferences prefs = getSharedPreferences("Classdata", MODE_PRIVATE);
                 classname = prefs.getString("name", "No name defined");//"No name defined" is the default value.
 
-                studentid = dataSnapshot.child("studentid").toString();
+                HashMap<String,Object>map = (HashMap<String, Object>) dataSnapshot.getValue();
+                Toast.makeText(ReactRequestActivity.this, map.get("studentid").toString(), Toast.LENGTH_SHORT).show();
                 tutorid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                Toast.makeText(ReactRequestActivity.this, studentid, Toast.LENGTH_SHORT).show();
+                //setdata();
             }
 
             @Override
@@ -68,15 +71,40 @@ public class ReactRequestActivity extends AppCompatActivity {
         });
 
     }
+
+
+    public void setdata()
+    {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Student").child(requestclass.getStudentid())
+                .child("Classroom").child(classname);
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                classattributes attr = dataSnapshot.getValue(classattributes.class);
+                Studentname.setText(attr.getName());
+                Time.setText(attr.getTime());
+                description.setText(attr.getDescription());
+                catagory.setText(attr.getCatagory());
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
     public void acceptreques(View view) {
 
 
 
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Student").child(studentid)
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Student").child("BO6BAl6f5BXBpH2qs6mWU9xPPGp2").child("added")
                 .child("Classroom").child(classname);
         HashMap<String,Object>map = new HashMap<>();
         map.put("tutor",FirebaseAuth.getInstance().getCurrentUser().getUid());
+        map.put("requestedtutor","no");
         reference.updateChildren(map);
 
 
@@ -85,7 +113,14 @@ public class ReactRequestActivity extends AppCompatActivity {
         HashMap<String,Object>mini = new HashMap<>();
         mini.put("studentid",studentid);
         mini.put("classname",classname);
-        reference.push();
+        reference.push().setValue(mini, new DatabaseReference.CompletionListener() {
+            public void onComplete(DatabaseError error, DatabaseReference ref) {
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("FriendRequest");
+                reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
+            }
+        });
+
     }
 
     public void Deletereq(View view) {

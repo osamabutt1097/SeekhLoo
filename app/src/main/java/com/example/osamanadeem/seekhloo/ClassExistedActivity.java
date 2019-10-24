@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 public class ClassExistedActivity extends AppCompatActivity {
 
@@ -29,6 +30,7 @@ public class ClassExistedActivity extends AppCompatActivity {
     private classroom_Tutor_frag tutorFrag;
     private classroom_Resources_frag resources_frag;
    private TextView textView,name;
+   private Toolbar mToolbar;
     private String n;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -40,15 +42,14 @@ public class ClassExistedActivity extends AppCompatActivity {
                     transaction = manager.beginTransaction();
                     transaction.replace(R.id.classframe, streamFrag);
                     transaction.commit();
+
                     return true;
                 case R.id.navigation_tutor:
-                    transaction = manager.beginTransaction();
-                    transaction.replace(R.id.classframe, resources_frag);
-                    transaction.commit();
+                   startActivity(new Intent(ClassExistedActivity.this,SearchTutorActivity.class));
                     return true;
                 case R.id.navigation_resources:
                     transaction = manager.beginTransaction();
-                    transaction.replace(R.id.classframe, tutorFrag);
+                    transaction.replace(R.id.classframe, resources_frag);
                     transaction.commit();
                     return true;
 
@@ -124,6 +125,7 @@ public class ClassExistedActivity extends AppCompatActivity {
 
 
     }
+
 
     private void restartApp() {
         Intent i = new Intent(getApplicationContext(),ClassExistedActivity.class);

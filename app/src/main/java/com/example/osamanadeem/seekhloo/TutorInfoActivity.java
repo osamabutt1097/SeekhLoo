@@ -139,13 +139,13 @@ public class TutorInfoActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("firstname").getValue().toString();
-                String useracnt = dataSnapshot.child("userCount").getValue().toString();
+//                String useracnt = dataSnapshot.child("userCount").getValue().toString();
                 SharedPreferences preferences = getSharedPreferences("User",MODE_PRIVATE);
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("FriendRequest").child(id)
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 HashMap<String, Object>map = new HashMap<>();
                 map.put("name",name);
-                map.put("userCount",useracnt);
+              //  map.put("userCount",useracnt);
                 map.put("token",token);
                 map.put("studentid",FirebaseAuth.getInstance().getCurrentUser().getUid());
                 ref.updateChildren(map);

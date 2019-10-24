@@ -2,6 +2,7 @@ package com.example.osamanadeem.seekhloo;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -35,16 +37,19 @@ public class classroom_stream_frag extends Fragment {
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
     View v = inflater.inflate(R.layout.classroom_stream_frag_layout, container, false);
     Intent iin = new Intent();
+
     final SharedPreferences prefs = getActivity().getSharedPreferences("User", MODE_PRIVATE);
     FirebaseListAdapter<ChatMessage> adapter;
     final String t_id, student_id, c_name;
-    String stud_name, tutor_name;
+    final String stud_name, tutor_name,check;
 
     t_id = prefs.getString("t_id", "null");
     student_id = prefs.getString("s_id", "null");
     c_name = prefs.getString("c_name", "null");
+    check = prefs.getString("theme_preference","1");
    // stud_name = getnameSTUD(student_id);
    // tutor_name = getnameTutor(t_id);
     Toast.makeText(v.getContext(), t_id + "", Toast.LENGTH_SHORT).show();
@@ -64,9 +69,17 @@ public class classroom_stream_frag extends Fragment {
         TextView messageUser = (TextView) v.findViewById(R.id.message_user);
         TextView messageTime = (TextView) v.findViewById(R.id.message_time);
 
+        if (check.equals("2"))
+        {
+          messageText.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+          messageUser.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+          messageTime.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+
+        }
+
         // Set their text
         messageText.setText(model.getMessageText());
-        messageUser.setText(model.getMessageUser());
+        messageUser.setText("Student");
 
         // Format the date before showing it
         messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",

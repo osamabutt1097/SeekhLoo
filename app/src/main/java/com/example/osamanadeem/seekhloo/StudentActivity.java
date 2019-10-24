@@ -45,7 +45,7 @@ public class StudentActivity extends AppCompatActivity
 
         ////
 
-     /*   final SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
+        final SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
 
         String themeMode = prefs.getString("theme_preference","0");
         if (themeMode.equals("2"))
@@ -54,7 +54,7 @@ public class StudentActivity extends AppCompatActivity
         }
         else
             setTheme(R.style.AppTheme);
-*/
+
         setTheme(R.style.AppTheme);
 
 
@@ -138,6 +138,7 @@ public class StudentActivity extends AppCompatActivity
         } else if (id == R.id.nav_archive) {
 
         } else if (id == R.id.nav_settings) {
+            startActivity(new Intent(StudentActivity.this,DarkActivity.class));
 
         }else if (id == R.id.nav_logout) {
             FirebaseAuth.getInstance().signOut();

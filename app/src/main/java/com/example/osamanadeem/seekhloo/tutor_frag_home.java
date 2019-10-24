@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +33,8 @@ public class tutor_frag_home extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<classattributes> classes = new ArrayList<>();
     private DatabaseReference mDatabase;
+    HashMap<String,Object>map = new HashMap<>();
+
 
 
     @Nullable
@@ -60,21 +63,19 @@ public class tutor_frag_home extends Fragment {
     {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-        DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://seekhloo.firebaseio.com/User/"+currentFirebaseUser.getUid()+"/Classroom");
-
-        Toast.makeText(getContext(), currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://seekhloo.firebaseio.com/Tutor/"+currentFirebaseUser.getUid()+"/Classroom");
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                classes.clear();
+
                 for (DataSnapshot children : dataSnapshot.getChildren()) {
-                    classattributes attr = children.getValue(classattributes.class);
-                    classes.add(attr);
+                    map.put("studentid",dataSnapshot.child("studentid"));
+                    map.put("classname",dataSnapshot.child("classname"));
+
                     //add you mediaItem to list that you provided
                 }
                 //Toast.makeText(getContext(), classes.size() + "", Toast.LENGTH_SHORT).show();
-                init_recyclerview();
             }
 
 
@@ -85,6 +86,34 @@ public class tutor_frag_home extends Fragment {
 
             }
 
+        });
+    }
+
+    private void get_class_data() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Student").child(map.get("studentid").toString())
+                .child("Classroom").child(map.get("classname").toString());
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                classes.clear();
+                for (DataSnapshot children : dataSnapshot.getChildren()) {
+                    classattributes attr = children.getValue(classattributes.class);
+                    if (dataSnapshot.child("classname").toString().equals(map.get("classname"))) {
+                        classes.add(attr);
+                    }
+
+                    //add you mediaItem to list that you provided
+                }
+                init_recyclerview();
+                //Toast.makeText(getContext(), classes.size() + "", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
         });
     }
 
@@ -120,3 +149,4 @@ public class tutor_frag_home extends Fragment {
     }
 
 }
+

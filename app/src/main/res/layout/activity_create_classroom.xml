@@ -33,168 +33,176 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         >
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="?attr/textboxbackgroundcolor"
-            android:background="?attr/textboxbackgroundcolor"
 
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             >
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="300dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/classname"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="0dp"
-                android:hint="Class Name"
-                android:backgroundTint="@color/colorPrimary"
-                android:textColor="?attr/textcolor"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
+                android:backgroundTint="?attr/textboxbackgroundcolor"
+                android:background="?attr/textboxbackgroundcolor"
 
 
-        <Spinner
-            android:layout_width="300dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            style="?attr/backgroundColor"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/classname"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="0dp"
+                    android:hint="Class Name"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="?attr/textcolor"
+                    />
 
-            android:backgroundTint="?attr/textboxbackgroundcolor"
-            android:background="?attr/textboxbackgroundcolor"
-            android:id="@+id/spin"
-
-
-            >
-
-        </Spinner>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-
-        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="310dp"
-            android:layout_height="210dp"
-            android:padding="4dp"
-            android:layout_marginTop="50dp"
-            android:layout_gravity="center"
-            android:background="@drawable/borderline">
-
-
-
-            <com.libaml.android.view.chip.ChipLayout
-                android:id="@+id/chipText"
+            <Spinner
                 android:layout_width="300dp"
-                android:layout_height="200dp"
-                custom:chipPadding_="4dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                style="?attr/backgroundColor"
 
                 android:backgroundTint="?attr/textboxbackgroundcolor"
                 android:background="?attr/textboxbackgroundcolor"
-                android:scrollbars="vertical"
-                android:inputType="text"
-                android:maxLines="1"
+                android:id="@+id/spin"
 
+
+                >
+
+            </Spinner>
+
+
+
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="310dp"
+                android:layout_height="210dp"
+                android:padding="4dp"
+                android:layout_marginTop="50dp"
                 android:layout_gravity="center"
-
-                custom:chipTextPadding_="2dp"
-                custom:textColor_="?attr/textcolor"
-                android:autofillHints="HELLO"
-                custom:deleteIcon_="@android:drawable/presence_offline"
-                custom:chipDrawable_="@drawable/round_corner_drawable"
-                custom:chipLayoutDrawable_="@drawable/edittext_theme_landing_page"
-                custom:labelPosition_="left">
-            </com.libaml.android.view.chip.ChipLayout>
-
-        </FrameLayout>
+                android:background="@drawable/borderline">
 
 
-        <ca.antonious.materialdaypicker.MaterialDayPicker
-            android:id="@+id/day_picker"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="?attr/textboxbackgroundcolor"
-            android:background="?attr/textboxbackgroundcolor"
-            android:clickable="true"
-            android:onClick="settime"
-            >
-            <com.google.android.material.textfield.TextInputEditText
+                <com.libaml.android.view.chip.ChipLayout
+                    android:id="@+id/chipText"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    custom:chipPadding_="4dp"
+
+                    android:backgroundTint="?attr/textboxbackgroundcolor"
+                    android:background="?attr/textboxbackgroundcolor"
+                    android:scrollbars="vertical"
+                    android:inputType="text"
+                    android:maxLines="1"
+
+                    android:layout_gravity="center"
+
+                    custom:chipTextPadding_="2dp"
+                    custom:textColor_="?attr/textcolor"
+                    android:autofillHints="HELLO"
+                    custom:deleteIcon_="@android:drawable/presence_offline"
+                    custom:chipDrawable_="@drawable/round_corner_drawable"
+                    custom:chipLayoutDrawable_="@drawable/edittext_theme_landing_page"
+                    custom:labelPosition_="left">
+                </com.libaml.android.view.chip.ChipLayout>
+
+            </FrameLayout>
+
+
+            <ca.antonious.materialdaypicker.MaterialDayPicker
+                android:id="@+id/day_picker"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/time_create_class"
                 android:layout_gravity="center"
-                android:layout_marginTop="0dp"
-
-                android:hint="Select Time"
-                android:backgroundTint="@color/colorPrimary"
-                android:textColor="?attr/textcolor"
-                android:clickable="true"
-                android:editable="false"
+                android:layout_marginTop="50dp"
                 />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
-        <RadioGroup
-            android:id="@+id/radiotype"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="30dp">
-
-            <RadioButton
-                android:id="@+id/radioHome"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Home"
-                android:textColor="?attr/textcolor"
-                android:checked="true" />
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="?attr/textboxbackgroundcolor"
+                android:background="?attr/textboxbackgroundcolor"
+                android:clickable="true"
+                android:onClick="settime"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/time_create_class"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="0dp"
 
-            <RadioButton
-                android:id="@+id/radioAway"
+                    android:hint="Select Time"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="?attr/textcolor"
+                    android:clickable="true"
+                    android:editable="false"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <RadioGroup
+                android:id="@+id/radiotype"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Away"
-                android:textColor="?attr/textcolor"/>
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="30dp">
 
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/radioHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:textColor="?attr/textcolor"
+                    android:checked="true" />
 
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:id="@+id/descriptioncreateclass"
-            android:hint="Add your description here"
-            android:background="#050650"
-            android:layout_gravity="center"
+                <RadioButton
+                    android:id="@+id/radioAway"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Away"
+                    android:textColor="?attr/textcolor"/>
 
-            />
+            </RadioGroup>
 
-    </LinearLayout>
-</ScrollView>
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:id="@+id/descriptioncreateclass"
+                android:hint="Add your description here"
+                android:background="#050650"
+                android:layout_gravity="center"
+
+                />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/saveclass"
+                android:text="create"
+                android:layout_gravity="center"
+                android:onClick="saveprogress"/>
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>
