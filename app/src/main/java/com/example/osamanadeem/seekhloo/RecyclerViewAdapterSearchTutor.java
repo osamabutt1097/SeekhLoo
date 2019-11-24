@@ -2,12 +2,8 @@ package com.example.osamanadeem.seekhloo;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -73,18 +69,18 @@ public class RecyclerViewAdapterSearchTutor extends RecyclerView.Adapter<Recycle
                 Context context = view.getContext();
                 Bundle b = new Bundle();
                 Intent intent = new Intent(context, TutorInfoActivity.class);
-               attr.get(position).getDescription();
+                attr.get(position).getDescription();
                 //Toast.makeText(context, classes.get(0).getCatagory(), Toast.LENGTH_SHORT).show();
                 intent.putExtra("PicUrl",attr.get(position).getPicUrL());
                 intent.putExtra("position",position);
 
                 intent.putExtra("id",attr.get(position).getId());
-                intent.putExtra("token",attr.get(position).getTokenid());
+                intent.putExtra("token",attr.get(position).getToken());
                 intent.putExtra("TutorName",attr.get(position).getFirstname()+" "+attr.get(position).getLastname());
                 intent.putExtra("position",position);
                 intent.putExtra("gig",classes);
 //                intent.putExtra("Time",classes.getTime());
-          //      b.putParcelable("value", (Parcelable) classes);
+                //      b.putParcelable("value", (Parcelable) classes);
                 //intent.putParcelableArrayListExtra("DaysSelected",classes.getList());
                 context.startActivity(intent);
             }
@@ -150,4 +146,4 @@ public class RecyclerViewAdapterSearchTutor extends RecyclerView.Adapter<Recycle
 
     }
 
-    }
+}

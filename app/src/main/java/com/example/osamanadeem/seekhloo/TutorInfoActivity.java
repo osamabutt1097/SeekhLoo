@@ -138,14 +138,16 @@ public class TutorInfoActivity extends AppCompatActivity {
         stdref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
+
                 String name = dataSnapshot.child("firstname").getValue().toString();
 //                String useracnt = dataSnapshot.child("userCount").getValue().toString();
                 SharedPreferences preferences = getSharedPreferences("User",MODE_PRIVATE);
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("FriendRequest").child(id)
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 HashMap<String, Object>map = new HashMap<>();
-                map.put("name",name);
-              //  map.put("userCount",useracnt);
+                map.put("name",prefs.getString("subjectname", "No name defined"));
+                //  map.put("userCount",useracnt);
                 map.put("token",token);
                 map.put("studentid",FirebaseAuth.getInstance().getCurrentUser().getUid());
                 map.put("userCount","0");

@@ -112,6 +112,35 @@
 
             </FrameLayout>
 
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="310dp"
+                android:layout_height="210dp"
+                android:padding="4dp"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/borderline">
+
+
+
+                <EditText
+                    android:id="@+id/descriptiontutor"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    android:hint="Add Description"
+
+                    android:backgroundTint="?attr/textboxbackgroundcolor"
+                    android:background="?attr/textboxbackgroundcolor"
+                    android:scrollbars="vertical"
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:gravity="top|left"
+                    android:maxLines="10"
+                    android:layout_gravity="center"
+                 >
+                </EditText>
+
+            </FrameLayout>
+
 
             <ca.antonious.materialdaypicker.MaterialDayPicker
                 android:id="@+id/GIG_day_picker"

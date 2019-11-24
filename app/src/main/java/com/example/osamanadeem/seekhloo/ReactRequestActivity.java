@@ -55,11 +55,11 @@ public class ReactRequestActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
 
-                SharedPreferences prefs = getSharedPreferences("Classdata", MODE_PRIVATE);
-                classname = prefs.getString("name", "No name defined");//"No name defined" is the default value.
+                SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
+                classname = prefs.getString("subjectname", "No name defined");//"No name defined" is the default value.
 
                 HashMap<String,Object>map = (HashMap<String, Object>) dataSnapshot.getValue();
-                Toast.makeText(ReactRequestActivity.this, map.get("studentid").toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ReactRequestActivity.this, map.get("studentid").toString(), Toast.LENGTH_SHORT).show();
                 tutorid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 //setdata();
             }
@@ -73,28 +73,7 @@ public class ReactRequestActivity extends AppCompatActivity {
     }
 
 
-    public void setdata()
-    {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Student").child(requestclass.getStudentid())
-                .child("Classroom").child(classname);
 
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                classattributes attr = dataSnapshot.getValue(classattributes.class);
-                Studentname.setText(attr.getName());
-                Time.setText(attr.getTime());
-                description.setText(attr.getDescription());
-                catagory.setText(attr.getCatagory());
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
     public void acceptreques(View view) {
 
 

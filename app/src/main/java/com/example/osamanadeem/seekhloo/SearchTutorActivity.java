@@ -2,14 +2,12 @@ package com.example.osamanadeem.seekhloo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -83,7 +81,7 @@ public class SearchTutorActivity extends AppCompatActivity {
                     if(children.child("token").exists())
                     {
                         String token = children.child("token").getValue().toString();
-                        attr.setTokenid(token);
+                        attr.setToken(token);
                     }
                     classes.add(attr);
                     //add you mediaItem to list that you provided

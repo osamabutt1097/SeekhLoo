@@ -37,7 +37,7 @@ public class TutorInfo {
         this.id=id;
     }
 
-    public TutorInfo(String type, String email, String birthday, String firstname, String lastname, String gender,String picUrL,String id,String tokenid) {
+    public TutorInfo(String type, String email, String birthday, String firstname, String lastname, String gender,String picUrL,String id,String token) {
         this.type = type;
         this.email = email;
         this.birthday = birthday;
@@ -46,7 +46,7 @@ public class TutorInfo {
         this.gender = gender;
         this.picUrL = picUrL;
         this.id=id;
-        this.tokenid = tokenid;
+        this.token = token;
     }
     public String getType() {
         return type;
@@ -136,15 +136,15 @@ public class TutorInfo {
 
     String description;
 
-    public String getTokenid() {
-        return tokenid;
+    public String getToken() {
+        return token;
     }
 
-    public void setTokenid(String tokenid) {
-        this.tokenid = tokenid;
+    public void setToken(String token) {
+        this.token = token;
     }
 
-    String tokenid;
+    String token;
     public String getGender() {
         return gender;
     }
