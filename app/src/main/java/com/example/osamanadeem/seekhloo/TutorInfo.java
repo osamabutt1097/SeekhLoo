@@ -44,7 +44,6 @@ public class TutorInfo {
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
-        this.name = name;
         this.picUrL = picUrL;
         this.id=id;
         this.tokenid = tokenid;

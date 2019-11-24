@@ -191,11 +191,13 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
                             else if (prefs.getString("type",null).equals("tutor"))
                             {
                                 String token = FirebaseInstanceId.getInstance().getToken();
-                                HashMap<String,Object>map = new HashMap<>();
-                                map.put("token",token);
-                                myRef.updateChildren(map);
+                                String picUrL ="https://firebasestorage.googleapis.com/v0/b/seekhloo.appspot.com/o/Tutor%2Fuser-icon-businessman-profile-man-avatar-vector-10552531.jpg?alt=media&token=9988fbad-b062-429c-a612-dc847581f8f1";
+                                TutorInfo t_info = new TutorInfo(prefs.getString("type",null),prefs.getString("email",null),prefs.getString("dob",null),prefs.getString("fname",null),prefs.getString("lname",null),prefs.getString("gender",null),picUrL,FirebaseAuth.getInstance().getCurrentUser().getUid().toString(),token);
+
+                                final HashMap<String,Object>map = new HashMap<>();
+
                                 myRef.child("Tutor" +
-                                        "").child(currentFirebaseUser.getUid()).setValue(info, new DatabaseReference.CompletionListener() {
+                                        "").child(currentFirebaseUser.getUid()).setValue(t_info, new DatabaseReference.CompletionListener() {
                                     public void onComplete(DatabaseError error, DatabaseReference ref) {
 
                                         setAcademicInfo();
