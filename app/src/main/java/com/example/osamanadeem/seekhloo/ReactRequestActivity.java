@@ -129,14 +129,16 @@ public class ReactRequestActivity extends AppCompatActivity {
 
 
 
-lottieAnimationView.setVisibility(View.GONE);
+    lottieAnimationView.setVisibility(View.GONE);
 
     }
 
 
-            public void acceptreques(View view) {
+    public void acceptreques(View view) {
 
 
+        DatabaseReference dreference = FirebaseDatabase.getInstance().getReference("FriendRequest");
+        dreference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
 
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Student").child(studentid)
