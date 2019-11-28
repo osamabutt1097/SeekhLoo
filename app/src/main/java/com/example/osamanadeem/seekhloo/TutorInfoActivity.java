@@ -143,15 +143,26 @@ public class TutorInfoActivity extends AppCompatActivity {
                 String name = dataSnapshot.child("firstname").getValue().toString();
 //                String useracnt = dataSnapshot.child("userCount").getValue().toString();
                 SharedPreferences preferences = getSharedPreferences("User",MODE_PRIVATE);
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("FriendRequest").child(id)
-                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("FriendRequest").child(id).child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 HashMap<String, Object>map = new HashMap<>();
                 map.put("name",prefs.getString("subjectname", "No name defined"));
                 //  map.put("userCount",useracnt);
                 map.put("token",token);
                 map.put("studentid",FirebaseAuth.getInstance().getCurrentUser().getUid());
                 map.put("userCount","0");
+
+               requests req = new requests(prefs.getString("subjectname","no name"),FirebaseAuth.getInstance().getCurrentUser().getUid(),token,"0");
+                //ref.setValue(req);
                 ref.updateChildren(map);
+
+                HashMap<String, Object>tmap = new HashMap<>();
+                tmap.put("studentid",FirebaseAuth.getInstance().getCurrentUser().getUid());
+                //  map.put("userCount",useracnt);
+                DatabaseReference tref = FirebaseDatabase.getInstance().getReference("Tutor").child(id)
+                        .child("Requests");
+                //requests r = new requests();
+               // r.setSid(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                //tref.push().setValue(r);
 
             }
 

@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -89,6 +91,22 @@ public class LoginActivity extends AppCompatActivity {
                                             if (info.getType().equals("tutor")) {
                                                 final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Tutor").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
+                                                ref.addValueEventListener(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                                        TutorInfo tinfo = dataSnapshot.getValue(TutorInfo.class);
+                                                        SharedPreferences pref = getApplicationContext().getSharedPreferences("User", 0);
+                                                        SharedPreferences.Editor editor = pref.edit();
+                                                        editor.putString("type",tinfo.getType());
+                                                        editor.commit();
+
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(DatabaseError databaseError) {
+
+                                                    }
+                                                });
                                                 String token = FirebaseInstanceId.getInstance().getToken();
                                                 HashMap<String,Object>map = new HashMap<>();
                                                 map.put("token",token);
@@ -126,7 +144,10 @@ public class LoginActivity extends AppCompatActivity {
 
                                         if (dataSnapshot.exists()) {
                                             info = dataSnapshot.getValue(UserInfo.class);
-
+                                            SharedPreferences pref = getApplicationContext().getSharedPreferences("User", 0);
+                                            SharedPreferences.Editor editor = pref.edit();
+                                            editor.putString("type",info.getType());
+                                            editor.commit();
 
                                             if (info.getType().equals("student")) {
                                                 final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Student");
@@ -209,8 +230,12 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (dataSnapshot.exists()) {
                         info = dataSnapshot.getValue(UserInfo.class);
-
+                        SharedPreferences pref = getApplicationContext().getSharedPreferences("User", 0);
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putString("type",info.getType());
+                        editor.commit();
                         if (info.getType().equals("student")) {
+
                             startActivity(new Intent(LoginActivity.this, StudentActivity.class));
                             finish();
                         } else if (info.getType().equals("tutor")) {
@@ -243,6 +268,10 @@ public class LoginActivity extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         info = dataSnapshot.getValue(UserInfo.class);
 
+                        SharedPreferences pref = getApplicationContext().getSharedPreferences("User", 0);
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putString("type",info.getType());
+                        editor.commit();
                         if (info.getType().equals("student")) {
                             startActivity(new Intent(LoginActivity.this, StudentActivity.class));
                             finish();

@@ -51,42 +51,67 @@ public class tutor_frag_home extends Fragment {
         imageView = getView().findViewById(R.id.classImage);
         textView = getView().findViewById(R.id.noclasstxt);
 
-        init_data();
+        init();
     }
 
-    void init(View v)
+    void init()
     {
+        DatabaseReference Ref = FirebaseDatabase.getInstance().getReference().getRef().child("Student").child("TT66kvQs5RZ8PfcS5Civ20OQhzo2").child("Classroom");
+        classes.clear();
+        Ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot children : dataSnapshot.getChildren()) {
+                    classattributes attr = children.getValue(classattributes.class);
+                    if(attr.getTutor().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                        classes.add(attr);
+                    }//add you mediaItem to list that you provided
+                }
 
+                init_recyclerview();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+        Toast.makeText(getContext(), classes.size()+"", Toast.LENGTH_SHORT).show();
+        init_recyclerview();
     }
 
     private void init_data()
     {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-        DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://seekhloo.firebaseio.com/Tutor/"+currentFirebaseUser.getUid()+"/Classroom");
-        mRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+//        DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://seekhloo.firebaseio.com/Tutor/"+currentFirebaseUser.getUid()+"/Classroom/Algebra");
+//        mRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//
+//                    map.put("studentid",dataSnapshot.child("studentid"));
+//                    map.put("classname",dataSnapshot.child("classname"));
+//
+//
+//
+//                    //add you mediaItem to list that you provided
+//
+//                //Toast.makeText(getContext(), classes.size() + "", Toast.LENGTH_SHORT).show();
+//            }
+//
+//
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+//
+//            }
+//
+//        });
 
-
-                for (DataSnapshot children : dataSnapshot.getChildren()) {
-                    map.put("studentid",dataSnapshot.child("studentid"));
-                    map.put("classname",dataSnapshot.child("classname"));
-
-                    //add you mediaItem to list that you provided
-                }
-                //Toast.makeText(getContext(), classes.size() + "", Toast.LENGTH_SHORT).show();
-            }
-
-
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-
-            }
-
-        });
     }
 
     private void get_class_data() {
@@ -129,7 +154,7 @@ public class tutor_frag_home extends Fragment {
 
         RecyclerView recyclerView = getActivity().findViewById(R.id.class_recycler);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewAdapterClasses adapter = new RecyclerViewAdapterClasses(classes,getContext());
+        RecyclerViewAdapterClassesTutor adapter = new RecyclerViewAdapterClassesTutor(classes,getContext());
         recyclerView.setAdapter(adapter);
 
         ////////////////

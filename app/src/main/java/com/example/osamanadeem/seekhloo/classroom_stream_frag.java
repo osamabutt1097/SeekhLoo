@@ -52,7 +52,7 @@ public class classroom_stream_frag extends Fragment {
     check = prefs.getString("theme_preference","1");
    // stud_name = getnameSTUD(student_id);
    // tutor_name = getnameTutor(t_id);
-    Toast.makeText(v.getContext(), t_id + "", Toast.LENGTH_SHORT).show();
+   // Toast.makeText(v.getContext(), t_id + "", Toast.LENGTH_SHORT).show();
     FloatingActionButton fab = v.findViewById(R.id.sendfloatingbtn);
     final EditText editText = v.findViewById(R.id.typemsg);
 
@@ -79,7 +79,12 @@ public class classroom_stream_frag extends Fragment {
 
         // Set their text
         messageText.setText(model.getMessageText());
-        messageUser.setText("Student");
+        if (model.getMessageUser().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+        {
+          messageUser.setText("You");
+        }
+        else
+          messageUser.setText("User");
 
         // Format the date before showing it
         messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
@@ -125,7 +130,7 @@ public class classroom_stream_frag extends Fragment {
     final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://seekhloo.firebaseio.com/Student/" + sttud_id);
     final String[] Sname = new String[1];
-    Toast.makeText(getContext(), currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+   // Toast.makeText(getContext(), currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
 
     mRef.addChildEventListener(new ChildEventListener() {
       @Override
@@ -165,7 +170,7 @@ public class classroom_stream_frag extends Fragment {
     final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://seekhloo.firebaseio.com/Tutor/" + tutor_id);
     final String[] Sname = new String[1];
-    Toast.makeText(getContext(), currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+   // Toast.makeText(getContext(), currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
     mRef.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(DataSnapshot dataSnapshot) {

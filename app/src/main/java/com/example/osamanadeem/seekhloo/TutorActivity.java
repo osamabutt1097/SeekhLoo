@@ -185,7 +185,7 @@ public class TutorActivity extends AppCompatActivity
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 UserInfo value = dataSnapshot.getValue(UserInfo.class);
-                Toast.makeText(TutorActivity.this, value.getFirstname()+"", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(TutorActivity.this, value.getFirstname()+"", Toast.LENGTH_SHORT).show();
 //                name.setText(value.getFirstname()+"");
 //                email.setText(value.getEmail()+"");
 
