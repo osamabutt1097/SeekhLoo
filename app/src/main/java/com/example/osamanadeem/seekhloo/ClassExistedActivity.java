@@ -39,6 +39,7 @@ public class ClassExistedActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_stream:
+                    getSupportActionBar().setTitle("Stream");
                     transaction = manager.beginTransaction();
                     transaction.replace(R.id.classframe, streamFrag);
                     transaction.commit();
@@ -48,6 +49,7 @@ public class ClassExistedActivity extends AppCompatActivity {
                    startActivity(new Intent(ClassExistedActivity.this,SearchTutorActivity.class));
                     return true;
                 case R.id.navigation_resources:
+                    getSupportActionBar().setTitle("Resources");
                     transaction = manager.beginTransaction();
                     transaction.replace(R.id.classframe, resources_frag);
                     transaction.commit();
@@ -76,6 +78,9 @@ public class ClassExistedActivity extends AppCompatActivity {
         Intent iin= getIntent();
         Bundle b = iin.getExtras();
 
+        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.classroomtoolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Stream");
         /*
         // aSwitch = findViewById(R.id.darkswitch);
         //Again dark panga

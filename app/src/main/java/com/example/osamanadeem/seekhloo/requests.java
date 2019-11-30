@@ -1,13 +1,20 @@
 package com.example.osamanadeem.seekhloo;
 
+
+
+
 public class requests {
-    String name;
-    String studentid;
-    String token;
 
-    public requests(){
+     String name;
+     String studentid;
+     String token;
+     String userCount;
 
-    }
+
+     public  requests()
+     {}
+
+
     public requests(String name, String studentid, String token, String userCount) {
         this.name = name;
         this.studentid = studentid;
@@ -47,5 +54,6 @@ public class requests {
         this.userCount = userCount;
     }
 
-    String userCount;
+
 }
+

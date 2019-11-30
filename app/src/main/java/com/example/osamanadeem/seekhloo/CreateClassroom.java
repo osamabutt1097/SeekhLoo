@@ -270,6 +270,13 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
     }
 
     public void saveprogress(View view) {
+
+        if (className.getText().toString().isEmpty() || desc.getText().toString().isEmpty() ||
+        timeset.getText().toString().isEmpty())
+        {
+            Toast.makeText(this, "Class name empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
         createClassroom();
     }
 }

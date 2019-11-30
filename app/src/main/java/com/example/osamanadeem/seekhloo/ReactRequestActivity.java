@@ -6,6 +6,7 @@ import ca.antonious.materialdaypicker.MaterialDayPicker;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,23 +59,24 @@ public class ReactRequestActivity extends AppCompatActivity {
 
         lottieAnimationView.setVisibility(View.VISIBLE);
 
-        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().getRef().child("FriendRequest").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("TT66kvQs5RZ8PfcS5Civ20OQhzo2");
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().getRef().child("FriendRequest").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(abc.studentId);
 
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
              //   Map<String, Object> objectMap = (HashMap<String, Object>) dataSnapshot.getValue();
-//                Toast.makeText(ReactRequestActivity.this, objectMap.get("userCount").toString(), Toast.LENGTH_SHORT).show();
+//
+//
+//
+//            Toast.makeText(ReactRequestActivity.this, objectMap.get("userCount").toString(), Toast.LENGTH_SHORT).show();
                 req = dataSnapshot.getValue(requests.class);
-                studentid = req.getStudentid();
-                classname = req.getName();
                 Toast.makeText(ReactRequestActivity.this, req.getStudentid() +"", Toast.LENGTH_SHORT).show();
 
 
                 /////////////////////////////////////////////////////////////////////////
                 /*Class Data*/
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().getRef().child("Student")
-                        .child(req.getStudentid()).child("Classroom").child(req.getName());
+                        .child(abc.studentId).child("Classroom").child(req.getName());
 
                 ref.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -116,7 +118,7 @@ public class ReactRequestActivity extends AppCompatActivity {
                     }
                 });
 
-                //////////////////////////////////////////////////////////////////////////
+//                //////////////////////////////////////////////////////////////////////////
 
             }
 

@@ -3,9 +3,12 @@ package com.example.osamanadeem.seekhloo;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +30,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -36,7 +41,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class classroom_Resources_frag extends Fragment {
   Uri uri;
-  String sid,check;
+  String sid,check,filename;
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,7 +69,7 @@ public class classroom_Resources_frag extends Fragment {
 
         }
 
-        messageUser.setText(model.getPath());
+        messageUser.setText(model.getFilename());
       }
 
 
@@ -125,12 +130,31 @@ public class classroom_Resources_frag extends Fragment {
     switch(requestCode){
       case 1000:
         if(resultCode==-1){
-          uri = data.getData();
-          String filePath = uri.getPath();
-          uri = data.getData();
+
+
+          Uri uri = data.getData();
+          String uriString = uri.toString();
+          File myFile = new File(uriString);
+          String path = myFile.getAbsolutePath();
+          String displayName = null;
+
+
+          if (uriString.startsWith("content://")) {
+            Cursor cursor = null;
+            try {
+              cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+              if (cursor != null && cursor.moveToFirst()) {
+                displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+              }
+            } finally {
+              cursor.close();
+            }
+          } else if (uriString.startsWith("file://")) {
+            displayName = myFile.getName();
+          }
+          filename = displayName;
+          Log.e("saad",displayName);
           uploadres(uri);
-          Toast.makeText(getActivity(), filePath,
-                  Toast.LENGTH_LONG).show();
         }
         break;
     }
@@ -157,7 +181,7 @@ public class classroom_Resources_frag extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                   // Get a URL to the uploaded content
                   Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                  resourcesinfo src = new resourcesinfo(downloadUrl+"",student_id);
+                  resourcesinfo src = new resourcesinfo(downloadUrl+"",student_id,filename);
                   FirebaseDatabase.getInstance().getReference().child("Student").child(student_id).child("Classroom").child(name).child("Resources").push().setValue(src, new DatabaseReference.CompletionListener() {
                     public void onComplete(DatabaseError error, DatabaseReference ref) {
 

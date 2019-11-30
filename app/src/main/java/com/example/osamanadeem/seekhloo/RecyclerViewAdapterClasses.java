@@ -1,6 +1,8 @@
 package com.example.osamanadeem.seekhloo;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +62,33 @@ public class RecyclerViewAdapterClasses extends RecyclerView.Adapter<RecyclerVie
 
         Glide.with(mContext).load(typetopic(attr.get(position).getCatagory())).into(holder.imageView);
         holder.cardView.setClickable(true);
+
+        holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Toast.makeText(mContext, "long clicked!", Toast.LENGTH_SHORT).show();
+/*
+                AlertDialog.Builder adb = new AlertDialog.Builder(mContext);
+                adb.setTitle("Delete this class");
+                adb.setIcon(android.R.drawable.ic_dialog_alert);
+                adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(mContext, "OK", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(mContext, "Cancel", Toast.LENGTH_SHORT).show();
+                        //finish();
+                    }
+                });
+                adb.show();*/
+
+                return true;
+            }
+        });
+
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
