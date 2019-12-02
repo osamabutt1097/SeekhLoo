@@ -164,6 +164,10 @@ public class ReactRequestActivity extends AppCompatActivity {
             }
         });
 
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().getRef().child("Tutor")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        reference1.child("Students").child(abc.studentId).setValue(true);
+
     }
 
 

@@ -1,6 +1,8 @@
 package com.example.osamanadeem.seekhloo;
 
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class tutor_frag_home extends Fragment {
 
+    ArrayList<UserInfo> info = new ArrayList<>();
     private ImageView imageView;
     private TextView textView;
     private RecyclerView recyclerView;
@@ -54,35 +58,106 @@ public class tutor_frag_home extends Fragment {
         init();
     }
 
-    void init()
-    {
-        DatabaseReference Ref = FirebaseDatabase.getInstance().getReference().getRef().child("Student").child("VwhiUnq69SboQce1xXwrq8FzAXC3").child("Classroom");
-        classes.clear();
-        Ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot children : dataSnapshot.getChildren()) {
-                    classattributes attr = children.getValue(classattributes.class);
-                    if(attr.getTutor().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-                        classes.add(attr);
-                    }//add you mediaItem to list that you provided
-                }
+    /*   void init()
+       {
+           DatabaseReference Ref = FirebaseDatabase.getInstance().getReference().getRef().child("Student").child("VwhiUnq69SboQce1xXwrq8FzAXC3").child("Classroom");
+           classes.clear();
+           Ref.addValueEventListener(new ValueEventListener() {
+               @Override
+               public void onDataChange(DataSnapshot dataSnapshot) {
+                   for (DataSnapshot children : dataSnapshot.getChildren()) {
+                       classattributes attr = children.getValue(classattributes.class);
+                       if(attr.getTutor().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                           classes.add(attr);
+                       }//add you mediaItem to list that you provided
+                   }
 
-                init_recyclerview();
-            }
+                   init_recyclerview();
+               }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+               @Override
+               public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+               }
+           });
 
 
-        Toast.makeText(getContext(), classes.size()+"", Toast.LENGTH_SHORT).show();
-        init_recyclerview();
-    }
+           Toast.makeText(getContext(), classes.size()+"", Toast.LENGTH_SHORT).show();
+           init_recyclerview();
+       }
+   */
 
-    private void init_data()
+       void init()
+       {
+
+           DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference().getRef().child("Tutor")
+                   .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Students");
+           rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+               @Override
+               public void onDataChange(DataSnapshot dataSnapshot) {
+                   List<String> friends = new ArrayList<>();
+                   for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                       String friend = ds.getKey();
+                       friends.add(friend);
+                   }
+                   init_classData(friends);
+
+               }
+
+               @Override
+               public void onCancelled(DatabaseError databaseError) {
+
+               }
+           });
+
+
+
+
+       }
+
+
+
+       void init_classData(final List<String> friends)
+       {
+
+           classes.clear();
+           for (int i =0; i<friends.size();i++) {
+               FirebaseDatabase database = FirebaseDatabase.getInstance();
+               final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+               DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://seekhloo.firebaseio.com/Student/" + friends.get(i) + "/Classroom");
+
+               mRef.addValueEventListener(new ValueEventListener() {
+                   @Override
+                   public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                       for (DataSnapshot children : dataSnapshot.getChildren()) {
+                           classattributes attr = children.getValue(classattributes.class);
+
+                           if (attr.getTutor().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                            classes.add(attr);
+
+                           //add you mediaItem to list that you provided
+                       }
+                       init_recyclerview();
+                       //Toast.makeText(getContext(), classes.size() + "", Toast.LENGTH_SHORT).show();
+
+                   }
+
+
+                   @Override
+                   public void onCancelled(DatabaseError databaseError) {
+                       Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+
+                   }
+
+               });
+
+           }
+       }
+
+
+            private void init_data()
     {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;

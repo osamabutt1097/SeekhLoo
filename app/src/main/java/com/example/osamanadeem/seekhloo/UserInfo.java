@@ -5,6 +5,28 @@ public class UserInfo {
     {
 
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    String id;
+    public UserInfo(String id,String type, String email, String birthday, String firstname, String lastname,String gender) {
+        this.type = type;
+        this.email = email;
+        this.birthday = birthday;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.gender = gender;
+        this.name = name;
+        this.id = id;
+    }
+
+
     public UserInfo(String type, String email, String birthday, String firstname, String lastname,String gender) {
         this.type = type;
         this.email = email;

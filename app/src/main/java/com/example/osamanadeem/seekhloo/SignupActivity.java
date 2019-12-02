@@ -159,7 +159,7 @@ public class SignupActivity extends AppCompatActivity implements signup_frag_nam
 
                             //////////////////inserting data to database///////////
 
-                            UserInfo info = new UserInfo(prefs.getString("type",null),prefs.getString("email",null),prefs.getString("dob",null),prefs.getString("fname",null),prefs.getString("lname",null),prefs.getString("gender",null));
+                            UserInfo info = new UserInfo(FirebaseAuth.getInstance().getCurrentUser().getUid(),prefs.getString("type",null),prefs.getString("email",null),prefs.getString("dob",null),prefs.getString("fname",null),prefs.getString("lname",null),prefs.getString("gender",null));
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             final DatabaseReference myRef = database.getReference();
                             final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
