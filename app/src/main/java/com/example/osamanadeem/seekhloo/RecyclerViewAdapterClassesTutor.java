@@ -1,5 +1,6 @@
 package com.example.osamanadeem.seekhloo;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,6 +33,7 @@ public class RecyclerViewAdapterClassesTutor extends RecyclerView.Adapter<Recycl
     public RecyclerViewAdapterClassesTutor(Context mContext)
     {
         this.mContext = mContext;
+
 
     }
 
@@ -82,6 +84,9 @@ public class RecyclerViewAdapterClassesTutor extends RecyclerView.Adapter<Recycl
                 intent.putExtra("t_id",attr.get(position).getTutor());
                // Toast.makeText(context, attr.get(position).getTutor()+"", Toast.LENGTH_SHORT).show();
                 context.startActivity(intent);
+
+
+
             }
         });
 

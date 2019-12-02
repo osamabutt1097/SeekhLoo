@@ -61,6 +61,7 @@ public class TutorActivity extends AppCompatActivity
         setContentView(R.layout.activity_tutor);
 
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("SeekhLoo");
@@ -131,9 +132,8 @@ public class TutorActivity extends AppCompatActivity
                 Toast.makeText(this, "Please install Google Calender", Toast.LENGTH_SHORT).show();
 
 
-        } else if (id == R.id.nav_archive) {
-
         } else if (id == R.id.nav_settings) {
+            startActivity(new Intent(TutorActivity.this,SettingActivity.class));
 
         }else if (id == R.id.nav_logout) {
             FirebaseAuth.getInstance().signOut();

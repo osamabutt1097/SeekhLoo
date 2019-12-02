@@ -146,8 +146,6 @@ public class StudentActivity extends AppCompatActivity
                 Toast.makeText(this, "Please install Google Calender", Toast.LENGTH_SHORT).show();
 
 
-        } else if (id == R.id.nav_archive) {
-
         } else if (id == R.id.nav_settings) {
             startActivity(new Intent(StudentActivity.this,SettingActivity.class));
 
