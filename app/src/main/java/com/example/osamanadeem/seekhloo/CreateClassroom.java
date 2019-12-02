@@ -92,7 +92,7 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         materialDayPicker = findViewById(R.id.day_picker);
         timeset = findViewById(R.id.time_create_class);
         rgroup = findViewById(R.id.radiotype);
-        desc = findViewById(R.id.descriptioncreateclass);
+        desc = findViewById(R.id.descriptioncreatclass);
     }
 
 
@@ -135,9 +135,10 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         if (id == R.id.action_create) {
             savetoprefs();
 
+            createClassroom();
           //  createClassroom();
 
-            startActivity(new Intent(CreateClassroom.this,SearchTutorActivity.class));
+           // startActivity(new Intent(CreateClassroom.this,SearchTutorActivity.class));
 
             // createClassroom();
             return true;

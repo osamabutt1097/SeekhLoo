@@ -189,27 +189,31 @@
                 android:padding="4dp"
                 android:layout_marginTop="40dp"
                 android:layout_gravity="center"
-                android:background="@drawable/borderline">
+                android:background="@drawable/borderline"
+                android:layout_marginBottom="30dp">
 
 
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="200dp"
-                android:id="@+id/descriptioncreateclass"
-                android:hint="Add your description here"
-                android:background="?attr/textboxbackgroundcolor"
-                android:layout_gravity="center"
+                <EditText
+                    android:id="@+id/descriptioncreatclass"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    android:hint="Add Description"
 
-                />
+                    android:backgroundTint="?attr/textboxbackgroundcolor"
+                    android:background="?attr/textboxbackgroundcolor"
+                    android:scrollbars="vertical"
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:gravity="top|left"
+                    android:maxLines="10"
+                    android:layout_gravity="center"
+
+                    >
+                </EditText>
+
 
             </FrameLayout>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/saveclass"
-                android:text="create"
-                android:layout_gravity="center"
-                android:onClick="saveprogress"/>
+
         </LinearLayout>
     </ScrollView>
 

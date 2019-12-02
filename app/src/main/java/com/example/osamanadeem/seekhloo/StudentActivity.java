@@ -166,6 +166,8 @@ public class StudentActivity extends AppCompatActivity
             WebSettings webSettings = webView.getSettings();
             webSettings.setJavaScriptEnabled(true);
             webView.setVisibility(View.VISIBLE);
+            getSupportActionBar().setTitle("SeekhLoo");
+
             //Uri uri = Uri.parse("https://www.16personalities.com/free-personality-test"); // missing 'http://' will cause crashed
             //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             //startActivity(intent);
