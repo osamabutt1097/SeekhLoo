@@ -27,6 +27,7 @@ public class ClassExistedActivity extends AppCompatActivity {
     private  FragmentManager manager;
     private FragmentTransaction transaction;
     private classroom_stream_frag streamFrag;
+    private frag_classroom_tutor tutor;
     private classroom_Tutor_frag tutorFrag;
     private classroom_Resources_frag resources_frag;
    private TextView textView,name;
@@ -46,7 +47,12 @@ public class ClassExistedActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.navigation_tutor:
-                   startActivity(new Intent(ClassExistedActivity.this,SearchTutorActivity.class));
+                    getSupportActionBar().setTitle("Tutor");
+                    transaction = manager.beginTransaction();
+                    transaction.replace(R.id.classframe, tutor);
+                    transaction.commit();
+
+                    //startActivity(new Intent(ClassExistedActivity.this,SearchTutorActivity.class));
                     return true;
                 case R.id.navigation_resources:
                     getSupportActionBar().setTitle("Resources");
@@ -139,6 +145,7 @@ public class ClassExistedActivity extends AppCompatActivity {
     }
 
     public void init(){
+        tutor = new frag_classroom_tutor();
         streamFrag = new classroom_stream_frag();
         resources_frag = new classroom_Resources_frag();
         tutorFrag = new classroom_Tutor_frag();
