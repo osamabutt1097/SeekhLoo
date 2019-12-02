@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -67,13 +69,24 @@ public class RecyclerViewAdapterClasses extends RecyclerView.Adapter<RecyclerVie
             @Override
             public boolean onLongClick(View view) {
                 Toast.makeText(mContext, "long clicked!", Toast.LENGTH_SHORT).show();
-/*
+
                 AlertDialog.Builder adb = new AlertDialog.Builder(mContext);
                 adb.setTitle("Delete this class");
                 adb.setIcon(android.R.drawable.ic_dialog_alert);
                 adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(mContext, "OK", Toast.LENGTH_SHORT).show();
+
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().getRef()
+                                .child("Student").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                .child("Classroom").child(attr.get(position).getName());
+
+                        ref.removeValue();
+
+
+
+
+
                     }
                 });
                 adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -82,7 +95,7 @@ public class RecyclerViewAdapterClasses extends RecyclerView.Adapter<RecyclerVie
                         //finish();
                     }
                 });
-                adb.show();*/
+                adb.show();
 
                 return true;
             }

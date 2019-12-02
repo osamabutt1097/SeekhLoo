@@ -25,6 +25,9 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,7 @@ public class StudentActivity extends AppCompatActivity
 
 
     private ViewPager viewPager;
+    private WebView webView;
     private student_frag_newsletters notifications;
     private student_fag_home home;
     private TextView name, email;
@@ -86,10 +90,16 @@ public class StudentActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        }
+        else if (webView.getVisibility() == View.VISIBLE)
+        {
+            webView.setVisibility(View.GONE);
+        }
+        else {
             super.onBackPressed();
         }
     }
@@ -125,6 +135,7 @@ public class StudentActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             viewPager.setCurrentItem(0);
+            webView.setVisibility(View.GONE);
             getSupportActionBar().setTitle("SeekhLoo");
         } else if (id == R.id.nav_calender) {
             Intent launchIntent = this.getPackageManager().getLaunchIntentForPackage("com.google.android.calendar");
@@ -138,7 +149,7 @@ public class StudentActivity extends AppCompatActivity
         } else if (id == R.id.nav_archive) {
 
         } else if (id == R.id.nav_settings) {
-            startActivity(new Intent(StudentActivity.this,DarkActivity.class));
+            startActivity(new Intent(StudentActivity.this,SettingActivity.class));
 
         }else if (id == R.id.nav_logout) {
             FirebaseAuth.getInstance().signOut();
@@ -152,9 +163,14 @@ public class StudentActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_personality_test)
         {
-            Uri uri = Uri.parse("https://www.16personalities.com/free-personality-test"); // missing 'http://' will cause crashed
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
+            webView.setWebViewClient(new WebViewClient());
+            webView.loadUrl("https://www.16personalities.com/free-personality-test");
+            WebSettings webSettings = webView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            webView.setVisibility(View.VISIBLE);
+            //Uri uri = Uri.parse("https://www.16personalities.com/free-personality-test"); // missing 'http://' will cause crashed
+            //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            //startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -164,6 +180,7 @@ public class StudentActivity extends AppCompatActivity
 
     void init()
     {
+        webView = findViewById(R.id.webView);
         viewPager = findViewById(R.id.viewpagerstudent);
 
     }
