@@ -155,6 +155,7 @@ public class StudentActivity extends AppCompatActivity
         } else if (id == R.id.nav_notify) {
             viewPager.setCurrentItem(1);
             getSupportActionBar().setTitle("NewsLetters");
+//            startActivity(new Intent(StudentActivity.this,VideChatActivity.class));
 
         }
         else if (id == R.id.nav_personality_test)

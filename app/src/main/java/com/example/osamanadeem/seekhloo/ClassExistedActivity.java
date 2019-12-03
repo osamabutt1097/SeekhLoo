@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Switch;
@@ -84,10 +85,7 @@ public class ClassExistedActivity extends AppCompatActivity {
         Intent iin= getIntent();
         Bundle b = iin.getExtras();
 
-        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.classroomtoolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Stream");
-        /*
+    /*
         // aSwitch = findViewById(R.id.darkswitch);
         //Again dark panga
         if (AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES   )
@@ -129,6 +127,15 @@ public class ClassExistedActivity extends AppCompatActivity {
 
        init();
 
+
+       //Top Navigation Bar
+        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.classroomtoolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("SeekhLoo");
+
+
+
+        //Bottom navigation bar
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.class_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_stream);
@@ -153,6 +160,30 @@ public class ClassExistedActivity extends AppCompatActivity {
         transaction = manager.beginTransaction();
         transaction.replace(R.id.classframe, streamFrag);
         transaction.commit();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.video_call, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.videocall){
+            startActivity(new Intent(this,VideChatActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }
