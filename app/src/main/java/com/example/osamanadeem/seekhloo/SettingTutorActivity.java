@@ -1,17 +1,13 @@
 package com.example.osamanadeem.seekhloo;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import de.hdodenhof.circleimageview.CircleImageView;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.CompoundButton;
-import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,9 +15,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import de.hdodenhof.circleimageview.CircleImageView;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingTutorActivity extends AppCompatActivity {
 
 
     CircleImageView circleImageView;
@@ -76,7 +74,7 @@ public class SettingActivity extends AppCompatActivity {
 
     }
     private void restartApp() {
-        Intent i = new Intent(getApplicationContext(),SettingActivity.class);
+        Intent i = new Intent(getApplicationContext(), SettingTutorActivity.class);
         startActivity(i);
         finish();
     }
@@ -87,6 +85,7 @@ public class SettingActivity extends AppCompatActivity {
         email = findViewById(R.id.emailsetting);
 
         aSwitch = findViewById(R.id.darkswitch);
+        circleImageView = findViewById(R.id.setting_img);
         init_values();
 
     }
@@ -94,13 +93,15 @@ public class SettingActivity extends AppCompatActivity {
     {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().getRef()
-                .child("Student").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                .child("Tutor").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-            UserInfo info = dataSnapshot.getValue(UserInfo.class);
+            TutorInfo info = dataSnapshot.getValue(TutorInfo.class);
             name.setText(info.getFirstname() + " "+ info.getLastname());
             email.setText(info.getEmail());
+
+            Glide.with(getApplicationContext()).load(info.getPicUrL()).into(circleImageView);
 
             }
 

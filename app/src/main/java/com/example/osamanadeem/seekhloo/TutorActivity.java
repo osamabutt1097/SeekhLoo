@@ -133,7 +133,7 @@ public class TutorActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_settings) {
-            startActivity(new Intent(TutorActivity.this,SettingActivity.class));
+            startActivity(new Intent(TutorActivity.this,SettingTutorActivity.class));
 
         }else if (id == R.id.nav_logout) {
             FirebaseAuth.getInstance().signOut();

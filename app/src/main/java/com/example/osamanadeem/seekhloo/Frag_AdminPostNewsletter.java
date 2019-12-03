@@ -36,7 +36,6 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import de.hdodenhof.circleimageview.CircleImageView;
-import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 import static android.content.Context.MODE_PRIVATE;
 import static androidx.appcompat.app.AppCompatActivity.RESULT_OK;

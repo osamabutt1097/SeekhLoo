@@ -19,6 +19,7 @@
         <activity android:name=".SearchTutorActivity" />
         <activity android:name=".ViewGig" />
         <activity android:name=".GigCreatingActivity" />
+        <activity android:name=".SettingTutorActivity"/>
         <activity
             android:name=".TutorActivity"
             android:label="@string/title_activity_tutor"

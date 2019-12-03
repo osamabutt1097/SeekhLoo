@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".SettingActivity"
     android:orientation="vertical"
+    android:background="?attr/backgroundColor"
     >
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="130dp"
-        android:layout_height="120dp"
+        android:layout_width="120dp"
+        android:layout_height="130dp"
         android:id="@+id/setting_img"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
@@ -20,22 +21,121 @@
 
         />
 
-
-    <ListView
-        android:id="@+id/setting_list"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="90dp" />
+        android:layout_height="2dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="50dp"
+        android:background="#c0c0c0"
+        android:layout_marginBottom="20dp"/>
 
 
-    <TextView
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/backgroundColor"
+        >
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/male"
+            />
+
+
+        <TextView
+            android:id="@+id/temp_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="20dp"
+
+            android:layout_marginLeft="70dp"
+            android:textColor="?attr/textcolor"
+            />
+
+        <TextView
+            android:id="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/temp_txt"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="Your name"
+            android:textColor="?attr/textcolor"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+
+            android:background="#c0c0c0"
+            android:layout_below="@id/t1"
+            />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_mail_outline_black_24dp"
+            android:layout_below="@+id/t1"
+            android:layout_marginLeft="5dp"
+
+            android:layout_marginTop="20dp"
+            />
+
+
+        <TextView
+            android:id="@+id/t2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+
+            android:layout_below="@id/t1"
+            android:layout_marginLeft="70dp"
+            android:textColor="?attr/textcolor"
+            />
+        <TextView
+            android:id="@+id/emailsetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Email"
+            android:textSize="30dp"
+            android:layout_below="@+id/t2"
+            android:layout_marginLeft="70dp"
+            android:textStyle="bold"
+            android:textColor="?attr/textcolor"
+            android:layout_marginTop="10dp"
+
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:id="@+id/t3"
+            android:background="#c0c0c0"
+            android:layout_below="@id/emailsetting"
+            android:layout_marginTop="20dp"
+            />
+
+    <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/change_password"
-        android:text="Change Password"
+        android:text="Dark Theme"
         android:textColor="?attr/textcolor"
-        android:textSize="24dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="10dp"
-        android:textStyle="bold"/>
+        android:id="@+id/darkswitch"
+        android:layout_below="@id/t3"
+        android:layout_marginTop="20dp"
+android:layout_centerHorizontal="true"        />
+
+
+
+    </RelativeLayout>
+
 </LinearLayout>
