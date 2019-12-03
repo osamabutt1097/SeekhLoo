@@ -35,10 +35,10 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="150dp"
         android:text="Search Tutor"
         android:background="?attr/textboxbackgroundcolor"
-        android:textColor="@color/colorPrimary"
+        android:textColor="?attr/textcolor"
         />
 
     <Button

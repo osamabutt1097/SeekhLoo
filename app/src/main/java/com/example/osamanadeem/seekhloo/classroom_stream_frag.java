@@ -106,12 +106,16 @@ public class classroom_stream_frag extends Fragment {
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        FirebaseDatabase.getInstance()
-                .getReference().child("Student").child(student_id).child("Classroom").child(c_name).child("chat")
-                .push()
-                .setValue(new ChatMessage(editText.getText().toString(),
-                        FirebaseAuth.getInstance().getCurrentUser().getUid()));
-        editText.setText("");
+        if (!editText.getText().toString().equals("")) {
+          FirebaseDatabase.getInstance()
+                  .getReference().child("Student").child(student_id).child("Classroom").child(c_name).child("chat")
+                  .push()
+                  .setValue(new ChatMessage(editText.getText().toString(),
+                          FirebaseAuth.getInstance().getCurrentUser().getUid()));
+          editText.setText("");
+        }
+        else
+          Toast.makeText(getContext(), "null", Toast.LENGTH_SHORT).show();
       }
     });
     return v;

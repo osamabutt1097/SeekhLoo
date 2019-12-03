@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +32,7 @@ import java.util.List;
 
 public class GigCreatingActivity extends AppCompatActivity {
 
+    private TextView textView;
     private EditText className, timeset,description;
     private String[] array;
     private MaterialDayPicker materialDayPicker;
@@ -93,6 +95,7 @@ public class GigCreatingActivity extends AppCompatActivity {
         timeset = findViewById(R.id.GIG_time_create_class);
         rgroup = findViewById(R.id.GIG_radiotype);
         chip = findViewById(R.id.GIGchipText);
+        textView = findViewById(R.id.hint_Gig_tag);
     }
 
 
@@ -115,6 +118,8 @@ public class GigCreatingActivity extends AppCompatActivity {
                     String[] arr = getResources().getStringArray(R.array.arts);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
                     chip.setAdapter(adapter);
+                    textView.setText("Hints: " + android.text.TextUtils.join(",", arr));
+
 
                 }
                 if (adapter.getItem(i).toString().equals("Business"))
@@ -123,6 +128,8 @@ public class GigCreatingActivity extends AppCompatActivity {
                     String[] arr = getResources().getStringArray(R.array.business);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
                     chip.setAdapter(adapter);
+                    textView.setText("Hints: " + android.text.TextUtils.join(",", arr));
+
 
                 }
                 if (adapter.getItem(i).toString().equals("Computer Sciences"))
@@ -130,6 +137,8 @@ public class GigCreatingActivity extends AppCompatActivity {
                     String[] arr = getResources().getStringArray(R.array.computer);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
                     chip.setAdapter(adapter);
+                    textView.setText("Hints: " + android.text.TextUtils.join(",", arr));
+
 
 
                 }if (adapter.getItem(i).toString().equals("Health"))
@@ -137,6 +146,8 @@ public class GigCreatingActivity extends AppCompatActivity {
                     String[] arr = getResources().getStringArray(R.array.health);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
                     chip.setAdapter(adapter);
+                    textView.setText("Hints: " + android.text.TextUtils.join(",", arr));
+
 
 
                 }if (adapter.getItem(i).toString().equals("Mathematics"))
@@ -144,6 +155,8 @@ public class GigCreatingActivity extends AppCompatActivity {
                     String[] arr = getResources().getStringArray(R.array.math);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
                     chip.setAdapter(adapter);
+                    textView.setText("Hints: " + android.text.TextUtils.join(",", arr));
+
 
 
                 }if (adapter.getItem(i).toString().equals("Physical Science"))
@@ -151,6 +164,8 @@ public class GigCreatingActivity extends AppCompatActivity {
                     String[] arr = getResources().getStringArray(R.array.physical);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
                     chip.setAdapter(adapter);
+                    textView.setText("Hints: " + android.text.TextUtils.join(",", arr));
+
 
 
                 }if (adapter.getItem(i).toString().equals("Social Studies"))
@@ -159,6 +174,8 @@ public class GigCreatingActivity extends AppCompatActivity {
                     String[] arr = getResources().getStringArray(R.array.social);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
                     chip.setAdapter(adapter);
+                    textView.setText("Hints: " + android.text.TextUtils.join(",", arr));
+
 
                 }
             }

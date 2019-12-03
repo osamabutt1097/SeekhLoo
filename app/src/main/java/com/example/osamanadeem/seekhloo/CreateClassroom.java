@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
     private Button btn;
     private MaterialDayPicker materialDayPicker;
     private ChipLayout chip;
+    private TextView textView;
     private Toolbar mTopToolbar;
     private Spinner spinner;
     private String type;
@@ -93,6 +95,7 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         timeset = findViewById(R.id.time_create_class);
         rgroup = findViewById(R.id.radiotype);
         desc = findViewById(R.id.descriptioncreatclass);
+        textView = findViewById(R.id.hint_clasroom_tag);
     }
 
 
@@ -172,6 +175,8 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
                     String[] arr = getResources().getStringArray(R.array.arts);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
                     chip.setAdapter(adapter);
+                    textView.setText("Hints: " + android.text.TextUtils.join(",", arr));
+
 
                 }
                 if (adapter.getItem(i).toString().equals("Business"))
@@ -180,6 +185,7 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
                     String[] arr = getResources().getStringArray(R.array.business);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
                     chip.setAdapter(adapter);
+                    textView.setText("Hints: " + android.text.TextUtils.join(",", arr));
 
                 }
                 if (adapter.getItem(i).toString().equals("Computer Sciences"))
@@ -187,6 +193,8 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
                     String[] arr = getResources().getStringArray(R.array.computer);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
                     chip.setAdapter(adapter);
+                    textView.setText("Hints: " + android.text.TextUtils.join(",", arr));
+
 
 
                 }if (adapter.getItem(i).toString().equals("Health"))
@@ -194,6 +202,8 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
                     String[] arr = getResources().getStringArray(R.array.health);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
                     chip.setAdapter(adapter);
+                    textView.setText("Hints: " + android.text.TextUtils.join(",", arr));
+
 
 
                 }if (adapter.getItem(i).toString().equals("Mathematics"))
@@ -201,6 +211,8 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
                     String[] arr = getResources().getStringArray(R.array.math);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
                     chip.setAdapter(adapter);
+                    textView.setText("Hints: " + android.text.TextUtils.join(",", arr));
+
 
 
                 }if (adapter.getItem(i).toString().equals("Physical Science"))
@@ -208,6 +220,8 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
                     String[] arr = getResources().getStringArray(R.array.physical);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
                     chip.setAdapter(adapter);
+                    textView.setText("Hints: " + android.text.TextUtils.join(",", arr));
+
 
 
                 }if (adapter.getItem(i).toString().equals("Social Studies"))
@@ -216,6 +230,8 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
                     String[] arr = getResources().getStringArray(R.array.social);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,arr);
                     chip.setAdapter(adapter);
+                    textView.setText("Hints: " + android.text.TextUtils.join(",", arr));
+
 
                 }
             }

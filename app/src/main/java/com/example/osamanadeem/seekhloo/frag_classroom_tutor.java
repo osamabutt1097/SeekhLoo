@@ -95,7 +95,7 @@ public class frag_classroom_tutor  extends Fragment {
             }
         });
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().getRef().child("Student")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Classroom")
+                .child(student_id).child("Classroom")
                 .child(c_name);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
