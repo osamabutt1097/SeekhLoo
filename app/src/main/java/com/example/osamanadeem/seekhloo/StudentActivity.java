@@ -55,12 +55,10 @@ public class StudentActivity extends AppCompatActivity
         if (themeMode.equals("2"))
         {
             setTheme(R.style.DarkTheme);
+
         }
         else
             setTheme(R.style.AppTheme);
-
-        setTheme(R.style.AppTheme);
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);

@@ -2,6 +2,7 @@ package com.example.osamanadeem.seekhloo;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -22,6 +23,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.preference.PreferenceManager;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,6 +54,7 @@ public class TutorActivity extends AppCompatActivity
         if (themeMode.equals("2"))
         {
             setTheme(R.style.DarkTheme);
+
         }
         else
             setTheme(R.style.AppTheme);

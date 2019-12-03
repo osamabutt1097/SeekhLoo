@@ -12,7 +12,9 @@
     <include
         layout="@layout/app_bar_student"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+
+        />
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -21,6 +23,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_student"
-        app:menu="@menu/activity_student_drawer" />
+        app:menu="@menu/activity_student_drawer"
+        android:background="?attr/backgroundColor" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

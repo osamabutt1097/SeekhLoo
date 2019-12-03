@@ -4,7 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/noti_card_layout">
+    android:id="@+id/noti_card_layout"
+    android:background="?attr/whites"
+    >
 
 
     <androidx.cardview.widget.CardView
@@ -17,13 +19,15 @@
         android:layout_marginTop="20dp"
         app:cardElevation="4dp"
         app:cardCornerRadius="13dp"
+        android:background="@drawable/boundry"
 
         >
 
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/backgroundColor">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="150dp"
@@ -35,7 +39,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/subject_notify"
         android:text="asdnczfazbiudsav"
-        android:textColor="@color/black"
+        android:textColor="?attr/textcolor"
         android:textSize="24dp"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
@@ -47,6 +51,7 @@
         android:text="zhjcvhjczhjczyuczjuv"
         android:id="@+id/messagebody_notify"
         android:lines="1"
+        android:textColor="?attr/textcolor"
         android:layout_marginLeft="10dp"
         />
 

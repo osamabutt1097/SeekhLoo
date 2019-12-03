@@ -7,8 +7,11 @@ import androidx.annotation.NonNull;
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,8 +31,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.ramotion.paperonboarding.PaperOnboardingEngine;
+import com.ramotion.paperonboarding.PaperOnboardingFragment;
+import com.ramotion.paperonboarding.PaperOnboardingPage;
+import com.ramotion.paperonboarding.listeners.PaperOnboardingOnChangeListener;
+import com.ramotion.paperonboarding.listeners.PaperOnboardingOnRightOutListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -42,9 +52,14 @@ public class LoginActivity extends AppCompatActivity {
     private UserInfo info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
+
+        //////////Intro screens/////////
+
     }
 
 
@@ -59,6 +74,12 @@ public class LoginActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         lottieAnimationView = findViewById(R.id.load_login);
+
+
+        ////
+
+
+
 
     }
 
@@ -301,4 +322,7 @@ public class LoginActivity extends AppCompatActivity {
             lottieAnimationView.setVisibility(View.GONE);
         }
     }
+
+
+
 }
