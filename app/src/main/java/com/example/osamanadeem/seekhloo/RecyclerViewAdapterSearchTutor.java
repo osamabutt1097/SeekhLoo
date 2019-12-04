@@ -40,7 +40,9 @@ public class RecyclerViewAdapterSearchTutor extends RecyclerView.Adapter<Recycle
     public RecyclerViewAdapterSearchTutor(ArrayList<TutorInfo> attr, Context mContext) {
 
         this.mContext = mContext;
-        this.attr = attr;
+        this.attr=attr;
+
+
     }
 
     @Override
@@ -104,6 +106,9 @@ public class RecyclerViewAdapterSearchTutor extends RecyclerView.Adapter<Recycle
             name = itemView.findViewById(R.id.search_tutor_name);
             cardViews = itemView.findViewById(R.id.search_tutor_card);
         }
+
+
+
     }
 
     public void load_data(String id) {
@@ -145,5 +150,8 @@ public class RecyclerViewAdapterSearchTutor extends RecyclerView.Adapter<Recycle
 
 
     }
+
+
+
 
 }

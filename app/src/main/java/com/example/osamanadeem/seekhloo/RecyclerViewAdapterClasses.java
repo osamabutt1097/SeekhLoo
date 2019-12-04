@@ -115,6 +115,13 @@ public class RecyclerViewAdapterClasses extends RecyclerView.Adapter<RecyclerVie
                 editor.putString("s_id", FirebaseAuth.getInstance().getCurrentUser().getUid());
                 editor.putString("t_id", attr.get(position).getTutor());
                 editor.putString("c_name", attr.get(position).getName());
+                editor.putString("time",attr.get(position).getTime());
+                editor.putString("city",attr.get(position).getCity());
+                editor.putString("catagory",attr.get(position).getCatagory());
+                editor.putString("type",attr.get(position).getType());
+
+
+
 
                 editor.apply();
 

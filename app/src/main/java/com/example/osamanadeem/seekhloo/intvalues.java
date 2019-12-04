@@ -1,10 +1,10 @@
 package com.example.osamanadeem.seekhloo;
 
 public class intvalues {
-    int city;
-    int catagory;
-    int time;
-    double distance;
+    static int city;
+    static int catagory;
+    static int time;
+    static double distance;
 
     public double getDistance() {
         return distance;
@@ -22,7 +22,7 @@ public class intvalues {
         this.type = type;
     }
 
-    int type;
+    static int type;
 
     public String getT_id() {
         return t_id;
@@ -32,7 +32,7 @@ public class intvalues {
         this.t_id = t_id;
     }
 
-    String t_id;
+    static String t_id;
 
     public int getCity() {
         return city;

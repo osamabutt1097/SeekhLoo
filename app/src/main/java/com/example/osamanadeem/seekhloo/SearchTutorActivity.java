@@ -27,8 +27,11 @@ public class SearchTutorActivity extends AppCompatActivity {
     private Toolbar mTopToolbar;
     ArrayList<gigattributes> gigs = new ArrayList<>();
 
+    ArrayList<intvalues> nit = new ArrayList<>();
     private RecyclerView recyclerView;
     private ArrayList<TutorInfo> classes = new ArrayList<>();
+    private ArrayList<TutorInfo> tinfo = new ArrayList<>();
+
     private final int Kvalue = 5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +55,7 @@ public class SearchTutorActivity extends AppCompatActivity {
 
         mTopToolbar = (Toolbar) findViewById(R.id.createclassroomtoolbar);
         setSupportActionBar(mTopToolbar);
-       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         init_data();
@@ -65,7 +68,7 @@ public class SearchTutorActivity extends AppCompatActivity {
     {
         recyclerView = findViewById(R.id.searchtutor_recyclerview);
 
-         load_data();
+        load_data();
 
     }
 
@@ -78,8 +81,7 @@ public class SearchTutorActivity extends AppCompatActivity {
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://seekhloo.firebaseio.com/Tutor");
 
-        Toast.makeText(SearchTutorActivity.this, currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
-        mRef.addValueEventListener(new ValueEventListener() {
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -95,9 +97,8 @@ public class SearchTutorActivity extends AppCompatActivity {
                     //add you mediaItem to list that you provided
                 }
                 //Toast.makeText(getContext(), classes.size() + "", Toast.LENGTH_SHORT).show();
-               algo_data(classes);
-
-                //init_recyclerview();
+                algo_data(classes);
+              //  Load_Tutor_Data(nit);
             }
 
 
@@ -147,87 +148,90 @@ public class SearchTutorActivity extends AppCompatActivity {
         gigs.clear();
         for (int i = 0; i < info.size(); i++) {
             DatabaseReference mRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://seekhloo.firebaseio.com/Tutor/" + info.get(i).getId() + "/Gigs");
-
-            mRef.addValueEventListener(new ValueEventListener() {
+            ValueEventListener listener = new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-
-
                     for (DataSnapshot children : dataSnapshot.getChildren()) {
                         gigattributes attr = children.getValue(gigattributes.class);
 
-                        if (dataSnapshot.exists())
-                                gigs.add(attr);
+                        if (dataSnapshot.exists()) {
+                            gigs.add(attr);
+                            int city = cityToNumeric(gigs.get(gigs.size() - 1).getCity());
+                            int catagory = catagoryToNumeric(gigs.get(gigs.size() - 1).getCatagory());
+                            int time = time(gigs.get(gigs.size() - 1).getTime());
+                            int type = typeToNumeric(gigs.get(gigs.size() - 1).getType());
+                            intvalues val = new intvalues(city, catagory, time, type, gigs.get(gigs.size() - 1).getT_id(), -1);
+                            nit.add(val);
+                            ArrayList<intvalues> snit = new ArrayList<>();
 
+                            final SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
+                            final String t_id, student_id, c_name, ctime, ctype, c_catagory, c_city;
+
+                            t_id = prefs.getString("t_id", "null");
+                            student_id = prefs.getString("s_id", "null");
+                            c_name = prefs.getString("c_name", "null");
+                            ctime = prefs.getString("time", null);
+                            ctype = prefs.getString("type", null);
+                            c_catagory = prefs.getString("catagory", null);
+                            c_city = prefs.getString("city", null);
+
+                            double ncity = nit.get(nit.size() - 1).getCity() - cityToNumeric(c_city);
+                            city *= city;
+
+                            double ntype = nit.get(nit.size() - 1).getType() - typeToNumeric(ctype);
+                            type *= type;
+
+                            double ncatagory = nit.get(nit.size() - 1).getCatagory() - catagoryToNumeric(c_catagory);
+                            catagory *= catagory;
+
+                            double ntime = nit.get(nit.size() - 1).getTime() - time(ctime);
+                            time *= time;
+
+                            double temp = city + type + catagory + time;
+                            temp = Math.sqrt(temp);
+
+                            nit.get(nit.size() - 1).setDistance((long) temp);
+
+                            ////////////////////////////////
+                            Toast.makeText(SearchTutorActivity.this, nit.size() + "", Toast.LENGTH_SHORT).show();
+                            ///////////////////////////////////////////////////
+
+
+                        }
                     }
 
 
-                    calculateNumericValues(gigs);
-                 //  Toast.makeText(SearchTutorActivity.this, classes.size() + "", Toast.LENGTH_SHORT).show();
-
-
                 }
-
-
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 
                 }
+            };
+            mRef.addListenerForSingleValueEvent(listener);
+            Load_Tutor_Data(nit);
+
+            mRef.removeEventListener(listener);
 
 
-            });
+
+
+
         }
-        }
+    }
 
     void calculateNumericValues(ArrayList<gigattributes> gigs)
     {
-        ArrayList<intvalues> nit = new ArrayList<>();
-
-        for (int i = 0 ; i< gigs.size();i++)
-        {
-            int city = cityToNumeric(gigs.get(i).getCity());
-            int catagory = catagoryToNumeric(gigs.get(i).getCatagory());
-            int time = time(gigs.get(i).getTime());
-            int type = typeToNumeric(gigs.get(i).getType());
-            intvalues val = new intvalues(city,catagory,time,type,gigs.get(i).getT_id(),-1);
-            nit.add(val);
 
 
-        }
 
-        get_class_info(nit);
+
+
 
 
     }
 
     void get_class_info(ArrayList<intvalues> nit)
     {
-        ArrayList<intvalues> snit = new ArrayList<>();
-
-        final SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
-        final String t_id, student_id, c_name;
-
-        t_id = prefs.getString("t_id", "null");
-        student_id = prefs.getString("s_id", "null");
-        c_name = prefs.getString("c_name", "null");
-
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().getRef()
-                .child("Student").child(student_id).child("Classroom").child(c_name);
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                classattributes attr = dataSnapshot.getValue(classattributes.class);
-                intvalues val = new intvalues(cityToNumeric(attr.getCity()),catagoryToNumeric(attr.getCatagory())
-                ,time(attr.getTime()),typeToNumeric(attr.getType()),student_id,-1);
-                snit.add(val);
-                calculate_distance(nit,snit);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
 
     }
@@ -258,13 +262,43 @@ public class SearchTutorActivity extends AppCompatActivity {
 
 
 
+
+
     }
+
+    public void Load_Tutor_Data(ArrayList<intvalues> nit)
+    {
+
+        classes.clear();
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                TutorInfo info = dataSnapshot.getValue(TutorInfo.class);
+                classes.add(info);
+                init_recyclerview();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().getRef()
+                .child("Tutor").child(nit.get(0).getT_id());
+        ref.addListenerForSingleValueEvent(listener);
+        ref.removeEventListener(listener);
+
+
+
+    }
+
 
     int cityToNumeric(String city)
     {
-       if (city.equals("Faisalabad"))
-           return 1;
-       else if (city.equals("Islamabad"))
+        if (city.equals("Faisalabad"))
+            return 1;
+        else if (city.equals("Islamabad"))
             return 2;
         else if (city.equals("Lahore"))
             return 3;
@@ -282,16 +316,16 @@ public class SearchTutorActivity extends AppCompatActivity {
             return 2;
         }
         else if (catagory.equals("Computer Sciences")) {
-        return 3;
+            return 3;
         }
         else if (catagory.equals("Health")) {
-        return 4;
+            return 4;
         }
         else if (catagory.equals("Mathematics")) {
-        return 5;
+            return 5;
         }
         else if (catagory.equals("Physical Science")) {
-        return 6;
+            return 6;
         }
         else if (catagory.equals("Social Studies")) {
             return 7;
