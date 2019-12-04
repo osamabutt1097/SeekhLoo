@@ -61,7 +61,21 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Spinner
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                style="?attr/backgroundColor"
 
+                android:backgroundTint="?attr/textboxbackgroundcolor"
+                android:background="?attr/textboxbackgroundcolor"
+                android:id="@+id/spincitytutor"
+
+
+                >
+
+            </Spinner>
             <Spinner
                 android:layout_width="300dp"
                 android:layout_height="30dp"

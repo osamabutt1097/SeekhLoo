@@ -38,7 +38,7 @@ public class GigCreatingActivity extends AppCompatActivity {
     private MaterialDayPicker materialDayPicker;
     private ChipLayout chip;
     private Toolbar mTopToolbar;
-    private Spinner spinner;
+    private Spinner spinner,cityspinner;
     private String type;
     private RadioGroup rgroup;
     private RadioButton radioButton;
@@ -96,6 +96,12 @@ public class GigCreatingActivity extends AppCompatActivity {
         rgroup = findViewById(R.id.GIG_radiotype);
         chip = findViewById(R.id.GIGchipText);
         textView = findViewById(R.id.hint_Gig_tag);
+        cityspinner = findViewById(R.id.spincitytutor);
+        array = getResources().getStringArray(R.array.city);
+        final ArrayAdapter adapter =  ArrayAdapter.createFromResource(this,R.array.city,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cityspinner.setAdapter(adapter);
+
     }
 
 
@@ -196,11 +202,21 @@ public class GigCreatingActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-        classattributes  attr = new classattributes(className.getText().toString(),spinner.getSelectedItem().toString(),chip.getText(),timeset.getText().toString(),getType(),getdays());
+        classattributes  attr = new classattributes(className.getText().toString(),spinner.getSelectedItem().toString(),chip.getText(),timeset.getText().toString(),getType(),getdays(),
+                FirebaseAuth.getInstance().getCurrentUser().getUid());
         myRef.child("Tutor").child(currentFirebaseUser.getUid()).child("Gigs").child(className.getText().toString()).setValue(attr, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                 myRef.child("Tutor").child(currentFirebaseUser.getUid()).child("Gigs").child(className.getText().toString()).child("Description").setValue(description.getText().toString());
+                HashMap<String,Object> map1 = new HashMap<>();
+                map.put("city",cityspinner.getSelectedItem().toString());
+                myRef.child("Tutor").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child("Gigs").child(className.getText().toString()).child("city").setValue(cityspinner.getSelectedItem().toString());
+                map.put("city",cityspinner.getSelectedItem().toString());
+                myRef.child("Tutor").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child("Gigs").child(className.getText().toString()).child("t_id").setValue(currentFirebaseUser.getUid());
+
+
             }
         });
 

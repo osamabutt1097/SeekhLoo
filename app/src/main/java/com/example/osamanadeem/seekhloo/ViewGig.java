@@ -109,7 +109,7 @@ public class ViewGig extends AppCompatActivity  {
 
         RecyclerView recyclerView = findViewById(R.id.show_gig_recyclerview);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewAdapterClasses adapter = new RecyclerViewAdapterClasses(classes,ViewGig.this);
+        RecyclerViewAdapterGigs adapter = new RecyclerViewAdapterGigs(classes,ViewGig.this);
         recyclerView.setAdapter(adapter);
 
         ////////////////

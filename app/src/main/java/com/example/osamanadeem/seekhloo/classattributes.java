@@ -19,13 +19,14 @@ public class classattributes implements Serializable {
 
     }
 
-    public classattributes(String name, String catagory, List<String> list, String time, String type, List<MaterialDayPicker.Weekday> weekdayList) {
+    public classattributes(String name, String catagory, List<String> list, String time, String type, List<MaterialDayPicker.Weekday> weekdayList,String t_id) {
         this.name = name;
         this.catagory = catagory;
         this.list = list;
         this.time = time;
         this.type = type;
         this.weekdayList = weekdayList;
+        this.t_id=t_id;
     }
     public classattributes(String name, String catagory, List<String> list, String time, String type, List<MaterialDayPicker.Weekday> weekdayList,String Description,String assignedtutor,String requestedTutor) {
         this.name = name;
@@ -50,6 +51,20 @@ public class classattributes implements Serializable {
         this.requestedtutor = requestedTutor;
         this.tutor=assignedtutor;
         this.student_id=student_id;
+    }
+
+    public classattributes(String name, String catagory, List<String> list, String time, String type, List<MaterialDayPicker.Weekday> weekdayList,String Description,String assignedtutor,String requestedTutor,String student_id,String city) {
+        this.name = name;
+        this.catagory = catagory;
+        this.list = list;
+        this.time = time;
+        this.type = type;
+        this.weekdayList = weekdayList;
+        this.Description = Description;
+        this.requestedtutor = requestedTutor;
+        this.tutor=assignedtutor;
+        this.student_id=student_id;
+        this.city = city;
     }
 
     public classattributes(String name, String catagory, List<String> list, String time, String type, String Description,String assignedtutor,String requestedTutor,String student_id) {
@@ -174,7 +189,24 @@ public class classattributes implements Serializable {
 
     List<MaterialDayPicker.Weekday> weekdayList = new ArrayList<MaterialDayPicker.Weekday>();
 
+    public String getCity() {
+        return city;
+    }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getT_id() {
+        return t_id;
+    }
+
+    public void setT_id(String t_id) {
+        this.t_id = t_id;
+    }
+
+    String city;
+    String t_id;
 
 
 }

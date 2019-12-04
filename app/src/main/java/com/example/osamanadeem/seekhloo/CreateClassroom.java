@@ -30,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.libaml.android.view.chip.ChipLayout;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class CreateClassroom extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -41,7 +42,7 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
     private ChipLayout chip;
     private TextView textView;
     private Toolbar mTopToolbar;
-    private Spinner spinner;
+    private Spinner spinner,cityspinner;
     private String type;
     private RadioGroup rgroup;
     private RadioButton radioButton;
@@ -96,6 +97,12 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         rgroup = findViewById(R.id.radiotype);
         desc = findViewById(R.id.descriptioncreatclass);
         textView = findViewById(R.id.hint_clasroom_tag);
+        cityspinner = findViewById(R.id.spincity);
+        array = getResources().getStringArray(R.array.city);
+        final ArrayAdapter adapter =  ArrayAdapter.createFromResource(this,R.array.city,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cityspinner.setAdapter(adapter);
+
     }
 
 
@@ -155,9 +162,14 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-        classattributes  attr = new classattributes(className.getText().toString(),spinner.getSelectedItem().toString(),chip.getText(),timeset.getText().toString(),getType(),getdays(),desc.getText().toString(),"no","no",currentFirebaseUser.getUid());
+        classattributes  attr = new classattributes(className.getText().toString(),spinner.getSelectedItem().toString(),chip.getText(),timeset.getText().toString(),getType(),getdays(),desc.getText().toString(),"no","no",currentFirebaseUser.getUid(),cityspinner.getSelectedItem().toString());
         myRef.child("Student").child(currentFirebaseUser.getUid()).child("Classroom").child(className.getText().toString()).setValue(attr);
 
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("city",cityspinner.getSelectedItem().toString());
+        myRef.child("Student").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("Classroom").child(className.getText().toString()).updateChildren(map);
+        finish();
     }
     public void spin()
     {
@@ -252,10 +264,11 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         mTimePicker = new TimePickerDialog(CreateClassroom.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                timeset.setText( selectedHour + ":" + selectedMinute);
+                timeset.setText( selectedHour+1);
             }
         }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
+
         mTimePicker.show();
     }
 

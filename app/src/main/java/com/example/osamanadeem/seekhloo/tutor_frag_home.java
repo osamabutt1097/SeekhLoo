@@ -135,6 +135,7 @@ public class tutor_frag_home extends Fragment {
                        for (DataSnapshot children : dataSnapshot.getChildren()) {
                            classattributes attr = children.getValue(classattributes.class);
 
+                           if (dataSnapshot.exists())
                            if (attr.getTutor().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
                             classes.add(attr);
 
