@@ -264,7 +264,7 @@ public class CreateClassroom extends AppCompatActivity implements AdapterView.On
         mTimePicker = new TimePickerDialog(CreateClassroom.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                timeset.setText( selectedHour+1);
+                timeset.setText( selectedHour+1+"");
             }
         }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");

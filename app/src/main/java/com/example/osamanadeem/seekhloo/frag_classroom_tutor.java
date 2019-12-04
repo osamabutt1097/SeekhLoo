@@ -130,9 +130,11 @@ public class frag_classroom_tutor  extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                TutorInfo info = dataSnapshot.getValue(TutorInfo.class);
-                Glide.with(getContext()).load(info.getPicUrL()).into(circleImageView);
-                textView.setText(info.firstname+" "+info.getLastname());
+                if (dataSnapshot.exists()) {
+                    TutorInfo info = dataSnapshot.getValue(TutorInfo.class);
+                    Glide.with(getContext()).load(info.getPicUrL()).into(circleImageView);
+                    textView.setText(info.firstname + " " + info.getLastname());
+                }
             }
 
             @Override

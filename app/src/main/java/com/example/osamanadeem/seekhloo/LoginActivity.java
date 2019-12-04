@@ -103,6 +103,11 @@ public class LoginActivity extends AppCompatActivity {
                                 ////////////////////////Fetch User Type ////////////////////////////
 
                                 currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                                if (currentFirebaseUser.getUid().equals("rd9GhPk7FeerkR9MgsmxUacX6eb2"))
+                                {
+                                    startActivity(new Intent(LoginActivity.this,AdminPanelActivity.class));
+                                    finish();
+                                }
                                 mDatabase.child("Tutor").child(currentFirebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -237,13 +242,18 @@ public class LoginActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
 
         lottieAnimationView.setVisibility(View.VISIBLE);
+
         final FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null)
         {
 //////////////////////////////////////////////////////////////////////////////////////////
 
 
-
+            if (currentFirebaseUser.getUid().equals("rd9GhPk7FeerkR9MgsmxUacX6eb2"))
+            {
+                startActivity(new Intent(LoginActivity.this,AdminPanelActivity.class));
+                finish();
+            }
 
             mDatabase.child("Tutor").child(currentUser.getUid()).addValueEventListener(new ValueEventListener() {
                 @Override

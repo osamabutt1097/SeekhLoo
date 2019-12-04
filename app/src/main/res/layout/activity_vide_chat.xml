@@ -8,10 +8,25 @@
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
+
+
         <FrameLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/subscriber_container" />
+            android:id="@+id/subscriber_container" >
+
+            <ImageView
+                android:id="@+id/endcall"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_gravity="bottom|center_horizontal"
+                android:src="@drawable/ic_call_end_black_24dp"
+                android:background="@drawable/roundbutton"
+                android:backgroundTint="#E61515"
+                android:layout_marginBottom="80dp"/>
+        </FrameLayout>
         <FrameLayout
             android:layout_width="90dp"
             android:layout_height="120dp"

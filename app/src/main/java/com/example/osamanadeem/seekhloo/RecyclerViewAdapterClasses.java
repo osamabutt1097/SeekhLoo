@@ -1,5 +1,6 @@
 package com.example.osamanadeem.seekhloo;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -134,6 +135,7 @@ public class RecyclerViewAdapterClasses extends RecyclerView.Adapter<RecyclerVie
                 intent.putExtra("t_id",attr.get(position).getTutor());
                // Toast.makeText(context, attr.get(position).getTutor()+"", Toast.LENGTH_SHORT).show();
                 context.startActivity(intent);
+
             }
         });
 

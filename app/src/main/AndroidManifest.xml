@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".OnBoardingActivity"></activity>
+        <activity android:name=".GiginfoActivity"></activity>
+        <activity android:name=".OnBoardingActivity" />
         <activity android:name=".VideChatActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".DarkActivity" />
@@ -34,33 +35,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".AdminActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".AdminActivity"></activity>
         <activity
             android:name=".AdminPanelActivity"
             android:label="@string/title_activity_admin_panel" />
-        <activity android:name=".SignupActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".SignupActivity"></activity>
         <activity
             android:name=".StudentActivity"
             android:label="@string/title_activity_student"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity android:name=".SeeNewsletter" />
         <activity
             android:name=".ClassExistedActivity"
@@ -80,10 +63,10 @@
             </intent-filter>
         </service>
     </application>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
 </manifest>

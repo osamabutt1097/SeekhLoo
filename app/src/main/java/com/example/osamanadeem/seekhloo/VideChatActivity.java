@@ -11,11 +11,13 @@ import com.opentok.android.Subscriber;
 import com.opentok.android.OpentokError;
 import androidx.annotation.NonNull;
 import android.Manifest;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import android.opengl.GLSurfaceView;
+import android.widget.ImageView;
 
 public class VideChatActivity extends AppCompatActivity implements  Session.SessionListener,PublisherKit.PublisherListener {
     private static String API_KEY = "46471522";
@@ -29,11 +31,19 @@ public class VideChatActivity extends AppCompatActivity implements  Session.Sess
     private FrameLayout mSubscriberViewContainer;
     private Publisher mPublisher;
     private Subscriber mSubscriber;
+    private ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vide_chat);
 
+        imageView = findViewById(R.id.endcall);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         requestPermissions();
         mPublisherViewContainer = (FrameLayout)findViewById(R.id.publisher_container);
         mSubscriberViewContainer = (FrameLayout)findViewById(R.id.subscriber_container);

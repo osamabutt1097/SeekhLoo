@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReactRequestActivity"
+    android:orientation="vertical">
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/load_request"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="84dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_fileName="loading.json"
+        android:visibility="gone"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme.AppBarOverlay"
+                android:background="?attr/headercolor">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/TutorInfoActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/headercolor"
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <ImageView
+                android:id="@+id/reqTutorInfoImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/camera"/>
+
+
+            <TextView
+                android:id="@+id/gigname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Student name "
+                android:textSize="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+
+            <TextView
+                android:id="@+id/gigcatagory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Catagory Type: "
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Availiable Days"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                />
+            <ca.antonious.materialdaypicker.MaterialDayPicker
+                android:id="@+id/gigdaypicker"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Desccription"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:id="@+id/gigdsc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Details are shown here"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                />
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
