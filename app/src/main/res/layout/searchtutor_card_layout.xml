@@ -6,6 +6,7 @@
     android:layout_height="100dp"
     android:layout_marginRight="10dp"
     android:layout_marginTop="20dp"
+    android:background="@drawable/boundry"
     >
 
 
@@ -19,6 +20,7 @@
         android:layout_marginTop="5dp"
         app:cardElevation="4dp"
         app:cardCornerRadius="13dp"
+        android:background="?attr/backgroundColor"
         >
 
         <RelativeLayout
@@ -34,6 +36,7 @@ android:background="@drawable/colorboundry"            >
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/camera"
+
                 />
             <TextView
                 android:id="@+id/search_tutor_name"
@@ -42,6 +45,7 @@ android:background="@drawable/colorboundry"            >
                 android:text="Tutor name"
                 android:layout_marginLeft="20dp"
 
+                android:textColor="?attr/textcolor"
                 android:layout_toRightOf="@id/imgsearchtutor"
                 android:layout_marginTop="20dp"
                 />

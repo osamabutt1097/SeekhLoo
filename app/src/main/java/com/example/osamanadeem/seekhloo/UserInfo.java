@@ -15,6 +15,16 @@ public class UserInfo {
     }
 
     String id;
+
+    public String getPicUrL() {
+        return picUrL;
+    }
+
+    public void setPicUrL(String picUrL) {
+        this.picUrL = picUrL;
+    }
+
+    String picUrL;
     public UserInfo(String id,String type, String email, String birthday, String firstname, String lastname,String gender) {
         this.type = type;
         this.email = email;
@@ -24,6 +34,18 @@ public class UserInfo {
         this.gender = gender;
         this.name = name;
         this.id = id;
+    }
+
+    public UserInfo(String id,String type, String email, String birthday, String firstname, String lastname,String gender,String picUrL) {
+        this.type = type;
+        this.email = email;
+        this.birthday = birthday;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.gender = gender;
+        this.name = name;
+        this.id = id;
+        this.picUrL=picUrL;
     }
 
 

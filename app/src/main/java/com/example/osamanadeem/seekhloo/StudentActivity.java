@@ -136,14 +136,16 @@ public class StudentActivity extends AppCompatActivity
             webView.setVisibility(View.GONE);
             getSupportActionBar().setTitle("SeekhLoo");
         } else if (id == R.id.nav_calender) {
-            Intent launchIntent = this.getPackageManager().getLaunchIntentForPackage("com.google.android.calendar");
+
+        startActivity(new Intent(StudentActivity.this,OnBoardingActivity.class));
+
+          /*  Intent launchIntent = this.getPackageManager().getLaunchIntentForPackage("com.google.android.calendar");
             if (launchIntent != null) {
                 startActivity(launchIntent);//null pointer check in case package name was not found
             }
             else
                 Toast.makeText(this, "Please install Google Calender", Toast.LENGTH_SHORT).show();
-
-
+*/
         } else if (id == R.id.nav_settings) {
             startActivity(new Intent(StudentActivity.this,SettingActivity.class));
 

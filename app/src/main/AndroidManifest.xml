@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".VideChatActivity"></activity>
+        <activity android:name=".OnBoardingActivity"></activity>
+        <activity android:name=".VideChatActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".DarkActivity" />
         <activity android:name=".AllRequestsActivity" />
@@ -79,10 +80,10 @@
             </intent-filter>
         </service>
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
-
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>
