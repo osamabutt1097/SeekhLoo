@@ -5,11 +5,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.model.Model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -128,7 +130,7 @@ public class SearchTutorActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(SearchTutorActivity.this,RecyclerView.VERTICAL,false);
 
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewAdapterSearchTutor adapter = new RecyclerViewAdapterSearchTutor(classes,SearchTutorActivity.this);
+        RecyclerViewAdapterSearchTutor adapter = new RecyclerViewAdapterSearchTutor(tinfo,SearchTutorActivity.this);
         recyclerView.setAdapter(adapter);
 
         ////////////////
@@ -196,8 +198,31 @@ public class SearchTutorActivity extends AppCompatActivity {
                             Toast.makeText(SearchTutorActivity.this, nit.size() + "", Toast.LENGTH_SHORT).show();
                             ///////////////////////////////////////////////////
 
+                            Collections.sort(nit, new Comparator<intvalues>() {
+
+                                @Override
+                                public int compare(intvalues lhs, intvalues rhs) {
+                                    int a = (int) lhs.getDistance();
+                                    int b = (int) rhs.getDistance();
+                                    return a > b ? -1 : (a< b) ? 1 : 0;
+                                }
+                            });
+
+                            if (gigs.get(gigs.size()-1).getCatagory().equals(c_catagory))
+                            {
+                                if (gigs.get(gigs.size()-1).getCity().equals(c_city))
+                                    if (gigs.get(gigs.size()-1).getTime().equals(ctime))
+                                        if (gigs.get(gigs.size()-1).getType().equals(ctype))
+                                            if (tinfo.size()<3)
+                                                tinfo.add(classes.get(gigs.size()-1));
+                            }
+                            init_recyclerview();
+
+
+
 
                         }
+
                     }
 
 
@@ -208,7 +233,7 @@ public class SearchTutorActivity extends AppCompatActivity {
                 }
             };
             mRef.addListenerForSingleValueEvent(listener);
-            Load_Tutor_Data(nit);
+
 
             mRef.removeEventListener(listener);
 
@@ -218,6 +243,7 @@ public class SearchTutorActivity extends AppCompatActivity {
 
         }
     }
+
 
     void calculateNumericValues(ArrayList<gigattributes> gigs)
     {

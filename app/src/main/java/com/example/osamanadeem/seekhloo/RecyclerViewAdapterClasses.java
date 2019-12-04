@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,6 +120,7 @@ public class RecyclerViewAdapterClasses extends RecyclerView.Adapter<RecyclerVie
                 editor.putString("city",attr.get(position).getCity());
                 editor.putString("catagory",attr.get(position).getCatagory());
                 editor.putString("type",attr.get(position).getType());
+
 
 
 
