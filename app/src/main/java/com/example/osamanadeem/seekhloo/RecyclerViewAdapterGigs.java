@@ -121,8 +121,6 @@ public class RecyclerViewAdapterGigs extends RecyclerView.Adapter<RecyclerViewAd
                 intent.putExtra("subjectname",attr.get(position).getName());
                 intent.putExtra("s_id", FirebaseAuth.getInstance().getCurrentUser().getUid());
                 intent.putExtra("t_id",attr.get(position).getTutor());
-
-                //intent.putExtra("")
                 context.startActivity(new Intent(context,GiginfoActivity.class));
                // Toast.makeText(context, attr.get(position).getTutor()+"", Toast.LENGTH_SHORT).show();
             }

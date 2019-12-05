@@ -19,14 +19,21 @@ public class classattributes implements Serializable {
 
     }
 
-    public classattributes(String name, String catagory, List<String> list, String time, String type, List<MaterialDayPicker.Weekday> weekdayList,String t_id) {
+    public classattributes(String name, String catagory, String time, String type, List<MaterialDayPicker.Weekday> weekdayList,String t_id) {
+        this.name = name;
+        this.catagory = catagory;
+        this.time = time;
+        this.type = type;
+        this.weekdayList = weekdayList;
+        this.t_id=t_id;
+    }
+
+    public classattributes(String name, String catagory, List<String> list, String time, String type) {
         this.name = name;
         this.catagory = catagory;
         this.list = list;
         this.time = time;
         this.type = type;
-        this.weekdayList = weekdayList;
-        this.t_id=t_id;
     }
     public classattributes(String name, String catagory, List<String> list, String time, String type, List<MaterialDayPicker.Weekday> weekdayList,String Description,String assignedtutor,String requestedTutor) {
         this.name = name;

@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.load.model.Model;
@@ -20,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -27,6 +31,7 @@ import java.util.Comparator;
 public class SearchTutorActivity extends AppCompatActivity {
 
     private Toolbar mTopToolbar;
+    private TextView textView;
     ArrayList<gigattributes> gigs = new ArrayList<>();
 
     ArrayList<intvalues> nit = new ArrayList<>();
@@ -69,6 +74,7 @@ public class SearchTutorActivity extends AppCompatActivity {
     public void init_data()
     {
         recyclerView = findViewById(R.id.searchtutor_recyclerview);
+        textView = findViewById(R.id.srchtutortxt);
 
         load_data();
 
@@ -216,7 +222,14 @@ public class SearchTutorActivity extends AppCompatActivity {
                                             if (tinfo.size()<3)
                                                 tinfo.add(classes.get(gigs.size()-1));
                             }
-                            init_recyclerview();
+
+                            if (tinfo.size() > 0)
+                            {
+                                init_recyclerview();
+                                textView.setVisibility(View.GONE);
+                                recyclerView.setVisibility(View.VISIBLE);
+                            }
+
 
 
 
@@ -425,5 +438,34 @@ public class SearchTutorActivity extends AppCompatActivity {
             return 2;
         else
             return 0;
+    }
+
+    public void goback(View view) {
+        finish();
+    }
+
+    public void reviewrequest(View view) {
+        final SharedPreferences prefs = getSharedPreferences("User", MODE_PRIVATE);
+        final String t_id, student_id, c_name, ctime, ctype, c_catagory, c_city;
+
+        t_id = prefs.getString("t_id", "null");
+        student_id = prefs.getString("s_id", "null");
+        c_name = prefs.getString("c_name", "null");
+        ctime = prefs.getString("time", null);
+        ctype = prefs.getString("type", null);
+        c_catagory = prefs.getString("catagory", null);
+        c_city = prefs.getString("city", null);
+
+        classattributes attr = new classattributes(c_name,c_catagory,ctime,ctype);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().getRef()
+                .child("ReviewRequest").child(c_name);
+        ref.setValue(attr, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                Toast.makeText(SearchTutorActivity.this, "Review sent!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 }
