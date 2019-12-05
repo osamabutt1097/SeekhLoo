@@ -456,13 +456,13 @@ public class SearchTutorActivity extends AppCompatActivity {
         c_catagory = prefs.getString("catagory", null);
         c_city = prefs.getString("city", null);
 
-        classattributes attr = new classattributes(c_name,c_catagory,ctime,ctype);
+        classattributes attr = new classattributes(c_name,c_catagory,ctime,ctype,student_id);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().getRef()
                 .child("ReviewRequest").child(c_name);
         ref.setValue(attr, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                Toast.makeText(SearchTutorActivity.this, "Review sent!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchTutorActivity.this, "Get Assistance", Toast.LENGTH_SHORT).show();
             }
         });
 

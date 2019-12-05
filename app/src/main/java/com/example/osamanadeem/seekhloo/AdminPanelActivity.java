@@ -24,6 +24,7 @@ public class AdminPanelActivity extends AppCompatActivity {
 
   //Fragments
   private Frag_AdminPostNewsletter frag_adminPostNewsletter;
+  private frag_admin_review review;
 
   MenuItem prevMenuItem;
 
@@ -47,7 +48,7 @@ public class AdminPanelActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(0);
                     return true;
                   case R.id.navigation_dashboard:
-                    viewPager.setCurrentItem(0);
+                    viewPager.setCurrentItem(1);
                     return true;
                   case R.id.navigation_settings:
                     FirebaseAuth.getInstance().signOut();
@@ -103,7 +104,9 @@ public class AdminPanelActivity extends AppCompatActivity {
   private void setupViewPager(ViewPager viewPager) {
     ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
     frag_adminPostNewsletter=new Frag_AdminPostNewsletter();
+    review=new frag_admin_review();
     adapter.addFragment(frag_adminPostNewsletter);
+    adapter.addFragment(review);
     viewPager.setAdapter(adapter);
   }
 }
